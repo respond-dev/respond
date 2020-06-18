@@ -1,5 +1,5 @@
-import expect from "./expect"
-import directoryLister from "../dist-cjs/lib/directoryLister"
+import expect from "../lib/expect"
+import directoryLister from "../lib/directoryLister"
 
 describe("directoryLister", () => {
   it("lists a directory", async () => {

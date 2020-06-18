@@ -8,9 +8,6 @@
     },
     {
       "path": "./src/tsconfig.esm.json"
-    },
-    {
-      "path": "./test/tsconfig.cjs.json"
     }
   ]
 }
