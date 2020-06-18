@@ -1,16 +1,21 @@
-import path from "path"
+import { basename, join } from "path"
 import directoryLister from "./directoryLister"
 
 export async function taskRunner(args: string[]) {
-  const { files } = await directoryLister(
-    path.join(__dirname, "../tasks"),
+  const { filePaths } = await directoryLister(
+    join(__dirname, "../tasks"),
     ".js"
   )
-  const file = files.find(
-    (file) => path.basename(file, ".js") === args[0]
+
+  const paths = filePaths.filter((path) =>
+    args.includes(basename(path, ".js"))
   )
 
-  return (await import(file)).default(args)
+  return await Promise.all(
+    paths.map(async (path) =>
+      (await import(path)).default(args)
+    )
+  )
 }
 
 export default taskRunner

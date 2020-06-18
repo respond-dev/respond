@@ -2,8 +2,8 @@ import { readdir, stat, Stats } from "fs"
 import { extname, join } from "path"
 
 export interface ListDirectoryResult {
-  dirs: string[]
-  files: string[]
+  dirPaths: string[]
+  filePaths: string[]
 }
 
 export async function directoryLister(
@@ -12,14 +12,14 @@ export async function directoryLister(
 ): Promise<ListDirectoryResult> {
   const names = await new Promise<string[]>(
     (resolve, reject) => {
-      readdir(dir, (err, files) => {
-        err ? reject(err) : resolve(files)
+      readdir(dir, (err, filePaths) => {
+        err ? reject(err) : resolve(filePaths)
       })
     }
   )
 
-  const dirs = []
-  const files = []
+  const dirPaths = []
+  const filePaths = []
 
   await Promise.all(
     names.map(async (name) => {
@@ -34,27 +34,33 @@ export async function directoryLister(
       if (name[0] === ".") {
         // do nothing
       } else if (isDir) {
-        dirs.push(join(dir, name))
+        dirPaths.push(join(dir, name))
       } else if (!ext || extname(name) === ext) {
-        files.push(join(dir, name))
+        filePaths.push(join(dir, name))
       }
     })
   )
 
-  return { dirs, files }
+  return { dirPaths, filePaths }
 }
 
 export async function deepDirectoryLister(
   dir: string,
   ext?: string,
-  options: ListDirectoryResult = { dirs: [], files: [] }
+  options: ListDirectoryResult = {
+    dirPaths: [],
+    filePaths: [],
+  }
 ): Promise<ListDirectoryResult> {
-  const { dirs, files } = await directoryLister(dir, ext)
+  const { dirPaths, filePaths } = await directoryLister(
+    dir,
+    ext
+  )
 
-  options.files = options.files.concat(files)
+  options.filePaths = options.filePaths.concat(filePaths)
 
   await Promise.all(
-    dirs.map(async (path) => {
+    dirPaths.map(async (path) => {
       await deepDirectoryLister(path, ext, options)
     })
   )

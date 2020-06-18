@@ -1,22 +1,22 @@
 import { spawn, IPty } from "node-pty"
 
-export interface PtySpawnOutput {
+export interface PtySpawnerOutput {
   code: number
   out: string
   signal: number
 }
 
-export interface PtySpawnOptions {
+export interface PtySpawnerOptions {
   args?: string[]
   cwd?: string
   env?: Record<string, string>
   stdout?: boolean
 }
 
-export async function ptySpawnRaw(
+export async function ptySpawnerRaw(
   command: string,
-  options: PtySpawnOptions = {}
-): Promise<[IPty, Promise<PtySpawnOutput>]> {
+  options: PtySpawnerOptions = {}
+): Promise<[IPty, Promise<PtySpawnerOutput>]> {
   const { args = [], cwd, env, stdout } = options
 
   const cols = process.stdout.columns
@@ -44,17 +44,17 @@ export async function ptySpawnRaw(
     pty.on("exit", (code, signal): void =>
       resolve({ code, out, signal })
     )
-  }) as Promise<PtySpawnOutput>
+  }) as Promise<PtySpawnerOutput>
 
   return [pty, promise]
 }
 
-export async function ptySpawn(
+export async function ptySpawner(
   command: string,
-  options: PtySpawnOptions = {}
-): Promise<PtySpawnOutput> {
-  const [, promise] = await ptySpawnRaw(command, options)
+  options: PtySpawnerOptions = {}
+): Promise<PtySpawnerOutput> {
+  const [, promise] = await ptySpawnerRaw(command, options)
   return await promise
 }
 
-export default ptySpawn
+export default ptySpawner
