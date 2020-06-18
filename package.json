@@ -7,7 +7,7 @@
     "build": "rm -rf dist; tsc -b -v",
     "update": "ncu -u",
     "test": "mocha",
-    "watch": "tsc -b -v -w"
+    "watch": "./taskRunner watchCjs watchEsm"
   },
   "repository": {
     "type": "git",

@@ -4,33 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "shell",
-      "command": "./bin/apps start appEngine",
-      "label": "start appEngine",
-      "auto": true
-    },
-    {
-      "type": "shell",
-      "command": "./bin/apps start css",
-      "label": "start css",
-      "auto": true
-    },
-    {
-      "type": "shell",
-      "command": "./bin/apps start lambda",
-      "label": "start lambda",
-      "auto": true
-    },
-    {
-      "type": "shell",
-      "command": "./bin/apps start src",
-      "label": "start src",
-      "auto": true
-    },
-    {
-      "type": "shell",
-      "command": "./bin/apps start srcEsm",
-      "label": "start srcEsm",
+      "type": "npm",
+      "script": "watch",
+      "label": "npm run watch",
       "auto": true
     }
   ]
