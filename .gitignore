@@ -1,0 +1,4 @@
+.DS_Store
+/.serverless
+/dist-*
+/node_modules

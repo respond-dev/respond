@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "module": "commonjs",
+    "outDir": "../dist-cjs",
+    "rootDir": "./",
+    "target": "es5"
+  }
+}

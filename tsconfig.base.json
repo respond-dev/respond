@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "jsx": "react",
+    "jsxFactory": "window.elementCreator",
+    "lib": ["dom", "es2015"],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "types": ["node", "mocha"]
+  }
+}
