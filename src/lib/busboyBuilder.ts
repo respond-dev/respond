@@ -1,6 +1,6 @@
 import { createWriteStream } from "fs"
 import { basename, extname } from "path"
-import Busboy from "busboy"
+import busboy from "busboy"
 import tmp from "tmp-promise"
 
 export interface BusboyBuilderOutput {
@@ -12,10 +12,12 @@ export function busboyBuilder(
   headers: Record<string, any>,
   files: Record<string, any>,
   params: Record<string, any>
-): [Busboy, Promise<BusboyBuilderOutput>] {
-  const busboy = new Busboy({ headers: headers })
+): [busboy.Busboy, Promise<BusboyBuilderOutput>] {
+  const busboyInstance = new busboy({
+    headers: headers,
+  })
 
-  busboy.on(
+  busboyInstance.on(
     "file",
     async (
       fieldname,
@@ -26,12 +28,12 @@ export function busboyBuilder(
     ) => {
       const ext = extname(filename)
       const { path } = await tmp.file({ postfix: ext })
-      const stream = createWriteStream(path)
+      const writeStream = createWriteStream(path)
 
-      file.pipe(stream)
+      file.pipe(writeStream)
 
       file.on("data", () => {})
-      file.on("end", function () {
+      file.on("end", () => {
         files[fieldname] = {
           path,
           name: basename(filename),
@@ -42,15 +44,18 @@ export function busboyBuilder(
     }
   )
 
-  busboy.on("field", (fieldname, val) => {
-    params[fieldname] = val
-  })
+  busboyInstance.on(
+    "field",
+    (fieldname: string, val: any) => {
+      params[fieldname] = val
+    }
+  )
 
   const finished = new Promise((resolve) => {
-    busboy.on("finish", function () {
+    busboyInstance.on("finish", function () {
       resolve({ params, files })
     })
   }) as Promise<BusboyBuilderOutput>
 
-  return [busboy, finished]
+  return [busboyInstance, finished]
 }
