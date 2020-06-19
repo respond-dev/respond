@@ -3,7 +3,7 @@ import { deepDirectoryLister } from "./directoryLister"
 export async function acceptTester(
   dirPath: string,
   ...args: any[]
-) {
+): Promise<any[]> {
   const { filePaths } = await deepDirectoryLister(
     dirPath,
     ".js"

@@ -1,7 +1,9 @@
 import { basename, join } from "path"
 import directoryLister from "./directoryLister"
 
-export async function taskRunner(args: string[]) {
+export async function taskRunner(
+  args: string[]
+): Promise<any[]> {
   const { filePaths } = await directoryLister(
     join(__dirname, "../tasks"),
     ".js"

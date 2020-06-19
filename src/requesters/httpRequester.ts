@@ -22,7 +22,9 @@ export interface HttpRequesterOutput {
 }
 
 export class HttpRequester {
-  accept({ httpIncomingMessage }: HttpRequesterInput) {
+  accept({
+    httpIncomingMessage,
+  }: HttpRequesterInput): boolean {
     return !!httpIncomingMessage
   }
 

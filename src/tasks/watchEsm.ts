@@ -1,7 +1,7 @@
 import ptySpawner from "../lib/ptySpawner"
 import { join } from "path"
 
-export async function watchEsm() {
+export async function watchEsm(): Promise<void> {
   await ptySpawner("npx", {
     args: ["tsc", "-p", "src/tsconfig.esm.json", "-w"],
     cwd: join(__dirname, "../../"),

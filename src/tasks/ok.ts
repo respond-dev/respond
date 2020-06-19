@@ -1,4 +1,4 @@
-export function ok() {
+export function ok(): string {
   return "ok"
 }
 

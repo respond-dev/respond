@@ -1,5 +1,5 @@
 export class TestRequester {
-  accept({ test }: { test: boolean }) {
+  accept({ test }: { test: boolean }): boolean {
     return !!test
   }
 }
