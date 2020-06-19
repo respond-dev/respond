@@ -6,8 +6,8 @@ import { headerCleaner } from "../lib/headerCleaner"
 import streamStringifier from "../lib/streamStringifier"
 
 export interface HttpRequesterInput {
-  apiGatewayProxyEvent: APIGatewayProxyEvent
-  httpIncomingMessage: IncomingMessage
+  apiGatewayProxyEvent?: APIGatewayProxyEvent
+  httpIncomingMessage?: IncomingMessage
 }
 
 export interface HttpRequesterOutput {
@@ -30,28 +30,18 @@ export class HttpRequester {
     httpIncomingMessage: req,
   }: HttpRequesterInput): Promise<HttpRequesterOutput> {
     const headers = headerCleaner(req.headers)
+    const [path, pathParams] = req.url.split("?")
 
     let params = {}
     let files = {}
 
-    if (req.method === "GET") {
-      if (req.url.includes("?")) {
-        params = querystring.parse(req.url.split("?")[1])
-      }
-    } else if (req.method === "POST") {
-      if (
-        headers["content-type"] === "application/json" ||
-        headers["content-type"] ===
-          "text/plain; charset=UTF-8"
-      ) {
+    if (req.method === "GET" && pathParams) {
+      params = querystring.parse(pathParams)
+    }
+
+    if (req.method === "POST") {
+      if (headers["content-type"] === "application/json") {
         params = JSON.parse(await streamStringifier(req))
-      } else if (
-        headers["content-type"] ===
-        "application/x-www-form-urlencoded"
-      ) {
-        params = querystring.parse(
-          await streamStringifier(req)
-        )
       } else {
         const [busboy, finished] = busboyBuilder(
           headers,
@@ -69,7 +59,7 @@ export class HttpRequester {
       headers,
       method: req.method,
       params,
-      path: req.url,
+      path,
     }
   }
 }

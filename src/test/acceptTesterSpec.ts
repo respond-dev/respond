@@ -9,6 +9,7 @@ describe("acceptTester", () => {
       join(__dirname, "../requesters"),
       { test: true }
     )
+    expect(testRequester.length).toBe(1)
     expect(testRequester[0]).toBeInstanceOf(TestRequester)
   })
 })
