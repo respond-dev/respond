@@ -1,36 +1,21 @@
-import { IncomingMessage } from "http"
 import querystring from "querystring"
 import cookie from "cookie"
 import { busboyBuilder } from "../lib/busboyBuilder"
 import { headerCleaner } from "../lib/headerCleaner"
 import streamStringifier from "../lib/streamStringifier"
-
-export interface HttpRequesterInput {
-  httpIncomingMessage?: IncomingMessage
-}
-
-export interface HttpRequesterOutput {
-  cookies: Record<string, string>
-  files: Record<
-    string,
-    { name: string; path: string; mimetype: string }
-  >
-  headers: Record<string, string>
-  method: string
-  params: Record<string, any>
-  path: string
-}
+import RequesterInputType from "./requesterInputType"
+import RequesterOutputType from "./requesterOutputType"
 
 export class HttpRequester {
   accept({
     httpIncomingMessage,
-  }: HttpRequesterInput): boolean {
+  }: RequesterInputType): boolean {
     return !!httpIncomingMessage
   }
 
   async respond({
     httpIncomingMessage: req,
-  }: HttpRequesterInput): Promise<HttpRequesterOutput> {
+  }: RequesterInputType): Promise<RequesterOutputType> {
     const [path, pathParams] = req.url.split("?")
     const headers = headerCleaner(req.headers)
     const cookies = headers.cookie

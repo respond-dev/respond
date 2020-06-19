@@ -1,35 +1,20 @@
-import { APIGatewayProxyEvent } from "aws-lambda"
 import querystring from "querystring"
 import cookie from "cookie"
 import { busboyBuilder } from "../lib/busboyBuilder"
 import { headerCleaner } from "../lib/headerCleaner"
-
-export interface LambdaRequesterInput {
-  apiGatewayProxyEvent?: APIGatewayProxyEvent
-}
-
-export interface LambdaRequesterOutput {
-  cookies: Record<string, string>
-  files: Record<
-    string,
-    { name: string; path: string; mimetype: string }
-  >
-  headers: Record<string, string>
-  method: string
-  params: Record<string, any>
-  path: string
-}
+import RequesterInputType from "./requesterInputType"
+import RequesterOutputType from "./requesterOutputType"
 
 export class LambdaRequester {
   accept({
     apiGatewayProxyEvent,
-  }: LambdaRequesterInput): boolean {
+  }: RequesterInputType): boolean {
     return !!apiGatewayProxyEvent
   }
 
   async respond({
     apiGatewayProxyEvent: req,
-  }: LambdaRequesterInput): Promise<LambdaRequesterOutput> {
+  }: RequesterInputType): Promise<RequesterOutputType> {
     const [path, pathParams] = req.path.split("?")
     const headers = headerCleaner(req.headers)
     const cookies = headers.cookie
