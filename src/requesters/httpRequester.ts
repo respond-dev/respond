@@ -1,4 +1,3 @@
-import { APIGatewayProxyEvent } from "aws-lambda"
 import { IncomingMessage } from "http"
 import querystring from "querystring"
 import { busboyBuilder } from "../lib/busboyBuilder"
@@ -6,7 +5,6 @@ import { headerCleaner } from "../lib/headerCleaner"
 import streamStringifier from "../lib/streamStringifier"
 
 export interface HttpRequesterInput {
-  apiGatewayProxyEvent?: APIGatewayProxyEvent
   httpIncomingMessage?: IncomingMessage
 }
 
