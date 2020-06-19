@@ -14,7 +14,7 @@ class FakeIncomingMessage extends IncomingMessage {
 }
 
 describe("httpRequester", () => {
-  it("GET / empty", async () => {
+  it("GET empty", async () => {
     expect(
       await httpRequester.respond({
         httpIncomingMessage: new FakeIncomingMessage(
@@ -23,6 +23,7 @@ describe("httpRequester", () => {
         ),
       })
     ).toEqual({
+      cookies: {},
       files: {},
       headers: {},
       method: "GET",
@@ -31,7 +32,7 @@ describe("httpRequester", () => {
     })
   })
 
-  it("GET / urlencoded", async () => {
+  it("GET urlencoded", async () => {
     expect(
       await httpRequester.respond({
         httpIncomingMessage: new FakeIncomingMessage(
@@ -40,6 +41,7 @@ describe("httpRequester", () => {
         ),
       })
     ).toEqual({
+      cookies: {},
       files: {},
       headers: {},
       method: "GET",
@@ -51,7 +53,7 @@ describe("httpRequester", () => {
     })
   })
 
-  it("POST / JSON", async () => {
+  it("POST JSON", async () => {
     const headers = {
       "content-type": "application/json",
     }
@@ -73,6 +75,7 @@ describe("httpRequester", () => {
     httpIncomingMessage.emit("end")
 
     expect(await promise).toEqual({
+      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -84,7 +87,7 @@ describe("httpRequester", () => {
     })
   })
 
-  it("POST / urlencoded", async () => {
+  it("POST urlencoded", async () => {
     const headers = {
       "content-type":
         "application/x-www-form-urlencoded; charset=utf-8",
@@ -104,6 +107,7 @@ describe("httpRequester", () => {
     httpIncomingMessage.emit("end")
 
     expect(await promise).toEqual({
+      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -115,7 +119,7 @@ describe("httpRequester", () => {
     })
   })
 
-  it("POST / multipart", async () => {
+  it("POST multipart", async () => {
     const headers = {
       "content-type":
         "multipart/form-data; boundary=" +
@@ -159,6 +163,7 @@ describe("httpRequester", () => {
     httpIncomingMessage.emit("end")
 
     expect(await promise).toEqual({
+      cookies: {},
       files: {
         uploadFile0: {
           encoding: "7bit",

@@ -13,7 +13,7 @@ class FakeGatewayProxyEvent {
 }
 
 describe("lambdaRequester", () => {
-  it("GET / empty", async () => {
+  it("GET empty", async () => {
     const proxyEvent = new FakeGatewayProxyEvent(
       "GET",
       "/",
@@ -24,6 +24,7 @@ describe("lambdaRequester", () => {
         apiGatewayProxyEvent: (proxyEvent as unknown) as APIGatewayProxyEvent,
       })
     ).toEqual({
+      cookies: {},
       files: {},
       headers: {},
       method: "GET",
@@ -32,7 +33,7 @@ describe("lambdaRequester", () => {
     })
   })
 
-  it("GET / urlencoded", async () => {
+  it("GET urlencoded", async () => {
     const proxyEvent = new FakeGatewayProxyEvent(
       "GET",
       "/?foo=bar&baz=bla",
@@ -43,6 +44,7 @@ describe("lambdaRequester", () => {
         apiGatewayProxyEvent: (proxyEvent as unknown) as APIGatewayProxyEvent,
       })
     ).toEqual({
+      cookies: {},
       files: {},
       headers: {},
       method: "GET",
@@ -54,7 +56,7 @@ describe("lambdaRequester", () => {
     })
   })
 
-  it("POST / JSON", async () => {
+  it("POST JSON", async () => {
     const headers = {
       "content-type": "application/json",
     }
@@ -71,6 +73,7 @@ describe("lambdaRequester", () => {
     })
 
     expect(await promise).toEqual({
+      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -82,7 +85,7 @@ describe("lambdaRequester", () => {
     })
   })
 
-  it("POST / urlencoded", async () => {
+  it("POST urlencoded", async () => {
     const headers = {
       "content-type":
         "application/x-www-form-urlencoded; charset=utf-8",
@@ -100,6 +103,7 @@ describe("lambdaRequester", () => {
     })
 
     expect(await promise).toEqual({
+      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -111,7 +115,7 @@ describe("lambdaRequester", () => {
     })
   })
 
-  it("POST / multipart", async () => {
+  it("POST multipart", async () => {
     const headers = {
       "content-type":
         "multipart/form-data; boundary=" +
@@ -150,6 +154,7 @@ describe("lambdaRequester", () => {
     })
 
     expect(await promise).toEqual({
+      cookies: {},
       files: {
         uploadFile0: {
           encoding: "7bit",

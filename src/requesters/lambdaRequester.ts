@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent } from "aws-lambda"
 import querystring from "querystring"
+import cookie from "cookie"
 import { busboyBuilder } from "../lib/busboyBuilder"
 import { headerCleaner } from "../lib/headerCleaner"
 
@@ -8,6 +9,7 @@ export interface LambdaRequesterInput {
 }
 
 export interface LambdaRequesterOutput {
+  cookies: Record<string, string>
   files: Record<
     string,
     { name: string; path: string; mimetype: string }
@@ -28,8 +30,11 @@ export class LambdaRequester {
   async respond({
     apiGatewayProxyEvent: req,
   }: LambdaRequesterInput): Promise<LambdaRequesterOutput> {
-    const headers = headerCleaner(req.headers)
     const [path, pathParams] = req.path.split("?")
+    const headers = headerCleaner(req.headers)
+    const cookies = headers.cookie
+      ? cookie.parse(headers.cookie)
+      : {}
 
     let body = req.body
     let params = {}
@@ -72,6 +77,7 @@ export class LambdaRequester {
     }
 
     return {
+      cookies,
       files,
       headers,
       method: req.httpMethod,

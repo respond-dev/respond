@@ -1,5 +1,6 @@
 import { IncomingMessage } from "http"
 import querystring from "querystring"
+import cookie from "cookie"
 import { busboyBuilder } from "../lib/busboyBuilder"
 import { headerCleaner } from "../lib/headerCleaner"
 import streamStringifier from "../lib/streamStringifier"
@@ -9,6 +10,7 @@ export interface HttpRequesterInput {
 }
 
 export interface HttpRequesterOutput {
+  cookies: Record<string, string>
   files: Record<
     string,
     { name: string; path: string; mimetype: string }
@@ -29,8 +31,11 @@ export class HttpRequester {
   async respond({
     httpIncomingMessage: req,
   }: HttpRequesterInput): Promise<HttpRequesterOutput> {
-    const headers = headerCleaner(req.headers)
     const [path, pathParams] = req.url.split("?")
+    const headers = headerCleaner(req.headers)
+    const cookies = headers.cookie
+      ? cookie.parse(headers.cookie)
+      : {}
 
     let params = {}
     let files = {}
@@ -55,6 +60,7 @@ export class HttpRequester {
     }
 
     return {
+      cookies,
       files,
       headers,
       method: req.method,
