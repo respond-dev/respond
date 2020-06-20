@@ -1,13 +1,17 @@
 export interface RequesterOutputType {
-  cookies: Record<string, string>
   files: Record<
     string,
     { name: string; path: string; mimetype: string }
   >
+  // hash: string
   headers: Record<string, string>
+  // host: string
+  // https: boolean
   method: string
-  params: Record<string, any>
   path: string
+  params: Record<string, string | string[]>
+  // port: number
+  querystring: string
 }
 
 export default RequesterOutputType

@@ -24,34 +24,10 @@ describe("lambdaRequester", () => {
         apiGatewayProxyEvent: (proxyEvent as unknown) as APIGatewayProxyEvent,
       })
     ).toEqual({
-      cookies: {},
       files: {},
       headers: {},
       method: "GET",
       params: {},
-      path: "/",
-    })
-  })
-
-  it("GET urlencoded", async () => {
-    const proxyEvent = new FakeGatewayProxyEvent(
-      "GET",
-      "/?foo=bar&baz=bla",
-      ""
-    )
-    expect(
-      await lambdaRequester.respond({
-        apiGatewayProxyEvent: (proxyEvent as unknown) as APIGatewayProxyEvent,
-      })
-    ).toEqual({
-      cookies: {},
-      files: {},
-      headers: {},
-      method: "GET",
-      params: {
-        baz: "bla",
-        foo: "bar",
-      },
       path: "/",
     })
   })
@@ -73,7 +49,6 @@ describe("lambdaRequester", () => {
     })
 
     expect(await promise).toEqual({
-      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -103,7 +78,6 @@ describe("lambdaRequester", () => {
     })
 
     expect(await promise).toEqual({
-      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -154,7 +128,6 @@ describe("lambdaRequester", () => {
     })
 
     expect(await promise).toEqual({
-      cookies: {},
       files: {
         uploadFile0: {
           encoding: "7bit",

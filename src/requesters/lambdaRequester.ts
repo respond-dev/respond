@@ -1,5 +1,3 @@
-import querystring from "querystring"
-import cookie from "cookie"
 import { busboyBuilder } from "../lib/busboyBuilder"
 import { headerCleaner } from "../lib/headerCleaner"
 import RequesterInputType from "./requesterInputType"
@@ -15,19 +13,12 @@ export class LambdaRequester {
   async respond({
     apiGatewayProxyEvent: req,
   }: RequesterInputType): Promise<RequesterOutputType> {
-    const [path, pathParams] = req.path.split("?")
+    const [path, querystring] = req.path.split("?")
     const headers = headerCleaner(req.headers)
-    const cookies = headers.cookie
-      ? cookie.parse(headers.cookie)
-      : {}
 
     let body = req.body
     let params = {}
     let files = {}
-
-    if (req.httpMethod === "GET" && pathParams) {
-      params = querystring.parse(pathParams)
-    }
 
     if (req.isBase64Encoded) {
       body = Buffer.from(
@@ -39,11 +30,6 @@ export class LambdaRequester {
     if (req.httpMethod === "POST") {
       if (headers["content-type"] === "application/json") {
         params = JSON.parse(body)
-      } else if (
-        headers["content-type"] ===
-        "application/x-www-form-urlencoded"
-      ) {
-        params = querystring.parse(body)
       } else {
         const [busboy, finished] = busboyBuilder(
           headers,
@@ -62,12 +48,12 @@ export class LambdaRequester {
     }
 
     return {
-      cookies,
       files,
       headers,
       method: req.httpMethod,
       params,
       path,
+      querystring,
     }
   }
 }

@@ -23,32 +23,10 @@ describe("httpRequester", () => {
         ),
       })
     ).toEqual({
-      cookies: {},
       files: {},
       headers: {},
       method: "GET",
       params: {},
-      path: "/",
-    })
-  })
-
-  it("GET urlencoded", async () => {
-    expect(
-      await httpRequester.respond({
-        httpIncomingMessage: new FakeIncomingMessage(
-          "GET",
-          "/?foo=bar&baz=bla"
-        ),
-      })
-    ).toEqual({
-      cookies: {},
-      files: {},
-      headers: {},
-      method: "GET",
-      params: {
-        baz: "bla",
-        foo: "bar",
-      },
       path: "/",
     })
   })
@@ -75,7 +53,6 @@ describe("httpRequester", () => {
     httpIncomingMessage.emit("end")
 
     expect(await promise).toEqual({
-      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -107,7 +84,6 @@ describe("httpRequester", () => {
     httpIncomingMessage.emit("end")
 
     expect(await promise).toEqual({
-      cookies: {},
       files: {},
       headers,
       method: "POST",
@@ -163,7 +139,6 @@ describe("httpRequester", () => {
     httpIncomingMessage.emit("end")
 
     expect(await promise).toEqual({
-      cookies: {},
       files: {
         uploadFile0: {
           encoding: "7bit",
