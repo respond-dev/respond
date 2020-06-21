@@ -10,7 +10,9 @@ export async function taskRunner(
   )
 
   const paths = filePaths.filter((path) =>
-    args.includes(basename(path, ".js"))
+    args.includes(
+      basename(path, ".js").replace(/Task$/, "")
+    )
   )
 
   return await Promise.all(
