@@ -10,8 +10,8 @@ export interface BusboyBuilderOutput {
 
 export function busboyBuilder(
   headers: Record<string, any>,
-  files: Record<string, any>,
-  params: Record<string, any>
+  files: Record<string, any> = {},
+  params: Record<string, any> = {}
 ): [busboy.Busboy, Promise<BusboyBuilderOutput>] {
   const busboyInstance = new busboy({
     headers: headers,

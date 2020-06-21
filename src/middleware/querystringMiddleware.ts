@@ -3,15 +3,18 @@ import MiddlewareInputType from "./middlewareInputType"
 import MiddlewareOutputType from "./middlewareOutputType"
 
 export class QuerystringMiddleware {
-  accept({ querystring }: MiddlewareInputType): boolean {
-    return !!querystring
+  accept({ url }: MiddlewareInputType): boolean {
+    return url.href.includes("?")
   }
 
-  respond(
-    input: MiddlewareInputType
-  ): MiddlewareOutputType {
+  respond({
+    url,
+  }: MiddlewareInputType): MiddlewareOutputType {
+    const [queryPath] = url.href.split("#")
+    const [, query] = queryPath.split("?")
+
     return {
-      query: querystring.parse(input.querystring),
+      query: querystring.parse(query),
     }
   }
 }

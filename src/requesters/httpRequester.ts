@@ -1,7 +1,5 @@
-import url from "url"
-import { busboyBuilder } from "../lib/busboyBuilder"
+import URL from "url"
 import { headerCleaner } from "../lib/headerCleaner"
-import streamStringifier from "../lib/streamStringifier"
 import RequesterInputType from "./requesterInputType"
 import RequesterOutputType from "./requesterOutputType"
 
@@ -15,34 +13,16 @@ export class HttpRequester {
   async respond({
     httpIncomingMessage: req,
   }: RequesterInputType): Promise<RequesterOutputType> {
-    const [path, querystring] = req.url.split("?")
     const headers = headerCleaner(req.headers)
-
-    let params = {}
-    let files = {}
-
-    if (req.method === "POST") {
-      if (headers["content-type"] === "application/json") {
-        params = JSON.parse(await streamStringifier(req))
-      } else {
-        const [busboy, finished] = busboyBuilder(
-          headers,
-          files,
-          params
-        )
-
-        req.pipe(busboy)
-        ;({ files, params } = await finished)
-      }
-    }
+    const https = !!req.socket["encrypted"]
+    const url = URL.parse(
+      `http${https ? "s" : ""}://${headers.host}${req.url}`
+    )
 
     return {
-      files,
       headers,
       method: req.method,
-      params,
-      path,
-      querystring,
+      url,
     }
   }
 }
