@@ -1,9 +1,9 @@
 import { UrlWithStringQuery } from "url"
 
-export interface RequesterOutputType {
+export interface InitializerOutputType {
   headers: Record<string, string>
   method: string
   url: UrlWithStringQuery
 }
 
-export default RequesterOutputType
+export default InitializerOutputType

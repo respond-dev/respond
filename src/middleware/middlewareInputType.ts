@@ -1,7 +1,7 @@
-import RequesterInputType from "../requesters/requesterInputType"
-import RequesterOutputType from "../requesters/requesterOutputType"
+import InitializerInputType from "../initializers/initializerInputType"
+import InitializerOutputType from "../initializers/initializerOutputType"
 
-export type MiddlewareInputType = RequesterInputType &
-  RequesterOutputType
+export type MiddlewareInputType = InitializerInputType &
+  InitializerOutputType
 
 export default MiddlewareInputType

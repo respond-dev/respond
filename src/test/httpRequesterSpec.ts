@@ -2,7 +2,7 @@ import { IncomingMessage, IncomingHttpHeaders } from "http"
 import net from "net"
 import URL from "url"
 import expect from "../lib/expect"
-import httpRequester from "../requesters/httpRequester"
+import httpInitializer from "../initializers/httpInitializer"
 
 class FakeIncomingMessage extends IncomingMessage {
   constructor(
@@ -14,11 +14,11 @@ class FakeIncomingMessage extends IncomingMessage {
   }
 }
 
-describe("httpRequester", () => {
+describe("httpInitializer", () => {
   it("GET empty", async () => {
     const headers = { host: "localhost" }
     expect(
-      await httpRequester.respond({
+      await httpInitializer.respond({
         httpIncomingMessage: new FakeIncomingMessage(
           "GET",
           "/",

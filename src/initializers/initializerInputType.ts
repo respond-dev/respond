@@ -1,9 +1,9 @@
 import { APIGatewayProxyEvent } from "aws-lambda"
 import { IncomingMessage } from "http"
 
-export interface RequesterInputType {
+export interface InitializerInputType {
   apiGatewayProxyEvent?: APIGatewayProxyEvent
   httpIncomingMessage?: IncomingMessage
 }
 
-export default RequesterInputType
+export default InitializerInputType

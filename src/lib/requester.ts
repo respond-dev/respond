@@ -1,12 +1,12 @@
 import { join } from "path"
 import responder from "./responder"
-import RequesterInputType from "../requesters/requesterInputType"
+import IntializerInputType from "../initializers/initializerInputType"
 
 export async function requester(
-  input: RequesterInputType
+  input: IntializerInputType
 ): Promise<Record<string, any>> {
   const responses = await responder(
-    join(__dirname, "../requesters"),
+    join(__dirname, "../initializers"),
     input
   )
   return responses

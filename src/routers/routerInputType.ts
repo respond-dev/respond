@@ -1,9 +1,9 @@
 import MiddlewareOutputType from "../middleware/middlewareOutputType"
-import RequesterInputType from "../requesters/requesterInputType"
-import RequesterOutputType from "../requesters/requesterOutputType"
+import InitializerInputType from "../initializers/initializerInputType"
+import InitializerOutputType from "../initializers/initializerOutputType"
 
-export type RouterInputType = RequesterInputType &
-  RequesterOutputType &
+export type RouterInputType = InitializerInputType &
+  InitializerOutputType &
   MiddlewareOutputType
 
 export default RouterInputType

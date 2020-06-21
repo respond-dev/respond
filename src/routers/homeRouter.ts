@@ -2,8 +2,8 @@ import RouterInputType from "./routerInputType"
 import RouterOutputType from "./routerOutputType"
 
 export class HomeRouter {
-  accept({ path }: RouterInputType): boolean {
-    return path === "/"
+  accept({ url }: RouterInputType): boolean {
+    return url.pathname === "/"
   }
 
   respond(input: RouterInputType): RouterOutputType {

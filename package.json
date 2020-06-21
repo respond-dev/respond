@@ -4,7 +4,7 @@
   "description": "JavaScript web framework optimized for delivery 🚚",
   "bin": {},
   "scripts": {
-    "build": "rm -rf dist; tsc -b -v",
+    "build": "rm -rf dist-*; tsc -b -v",
     "update": "ncu -u",
     "test": "mocha",
     "watch": "./taskRunner watchCjs watchEsm"

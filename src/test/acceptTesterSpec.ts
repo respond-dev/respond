@@ -1,15 +1,17 @@
 import expect from "../lib/expect"
 import acceptTester from "../lib/acceptTester"
-import { TestRequester } from "../requesters/testRequester"
+import { TestInitializer } from "../initializers/testInitializer"
 import { join } from "path"
 
 describe("acceptTester", () => {
   it("tests acceptance", async () => {
-    const testRequester = await acceptTester(
-      join(__dirname, "../requesters"),
+    const testInitializer = await acceptTester(
+      join(__dirname, "../initializers"),
       { test: true }
     )
-    expect(testRequester.length).toBe(1)
-    expect(testRequester[0]).toBeInstanceOf(TestRequester)
+    expect(testInitializer.length).toBe(1)
+    expect(testInitializer[0]).toBeInstanceOf(
+      TestInitializer
+    )
   })
 })

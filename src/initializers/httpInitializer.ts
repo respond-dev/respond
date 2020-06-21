@@ -1,18 +1,18 @@
 import URL from "url"
 import { headerCleaner } from "../lib/headerCleaner"
-import RequesterInputType from "./requesterInputType"
-import RequesterOutputType from "./requesterOutputType"
+import InitializerInputType from "./initializerInputType"
+import InitializerOutputType from "./initializerOutputType"
 
-export class HttpRequester {
+export class HttpInitializer {
   accept({
     httpIncomingMessage,
-  }: RequesterInputType): boolean {
+  }: InitializerInputType): boolean {
     return !!httpIncomingMessage
   }
 
   async respond({
     httpIncomingMessage: req,
-  }: RequesterInputType): Promise<RequesterOutputType> {
+  }: InitializerInputType): Promise<InitializerOutputType> {
     const headers = headerCleaner(req.headers)
     const https = !!req.socket["encrypted"]
     const url = URL.parse(
@@ -27,5 +27,5 @@ export class HttpRequester {
   }
 }
 
-export const httpRequester = new HttpRequester()
-export default httpRequester
+export const httpInitializer = new HttpInitializer()
+export default httpInitializer

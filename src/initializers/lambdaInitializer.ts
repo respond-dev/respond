@@ -1,18 +1,18 @@
 import URL from "url"
 import { headerCleaner } from "../lib/headerCleaner"
-import RequesterInputType from "./requesterInputType"
-import RequesterOutputType from "./requesterOutputType"
+import InitializerInputType from "./initializerInputType"
+import InitializerOutputType from "./initializerOutputType"
 
-export class LambdaRequester {
+export class LambdaInitializer {
   accept({
     apiGatewayProxyEvent,
-  }: RequesterInputType): boolean {
+  }: InitializerInputType): boolean {
     return !!apiGatewayProxyEvent
   }
 
   async respond({
     apiGatewayProxyEvent: req,
-  }: RequesterInputType): Promise<RequesterOutputType> {
+  }: InitializerInputType): Promise<InitializerOutputType> {
     const headers = headerCleaner(req.headers)
     const url = URL.parse(
       `https://${headers.host}${req.path}`
@@ -26,5 +26,5 @@ export class LambdaRequester {
   }
 }
 
-export const httpRequester = new LambdaRequester()
-export default httpRequester
+export const httpInitializer = new LambdaInitializer()
+export default httpInitializer
