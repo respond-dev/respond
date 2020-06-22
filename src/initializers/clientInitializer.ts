@@ -1,7 +1,7 @@
 import InitializerInputType from "./initializerInputType"
 import InitializerOutputType from "./initializerOutputType"
 
-export const PATH_REGEX = /[a-zA-Z](\/{1}[a-zA-Z].+)/
+export const PATH_REGEX = /[a-zA-Z](\/{1}[a-zA-Z]?.*)/
 
 export class ClientInitializer {
   accept({ client }: InitializerInputType): boolean {
@@ -21,7 +21,7 @@ export class ClientInitializer {
     } = window.location
 
     const pathMatch = href.match(PATH_REGEX)
-    const path = pathMatch ? pathMatch[1] || "" : ""
+    const path = pathMatch ? pathMatch[1] || "/" : "/"
 
     return {
       headers: {},

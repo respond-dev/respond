@@ -2,9 +2,9 @@ import querystring from "querystring"
 import MiddlewareInputType from "./middlewareInputType"
 import MiddlewareOutputType from "./middlewareOutputType"
 
-export class QuerystringMiddleware {
-  accept({ url }: MiddlewareInputType): boolean {
-    return url.href.includes("?")
+export class QueryServerMiddleware {
+  accept({ client, url }: MiddlewareInputType): boolean {
+    return !client && url.href.includes("?")
   }
 
   respond({
@@ -19,5 +19,5 @@ export class QuerystringMiddleware {
   }
 }
 
-export const querystringMiddleware = new QuerystringMiddleware()
-export default querystringMiddleware
+export const queryServerMiddleware = new QueryServerMiddleware()
+export default queryServerMiddleware

@@ -4,14 +4,16 @@ import { busboyBuilder } from "../lib/busboyBuilder"
 
 export class PostFormMiddleware {
   accept({
+    client,
     headers,
     method,
   }: MiddlewareInputType): boolean {
     return (
-      method === "POST" &&
+      !client &&
       !headers["content-type"].startsWith(
         "application/json"
-      )
+      ) &&
+      method === "POST"
     )
   }
 

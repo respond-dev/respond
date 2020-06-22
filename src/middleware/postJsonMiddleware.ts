@@ -4,10 +4,12 @@ import streamStringifier from "../lib/streamStringifier"
 
 export class PostJsonMiddleware {
   accept({
+    client,
     headers,
     method,
   }: MiddlewareInputType): boolean {
     return (
+      !client &&
       method === "POST" &&
       headers["content-type"].startsWith("application/json")
     )
