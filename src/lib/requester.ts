@@ -1,15 +1,19 @@
 import { join } from "path"
-import responder from "./responder"
-import IntializerInputType from "../initializers/initializerInputType"
+import acceptTester from "./acceptTester"
 
 export async function requester(
-  input: IntializerInputType
+  ...args: any[]
 ): Promise<Record<string, any>> {
-  const responses = await responder(
-    join(__dirname, "../initializers"),
-    input
+  const dirPath = join(__dirname, "../initializers")
+  const instances = await acceptTester(dirPath, ...args)
+
+  const responses = await Promise.all(
+    instances.map(
+      async (instance) => await instance.respond(...args)
+    )
   )
-  return responses
+
+  return Object.assign({}, ...responses)
 }
 
 export default requester
