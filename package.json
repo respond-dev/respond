@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rm -rf dist-*; tsc -b -v",
     "update": "ncu -u",
+    "start": "./taskRunner startHttp",
     "test": "mocha",
     "watch": "./taskRunner watchCjs watchEsm"
   },
