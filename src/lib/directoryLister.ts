@@ -1,7 +1,7 @@
 import { readdir, stat, Stats } from "fs"
 import { extname, join } from "path"
 
-export interface ListDirectoryResult {
+export interface ListDirectoryOutput {
   dirPaths: string[]
   filePaths: string[]
 }
@@ -9,7 +9,7 @@ export interface ListDirectoryResult {
 export async function directoryLister(
   dir: string,
   ext?: string
-): Promise<ListDirectoryResult> {
+): Promise<ListDirectoryOutput> {
   const names = await new Promise<string[]>(
     (resolve, reject) => {
       readdir(dir, (err, filePaths) => {
@@ -47,11 +47,11 @@ export async function directoryLister(
 export async function deepDirectoryLister(
   dir: string,
   ext?: string,
-  options: ListDirectoryResult = {
+  options: ListDirectoryOutput = {
     dirPaths: [],
     filePaths: [],
   }
-): Promise<ListDirectoryResult> {
+): Promise<ListDirectoryOutput> {
   const { dirPaths, filePaths } = await directoryLister(
     dir,
     ext
