@@ -6,8 +6,11 @@ export class HomeRouter {
     return url.pathname === "/"
   }
 
-  respond(input: RouterInputType): RouterOutputType {
-    return {}
+  async respond(): Promise<RouterOutputType> {
+    return {
+      controllers: ["homeController"],
+      views: ["homeView"],
+    }
   }
 }
 

@@ -1,3 +1,4 @@
+import elementCreator from "../lib/elementCreator"
 import InitializerInputType from "./initializerInputType"
 import InitializerOutputType from "./initializerOutputType"
 
@@ -22,6 +23,8 @@ export class ClientInitializer {
 
     const pathMatch = href.match(PATH_REGEX)
     const path = pathMatch ? pathMatch[1] || "/" : "/"
+
+    window["elementCreator"] = elementCreator
 
     return {
       headers: {},
