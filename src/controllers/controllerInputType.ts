@@ -1,7 +1,7 @@
 import MiddlewareInputType from "../middleware/middlewareInputType"
 import MiddlewareOutputType from "../middleware/middlewareOutputType"
 
-export type RouterInputType = MiddlewareInputType &
+export type ControllerInputType = MiddlewareInputType &
   MiddlewareOutputType
 
-export default RouterInputType
+export default ControllerInputType

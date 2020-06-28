@@ -1,5 +1,5 @@
-import RouterInputType from "../routers/routerInputType"
+import ControllerInputType from "../controllers/controllerInputType"
 
-export type ModelInputType = RouterInputType
+export type ModelInputType = ControllerInputType
 
 export default ModelInputType

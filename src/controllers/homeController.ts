@@ -1,11 +1,11 @@
 import defaultImporter from "../lib/defaultImporter"
 import promiseMapper from "../lib/promiseMapper"
-import RouterInputType from "./routerInputType"
-import RouterOutputType from "./routerOutputType"
+import ControllerInputType from "./controllerInputType"
+import ControllerOutputType from "./controllerOutputType"
 
-export async function homeRouter(
-  input: RouterInputType
-): Promise<RouterOutputType> {
+export async function homeController(
+  input: ControllerInputType
+): Promise<ControllerOutputType> {
   const { client, url } = input
 
   if (url.pathname !== "/") {
@@ -40,4 +40,4 @@ export async function homeRouter(
   return { elements }
 }
 
-export default homeRouter
+export default homeController
