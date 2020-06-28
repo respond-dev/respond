@@ -1,5 +1,5 @@
-import ControllerInputType from "../controllers/controllerInputType"
+import ComponentInputType from "../components/componentInputType"
 
-export type ModelInputType = ControllerInputType
+export type ModelInputType = ComponentInputType
 
 export default ModelInputType

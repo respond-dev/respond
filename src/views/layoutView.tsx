@@ -12,6 +12,7 @@ export function layoutView({
   if (client) {
     return elements
   }
+
   return (
     <html>
       <head>

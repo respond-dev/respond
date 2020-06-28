@@ -4,19 +4,19 @@ export type PromiseOutputType<T> = T extends PromiseLike<
   ? U
   : T
 
-export type PromiseMapType = {
+export type PromiseAllMapType = {
   [prop: string]: Promise<any> | any
 }
 
-export type PromiseMapperOutputType<
-  T extends PromiseMapType
+export type PromiseAllOutputType<
+  T extends PromiseAllMapType
 > = {
   [K in keyof T]: PromiseOutputType<T[K]>
 }
 
-export async function promiseMapper<
-  T extends PromiseMapType
->(map: T): Promise<PromiseMapperOutputType<T>> {
+export async function promiseAll<
+  T extends PromiseAllMapType
+>(map: T): Promise<PromiseAllOutputType<T>> {
   const keys = Object.keys(map)
   const out = await Promise.all(Object.values(map))
   const obj: any = {}
@@ -29,4 +29,4 @@ export async function promiseMapper<
   return obj
 }
 
-export default promiseMapper
+export default promiseAll
