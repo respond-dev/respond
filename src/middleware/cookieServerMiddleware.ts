@@ -2,21 +2,19 @@ import cookie from "cookie"
 import MiddlewareInputType from "./middlewareInputType"
 import MiddlewareOutputType from "./middlewareOutputType"
 
-export class CookieServerMiddleware {
-  accept({ client }: MiddlewareInputType): boolean {
-    return !client
+export function cookieServerMiddleware({
+  client,
+  headers,
+}: MiddlewareInputType): MiddlewareOutputType {
+  if (client) {
+    return
   }
 
-  respond({
-    headers,
-  }: MiddlewareInputType): MiddlewareOutputType {
-    return {
-      cookies: headers.cookie
-        ? cookie.parse(headers.cookie)
-        : {},
-    }
+  return {
+    cookies: headers.cookie
+      ? cookie.parse(headers.cookie)
+      : {},
   }
 }
 
-export const cookieServerMiddleware = new CookieServerMiddleware()
 export default cookieServerMiddleware

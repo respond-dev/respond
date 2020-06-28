@@ -18,7 +18,7 @@ describe("postJsonMiddleware", () => {
 
     const httpIncomingMessage = new FakeIncomingMessage()
 
-    const promise = postJsonMiddleware.respond({
+    const promise = postJsonMiddleware({
       headers,
       httpIncomingMessage,
       method: "POST",

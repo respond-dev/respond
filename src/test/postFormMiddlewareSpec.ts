@@ -19,7 +19,7 @@ describe("postFormMiddleware", () => {
 
     const httpIncomingMessage = new FakeIncomingMessage()
 
-    const promise = postFormMiddleware.respond({
+    const promise = postFormMiddleware({
       headers,
       httpIncomingMessage,
       method: "POST",
@@ -49,7 +49,7 @@ describe("postFormMiddleware", () => {
 
     const httpIncomingMessage = new FakeIncomingMessage()
 
-    const promise = postFormMiddleware.respond({
+    const promise = postFormMiddleware({
       headers,
       httpIncomingMessage,
       method: "POST",

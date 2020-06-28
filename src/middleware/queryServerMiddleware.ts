@@ -8,8 +8,13 @@ export class QueryServerMiddleware {
   }
 
   respond({
+    client,
     url,
   }: MiddlewareInputType): MiddlewareOutputType {
+    if (client || !url.href.includes("?")) {
+      return
+    }
+
     const [queryPath] = url.href.split("#")
     const [, query] = queryPath.split("?")
 
