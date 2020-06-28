@@ -1,6 +1,5 @@
 export interface RouterOutputType {
-  controllers?: string[]
-  views?: string[]
+  elements?: Element | Element[]
 }
 
 export default RouterOutputType

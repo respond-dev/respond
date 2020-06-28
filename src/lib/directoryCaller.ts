@@ -1,6 +1,6 @@
 import { deepDirectoryLister } from "./directoryLister"
 
-export async function acceptTester(
+export async function directoryCaller(
   dirPath: string,
   ...args: any[]
 ): Promise<any[]> {
@@ -12,17 +12,14 @@ export async function acceptTester(
   return (
     await Promise.all(
       filePaths.map(async (path) => {
-        const { default: lib } = await import(path)
+        const { default: fn } = await import(path)
 
-        if (
-          lib?.accept === undefined ||
-          lib?.accept(...args)
-        ) {
-          return lib
+        if (typeof fn === "function") {
+          return fn(...args)
         }
       })
     )
   ).filter((p) => p)
 }
 
-export default acceptTester
+export default directoryCaller

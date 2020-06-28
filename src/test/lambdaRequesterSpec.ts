@@ -23,7 +23,7 @@ describe("lambdaRequester", () => {
       headers
     )
     expect(
-      await lambdaInitializer.respond({
+      await lambdaInitializer({
         apiGatewayProxyEvent: (proxyEvent as unknown) as APIGatewayProxyEvent,
       })
     ).toEqual({

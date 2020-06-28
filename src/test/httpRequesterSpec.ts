@@ -18,7 +18,7 @@ describe("httpInitializer", () => {
   it("GET empty", async () => {
     const headers = { host: "localhost" }
     expect(
-      await httpInitializer.respond({
+      await httpInitializer({
         httpIncomingMessage: new FakeIncomingMessage(
           "GET",
           "/",

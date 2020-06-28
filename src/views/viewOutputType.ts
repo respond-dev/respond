@@ -1,2 +1,2 @@
-export type ViewOutputType = Element
+export type ViewOutputType = Element | Element[]
 export default ViewOutputType
