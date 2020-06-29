@@ -1,9 +1,10 @@
 import { join } from "path"
 import directoryCaller from "./directoryCaller"
+import elementSerializer from "./elementSerializer"
 
 export async function requester(
   input: unknown
-): Promise<Record<string, any>> {
+): Promise<string> {
   const phases = [
     "initializers",
     "middleware",
@@ -15,10 +16,13 @@ export async function requester(
   for (const phase of phases) {
     const path = join(__dirname, "../", phase)
     outputs = await directoryCaller(path, input)
-    input = Object.assign({}, input, ...outputs)
+
+    if (phase !== "components") {
+      input = Object.assign({}, input, ...outputs)
+    }
   }
 
-  return input
+  return elementSerializer(outputs)
 }
 
 export default requester

@@ -12,7 +12,7 @@ export const htmlProps = {
 
 export const syntheticEvents = {}
 
-export function elementCreator(
+export function elementBuilder(
   tagName: HTMLElement | string
 ): Element {
   const node =
@@ -91,4 +91,4 @@ export function elementCreator(
   return node
 }
 
-export default elementCreator
+export default elementBuilder

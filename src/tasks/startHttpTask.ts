@@ -14,7 +14,7 @@ export async function startHttpTask(): Promise<
       httpIncomingMessage: incoming,
     })
 
-    response.write(JSON.stringify(result))
+    response.write(result)
     response.end()
   })
 }

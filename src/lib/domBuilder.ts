@@ -297,7 +297,7 @@ export class DomDocument extends DomElement {
   }
 }
 
-function domBuilder() {
+export function domBuilder(): () => DomDocument {
   /** Create a minimally viable DOM DomDocument
    *	@retur{Document} document
    */
@@ -334,7 +334,6 @@ function domBuilder() {
     return document
   }
 
-  createDocument.env = domBuilder
   return createDocument
 }
 
