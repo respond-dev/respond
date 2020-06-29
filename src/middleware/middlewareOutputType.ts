@@ -1,5 +1,3 @@
-import { DomDocument } from "../lib/domBuilder"
-
 export interface MiddlewareOutputType {
   cookies?: Record<string, string>
   form?: {

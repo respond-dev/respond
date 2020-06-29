@@ -1,18 +1,12 @@
-import ViewOutputType from "./viewOutputType"
+import LayoutOutputType from "./layoutOutputType"
 
-export interface LayoutViewInputType {
-  client: boolean
+export interface DefaultLayoutInputType {
   elements: Element | Element[]
 }
 
-export function layoutView({
-  client,
+export function defaultLayout({
   elements,
-}: LayoutViewInputType): ViewOutputType {
-  if (client) {
-    return elements
-  }
-
+}: DefaultLayoutInputType): LayoutOutputType {
   return (
     <html>
       <head>
@@ -28,4 +22,4 @@ export function layoutView({
   )
 }
 
-export default layoutView
+export default defaultLayout

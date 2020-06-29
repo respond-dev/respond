@@ -9,6 +9,7 @@ export async function requester(
     "initializers",
     "middleware",
     "components",
+    "layouts",
   ]
 
   let outputs: any[]
@@ -17,7 +18,11 @@ export async function requester(
     const path = join(__dirname, "../", phase)
     outputs = await directoryCaller(path, input)
 
-    if (phase !== "components") {
+    if (phase === "components") {
+      input = Object.assign({}, input, {
+        elements: outputs,
+      })
+    } else if (phase !== "layouts") {
       input = Object.assign({}, input, ...outputs)
     }
   }
