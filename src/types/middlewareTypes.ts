@@ -1,3 +1,11 @@
+import {
+  InitializerInputType,
+  InitializerOutputType,
+} from "./initializerTypes"
+
+export type MiddlewareInputType = InitializerInputType &
+  InitializerOutputType
+
 export interface MiddlewareOutputType {
   cookies?: Record<string, string>
   form?: {
@@ -11,5 +19,3 @@ export interface MiddlewareOutputType {
   json?: any
   query?: Record<string, string | string[]>
 }
-
-export default MiddlewareOutputType

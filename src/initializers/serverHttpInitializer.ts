@@ -1,7 +1,9 @@
 import URL from "url"
 import { headerCleaner } from "../lib/headerCleaner"
-import InitializerInputType from "./initializerInputType"
-import InitializerOutputType from "./initializerOutputType"
+import {
+  InitializerInputType,
+  InitializerOutputType,
+} from "../types/initializerTypes"
 
 export async function serverHttpInitializer({
   httpIncomingMessage: req,

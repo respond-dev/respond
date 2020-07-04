@@ -1,5 +1,5 @@
 import { ModulesType } from "../lib/modulesLister"
-import ViewOutputType from "./viewOutputType"
+import { ViewOutputType } from "../types/viewTypes"
 
 export function bootScript(modules: ModulesType): string {
   const modulesJson = JSON.stringify(modules)

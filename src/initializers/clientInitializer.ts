@@ -1,4 +1,4 @@
-import InitializerOutputType from "./initializerOutputType"
+import { InitializerOutputType } from "../types/initializerTypes"
 
 export const PATH_REGEX = /[a-zA-Z](\/{1}[a-zA-Z]?.*)/
 

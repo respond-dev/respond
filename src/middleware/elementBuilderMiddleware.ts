@@ -1,5 +1,5 @@
-import MiddlewareInputType from "./middlewareInputType"
 import promiseAllDefault from "../lib/promiseAllDefault"
+import { MiddlewareInputType } from "../types/middlewareTypes"
 
 export async function elementMiddleware({
   client,

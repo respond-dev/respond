@@ -1,5 +1,5 @@
 import jsCookie from "js-cookie"
-import MiddlewareOutputType from "./middlewareOutputType"
+import { MiddlewareOutputType } from "../types/middlewareTypes"
 
 export async function clientCookieMiddleware(): Promise<
   MiddlewareOutputType

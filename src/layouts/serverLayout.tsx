@@ -1,6 +1,8 @@
-import LayoutInputType from "./layoutInputType"
-import LayoutOutputType from "./layoutOutputType"
 import modulesLister from "../lib/modulesLister"
+import {
+  LayoutInputType,
+  LayoutOutputType,
+} from "../types/layoutTypes"
 import bootScriptView from "../views/bootScriptView"
 
 export async function serverLayout({

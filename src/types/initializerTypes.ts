@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent } from "aws-lambda"
 import { IncomingMessage } from "http"
+import { UrlWithStringQuery } from "url"
 
 export interface InitializerInputType {
   client?: boolean
@@ -7,4 +8,8 @@ export interface InitializerInputType {
   httpIncomingMessage?: IncomingMessage
 }
 
-export default InitializerInputType
+export interface InitializerOutputType {
+  headers: Record<string, string>
+  method: string
+  url: UrlWithStringQuery
+}

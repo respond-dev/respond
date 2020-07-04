@@ -1,7 +1,9 @@
 import promiseAll from "../lib/promiseAll"
 import promiseAllDefault from "../lib/promiseAllDefault"
-import RouteInputType from "./routeInputType"
-import RouteOutputType from "./routeOutputType"
+import {
+  RouteInputType,
+  RouteOutputType,
+} from "../types/routeTypes"
 
 export async function homeRoute(
   input: RouteInputType

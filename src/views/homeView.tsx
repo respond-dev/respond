@@ -1,4 +1,4 @@
-import ViewOutputType from "./viewOutputType"
+import { ViewOutputType } from "../types/viewTypes"
 
 export interface HomeViewInputType {}
 

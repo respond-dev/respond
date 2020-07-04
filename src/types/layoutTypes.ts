@@ -3,4 +3,4 @@ export interface LayoutInputType {
   routeModules: string[]
 }
 
-export default LayoutInputType
+export type LayoutOutputType = Element | Element[]

@@ -1,5 +1,7 @@
-import MiddlewareInputType from "./middlewareInputType"
-import MiddlewareOutputType from "./middlewareOutputType"
+import {
+  MiddlewareInputType,
+  MiddlewareOutputType,
+} from "../types/middlewareTypes"
 import { busboyBuilder } from "../lib/busboyBuilder"
 
 export async function postFormMiddleware({

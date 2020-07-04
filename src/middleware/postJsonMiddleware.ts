@@ -1,5 +1,7 @@
-import MiddlewareInputType from "./middlewareInputType"
-import MiddlewareOutputType from "./middlewareOutputType"
+import {
+  MiddlewareInputType,
+  MiddlewareOutputType,
+} from "../types/middlewareTypes"
 import streamStringifier from "../lib/streamStringifier"
 
 export async function postJsonMiddleware({
