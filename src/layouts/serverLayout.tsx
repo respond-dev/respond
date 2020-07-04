@@ -9,9 +9,11 @@ export async function serverLayout({
   elements,
   routeModules,
 }: LayoutInputType): Promise<LayoutOutputType> {
-  const modules = await modulesLister(true)
-  modules.layouts = []
-  modules.routes = routeModules
+  const clientModules = {
+    ...(await modulesLister(true)),
+    layouts: [],
+    routes: routeModules,
+  }
 
   return (
     <html>
@@ -25,7 +27,7 @@ export async function serverLayout({
       </head>
       <body>
         {elements}
-        {bootScriptView(modules)}
+        {bootScriptView(clientModules)}
       </body>
     </html>
   )
