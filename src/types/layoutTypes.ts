@@ -1,6 +1,6 @@
 export interface LayoutInputType {
   elements: Element | Element[]
-  routeModules: string[]
+  moduleMatches: Record<string, string[]>
 }
 
 export type LayoutOutputType = Element | Element[]

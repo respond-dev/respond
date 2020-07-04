@@ -7,12 +7,12 @@ import bootScriptView from "../views/bootScriptView"
 
 export async function serverLayout({
   elements,
-  routeModules,
+  moduleMatches,
 }: LayoutInputType): Promise<LayoutOutputType> {
   const clientModules = {
     ...(await modulesLister(true)),
     layouts: [],
-    routes: routeModules,
+    routes: moduleMatches["routes"],
   }
 
   return (

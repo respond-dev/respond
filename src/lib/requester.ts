@@ -14,8 +14,7 @@ export async function requester(
   modules: ModulesType,
   input: unknown
 ): Promise<string> {
-  const results: Record<string, [string, any][]> = {}
-  let outputs: any[]
+  const moduleMatches: Record<string, string[]> = {}
 
   for (const phase of requesterPhases) {
     const result = await directoryCaller(
@@ -23,24 +22,52 @@ export async function requester(
       input
     )
 
-    results[phase] = result
-    outputs = result.map((r) => r[1])
+    let elements: Element[] = []
+    let strings: string[] = []
+    let outputs = result.map((r) => r[1])
 
-    if (phase === "routes") {
-      const routeModules = result.map(
-        (r) =>
-          "/" + relative(join(__dirname, "../../"), r[0])
-      )
-      input = Object.assign({}, input, {
-        elements: outputs,
-        routeModules,
-      })
-    } else if (phase !== "layouts") {
-      input = Object.assign({}, input, ...outputs)
+    moduleMatches[phase] = result.map(
+      (r) => "/" + relative(join(__dirname, "../../"), r[0])
+    )
+
+    outputs = outputs.filter((output) => {
+      if (Array.isArray(output)) {
+        if (typeof output[0] === "string") {
+          strings = strings.concat(output)
+        } else if (output[0]?.nodeType) {
+          elements = elements.concat(output)
+        }
+      } else if (typeof output === "string") {
+        strings = strings.concat(output)
+      } else if (output?.nodeType) {
+        elements = elements.concat(output)
+      } else {
+        return true
+      }
+    })
+
+    if (
+      phase === "layouts" &&
+      !(elements.length || strings.length)
+    ) {
+      break
+    }
+
+    input = Object.assign({}, input, ...outputs, {
+      elements,
+      modules,
+      moduleMatches,
+    })
+
+    if (
+      (elements.length || strings.length) &&
+      !["routes", "layouts"].includes(phase)
+    ) {
+      break
     }
   }
 
-  return elementSerializer(outputs)
+  return elementSerializer(input["elements"])
 }
 
 export default requester
