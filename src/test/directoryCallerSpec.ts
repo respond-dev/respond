@@ -6,9 +6,13 @@ describe("directoryCaller", () => {
   it("tests acceptance", async () => {
     const testInitializer = await directoryCaller(
       join(__dirname, "../initializers"),
-      { test: true }
+      { test: true },
+      /test/
     )
     expect(testInitializer.length).toBe(1)
-    expect(testInitializer[0]).toEqual(true)
+    expect(testInitializer[0][0]).toEqual(
+      expect.any(String)
+    )
+    expect(testInitializer[0][1]).toEqual(true)
   })
 })

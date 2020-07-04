@@ -1,5 +1,6 @@
 import http from "http"
 import libHttpServer from "../lib/httpServer"
+import modulesLister from "../lib/modulesLister"
 import requester from "../lib/requester"
 
 export async function startHttpTask(): Promise<
@@ -9,12 +10,14 @@ export async function startHttpTask(): Promise<
     ? parseInt(process.env.PORT)
     : 3000
 
+  const modules = await modulesLister()
+
   return libHttpServer(port, async (incoming, response) => {
-    const result = await requester({
+    const output = await requester(modules, {
       httpIncomingMessage: incoming,
     })
 
-    response.write(result)
+    response.write(output)
     response.end()
   })
 }

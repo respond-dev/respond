@@ -1,14 +1,9 @@
 import jsCookie from "js-cookie"
-import MiddlewareInputType from "./middlewareInputType"
 import MiddlewareOutputType from "./middlewareOutputType"
 
-export async function cookieClientMiddleware({
-  client,
-}: MiddlewareInputType): Promise<MiddlewareOutputType> {
-  if (!client) {
-    return
-  }
-
+export async function clientCookieMiddleware(): Promise<
+  MiddlewareOutputType
+> {
   const cookie = (await import(
     "../../node_modules/js-cookie/src/js.cookie"
   )) as typeof jsCookie
@@ -18,4 +13,4 @@ export async function cookieClientMiddleware({
   }
 }
 
-export default cookieClientMiddleware
+export default clientCookieMiddleware

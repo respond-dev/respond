@@ -3,9 +3,10 @@ import ViewOutputType from "./viewOutputType"
 export interface HomeViewInputType {}
 
 export function homeView(
-  input: HomeViewInputType
+  input: HomeViewInputType,
+  id = "home"
 ): ViewOutputType {
-  return <div></div>
+  return <div id={id}></div>
 }
 
 export default homeView

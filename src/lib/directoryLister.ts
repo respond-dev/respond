@@ -1,15 +1,24 @@
 import { readdir, stat, Stats } from "fs"
 import { extname, join } from "path"
 
-export interface ListDirectoryOutput {
+export interface DirectoryListType {
   dirPaths: string[]
   filePaths: string[]
 }
 
+export const directoryListerCache = {}
+
 export async function directoryLister(
   dir: string,
+  matcher?: RegExp,
   ext?: string
-): Promise<ListDirectoryOutput> {
+): Promise<DirectoryListType> {
+  const key = [dir, matcher, ext].join("::")
+
+  if (directoryListerCache[key]) {
+    return directoryListerCache[key]
+  }
+
   const names = await new Promise<string[]>(
     (resolve, reject) => {
       readdir(dir, (err, filePaths) => {
@@ -35,25 +44,31 @@ export async function directoryLister(
         // do nothing
       } else if (isDir) {
         dirPaths.push(join(dir, name))
-      } else if (!ext || extname(name) === ext) {
+      } else if (
+        (!ext || extname(name) === ext) &&
+        (!matcher || name.match(matcher))
+      ) {
         filePaths.push(join(dir, name))
       }
     })
   )
 
-  return { dirPaths, filePaths }
+  directoryListerCache[key] = { dirPaths, filePaths }
+  return directoryListerCache[key]
 }
 
 export async function deepDirectoryLister(
   dir: string,
+  matcher?: RegExp,
   ext?: string,
-  options: ListDirectoryOutput = {
+  options: DirectoryListType = {
     dirPaths: [],
     filePaths: [],
   }
-): Promise<ListDirectoryOutput> {
+): Promise<DirectoryListType> {
   const { dirPaths, filePaths } = await directoryLister(
     dir,
+    matcher,
     ext
   )
 
@@ -61,7 +76,7 @@ export async function deepDirectoryLister(
 
   await Promise.all(
     dirPaths.map(async (path) => {
-      await deepDirectoryLister(path, ext, options)
+      await deepDirectoryLister(path, matcher, ext, options)
     })
   )
 

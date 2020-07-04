@@ -1,15 +1,10 @@
-import InitializerInputType from "./initializerInputType"
 import InitializerOutputType from "./initializerOutputType"
 
 export const PATH_REGEX = /[a-zA-Z](\/{1}[a-zA-Z]?.*)/
 
-export async function clientInitializer({
-  client,
-}: InitializerInputType): Promise<InitializerOutputType> {
-  if (!client) {
-    return
-  }
-
+export async function clientInitializer(): Promise<
+  InitializerOutputType
+> {
   const {
     hash,
     host,

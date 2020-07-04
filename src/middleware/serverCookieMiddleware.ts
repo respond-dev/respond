@@ -2,7 +2,7 @@ import cookie from "cookie"
 import MiddlewareInputType from "./middlewareInputType"
 import MiddlewareOutputType from "./middlewareOutputType"
 
-export function cookieServerMiddleware({
+export function serverCookieMiddleware({
   client,
   headers,
 }: MiddlewareInputType): MiddlewareOutputType {
@@ -17,4 +17,4 @@ export function cookieServerMiddleware({
   }
 }
 
-export default cookieServerMiddleware
+export default serverCookieMiddleware

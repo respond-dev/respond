@@ -1,13 +1,11 @@
 import promiseAll from "../lib/promiseAll"
 import promiseAllDefault from "../lib/promiseAllDefault"
-import ComponentInputType from "./componentInputType"
-import ComponentOutputType from "./componentOutputType"
+import RouteInputType from "./routeInputType"
+import RouteOutputType from "./routeOutputType"
 
-export const homeComponentId = "home"
-
-export async function homeComponent(
-  input: ComponentInputType
-): Promise<ComponentOutputType> {
+export async function homeRoute(
+  input: RouteInputType
+): Promise<RouteOutputType> {
   const { url } = input
 
   if (url.pathname !== "/") {
@@ -35,4 +33,4 @@ export async function homeComponent(
   })
 }
 
-export default homeComponent
+export default homeRoute

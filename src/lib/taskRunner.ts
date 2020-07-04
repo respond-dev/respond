@@ -6,6 +6,7 @@ export async function taskRunner(
 ): Promise<any[]> {
   const { filePaths } = await directoryLister(
     join(__dirname, "../tasks"),
+    undefined,
     ".js"
   )
 

@@ -1,10 +1,7 @@
-import MiddlewareInputType from "./middlewareInputType"
 import promiseAllDefault from "../lib/promiseAllDefault"
 
-export async function domServerMiddleware({
-  client,
-}: MiddlewareInputType): Promise<void> {
-  if (client || global["document"]) {
+export async function serverDomMiddleware(): Promise<void> {
+  if (global["document"]) {
     return
   }
 
@@ -16,4 +13,4 @@ export async function domServerMiddleware({
   global["document"] = dom as any
 }
 
-export default domServerMiddleware
+export default serverDomMiddleware

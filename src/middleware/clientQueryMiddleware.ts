@@ -1,11 +1,10 @@
 import MiddlewareInputType from "./middlewareInputType"
 import MiddlewareOutputType from "./middlewareOutputType"
 
-export function queryClientMiddleware({
-  client,
+export function clientQueryMiddleware({
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
-  if (!client || !url.href.includes("?")) {
+  if (!url.href.includes("?")) {
     return
   }
 
