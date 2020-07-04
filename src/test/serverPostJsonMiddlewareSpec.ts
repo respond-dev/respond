@@ -2,7 +2,7 @@ import { IncomingMessage } from "http"
 import net from "net"
 import URL from "url"
 import expect from "../lib/expect"
-import postJsonMiddleware from "../middleware/postJsonMiddleware"
+import serverPostJsonMiddleware from "../middleware/serverPostJsonMiddleware"
 
 class FakeIncomingMessage extends IncomingMessage {
   constructor() {
@@ -18,7 +18,7 @@ describe("postJsonMiddleware", () => {
 
     const httpIncomingMessage = new FakeIncomingMessage()
 
-    const promise = postJsonMiddleware({
+    const promise = serverPostJsonMiddleware({
       headers,
       httpIncomingMessage,
       method: "POST",

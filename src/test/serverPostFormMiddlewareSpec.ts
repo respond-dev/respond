@@ -2,7 +2,7 @@ import { IncomingMessage } from "http"
 import net from "net"
 import URL from "url"
 import expect from "../lib/expect"
-import postFormMiddleware from "../middleware/postFormMiddleware"
+import serverPostFormMiddleware from "../middleware/serverPostFormMiddleware"
 
 class FakeIncomingMessage extends IncomingMessage {
   constructor() {
@@ -19,7 +19,7 @@ describe("postFormMiddleware", () => {
 
     const httpIncomingMessage = new FakeIncomingMessage()
 
-    const promise = postFormMiddleware({
+    const promise = serverPostFormMiddleware({
       headers,
       httpIncomingMessage,
       method: "POST",
@@ -49,7 +49,7 @@ describe("postFormMiddleware", () => {
 
     const httpIncomingMessage = new FakeIncomingMessage()
 
-    const promise = postFormMiddleware({
+    const promise = serverPostFormMiddleware({
       headers,
       httpIncomingMessage,
       method: "POST",

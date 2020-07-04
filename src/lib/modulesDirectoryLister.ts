@@ -1,8 +1,8 @@
 import { join, relative } from "path"
 import { deepDirectoryLister } from "../lib/directoryLister"
 
-export const clientRegExp = /^((?!(^|\/)server).)*$/
-export const serverRegExp = /^((?!(^|\/)client).)*$/
+export const clientRegExp = /^((?!(^|\/)(server|test)).)*$/
+export const serverRegExp = /^((?!(^|\/)(client|test)).)*$/
 
 export async function modulesDirectoryLister(
   dirName: string,
