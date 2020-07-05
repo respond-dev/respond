@@ -1,6 +1,7 @@
-export interface LayoutInputType {
-  elements: Element | Element[]
-  moduleMatches: Record<string, string[]>
-}
+import { RequesterAdditionsType } from "../lib/requester"
+import { RouteInputType } from "./routeTypes"
+
+export type LayoutInputType = RouteInputType &
+  RequesterAdditionsType
 
 export type LayoutOutputType = Element | Element[]

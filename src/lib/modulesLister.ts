@@ -6,6 +6,7 @@ export interface ModulesType {
   middleware?: string[]
   routes?: string[]
   layouts?: string[]
+  finalizers?: string[]
 }
 
 export async function modulesLister(
@@ -22,6 +23,10 @@ export async function modulesLister(
     ),
     routes: modulesDirectoryLister("routes", clientMode),
     layouts: modulesDirectoryLister("layouts", clientMode),
+    finalizers: modulesDirectoryLister(
+      "finalizers",
+      clientMode
+    ),
   })
 }
 

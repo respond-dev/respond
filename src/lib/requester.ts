@@ -1,20 +1,34 @@
 import { join, relative } from "path"
 import { ModulesType } from "../lib/modulesLister"
+import {
+  FinalizerInputType,
+  FinalizerOutputType,
+} from "../types/finalizerTypes"
 import directoryCaller from "./directoryCaller"
-import elementSerializer from "./elementSerializer"
 
 export const requesterPhases = [
   "initializers",
   "middleware",
   "routes",
   "layouts",
+  "finalizers",
 ]
+
+export interface RequesterAdditionsType {
+  elements?: Element[]
+  moduleMatches?: Record<string, string[]>
+  strings?: string[]
+}
+
+export type RequesterOutputType = FinalizerInputType &
+  FinalizerOutputType &
+  RequesterAdditionsType
 
 export async function requester(
   modules: ModulesType,
   input: unknown
-): Promise<string> {
-  const moduleMatches: Record<string, string[]> = {}
+): Promise<RequesterOutputType> {
+  let moduleMatches: Record<string, string[]> = {}
 
   for (const phase of requesterPhases) {
     const result = await directoryCaller(
@@ -25,10 +39,6 @@ export async function requester(
     let elements: Element[] = []
     let strings: string[] = []
     let outputs = result.map((r) => r[1])
-
-    moduleMatches[phase] = result.map(
-      (r) => "/" + relative(join(__dirname, "../../"), r[0])
-    )
 
     outputs = outputs.filter((output) => {
       if (Array.isArray(output)) {
@@ -53,6 +63,14 @@ export async function requester(
       break
     }
 
+    moduleMatches = {
+      ...moduleMatches,
+      [phase]: result.map(
+        (r) =>
+          "/" + relative(join(__dirname, "../../"), r[0])
+      ),
+    }
+
     input = Object.assign({}, input, ...outputs, {
       elements,
       modules,
@@ -67,7 +85,7 @@ export async function requester(
     }
   }
 
-  return elementSerializer(input["elements"])
+  return input as RequesterOutputType
 }
 
 export default requester

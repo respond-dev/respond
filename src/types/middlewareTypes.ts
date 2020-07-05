@@ -1,10 +1,12 @@
+import { RequesterAdditionsType } from "../lib/requester"
 import {
   InitializerInputType,
   InitializerOutputType,
 } from "./initializerTypes"
 
 export type MiddlewareInputType = InitializerInputType &
-  InitializerOutputType
+  InitializerOutputType &
+  RequesterAdditionsType
 
 export interface MiddlewareOutputType {
   cookies?: Record<string, string>

@@ -1,11 +1,11 @@
-import { ModelInputType } from "../types/modelTypes"
+import { RouteInputType } from "../types/routeTypes"
 
 export interface HomeModelOutputType {
   home?: boolean
 }
 
 export function homeModel(
-  input: ModelInputType
+  input: RouteInputType
 ): HomeModelOutputType {
   return {}
 }

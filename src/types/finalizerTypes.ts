@@ -4,8 +4,12 @@ import {
   MiddlewareOutputType,
 } from "./middlewareTypes"
 
-export type RouteInputType = MiddlewareInputType &
+export type FinalizerInputType = MiddlewareInputType &
   MiddlewareOutputType &
   RequesterAdditionsType
 
-export type RouteOutputType = Element | Element[]
+export interface FinalizerOutputType {
+  finalHttpCode?: number
+  finalOutput?: string
+  finalMimeType?: string
+}
