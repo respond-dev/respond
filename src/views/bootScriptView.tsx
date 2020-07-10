@@ -8,6 +8,8 @@ export function bootScript(modules: ModulesType): string {
     import("/dist-esm/lib/requester.mjs")
       .then(function ({ requester }) {
         return requester(${modulesJson}, { client: window })
+      }).then(function(output) {
+        console.log(output)
       })
   `.replace(/\n\s{4}/gm, "\n")
 }
