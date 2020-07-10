@@ -44,4 +44,4 @@ export function queryClientParse(
   return query
 }
 
-export default queryClientMiddleware
+export default clientQueryMiddleware

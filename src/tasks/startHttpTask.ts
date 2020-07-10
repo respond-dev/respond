@@ -1,7 +1,9 @@
 import http from "http"
+import assetRequester from "../lib/assetRequester"
 import libHttpServer from "../lib/httpServer"
 import modulesLister from "../lib/modulesLister"
 import requester from "../lib/requester"
+import { FinalizerOutputType } from "../types/finalizerTypes"
 
 export async function startHttpTask(): Promise<
   http.Server
@@ -13,12 +15,40 @@ export async function startHttpTask(): Promise<
   const modules = await modulesLister()
 
   return libHttpServer(port, async (incoming, response) => {
-    const output = await requester(modules, {
-      httpIncomingMessage: incoming,
-    })
+    let output: FinalizerOutputType
 
-    response.write(JSON.stringify(Object.keys(output)))
-    response.end()
+    output = await assetRequester(incoming.url)
+
+    if (!output) {
+      output = await requester(modules, {
+        httpIncomingMessage: incoming,
+      })
+    }
+
+    const {
+      finalHttpCode,
+      finalMimeType,
+      finalOutput,
+      finalStream,
+    } = output
+
+    if (finalHttpCode) {
+      response.statusCode = finalHttpCode
+    }
+
+    if (finalMimeType) {
+      response.setHeader("Content-Type", finalMimeType)
+    }
+
+    if (finalOutput) {
+      response.write(finalOutput)
+    }
+
+    if (finalStream) {
+      finalStream.pipe(response)
+    } else {
+      response.end()
+    }
   })
 }
 

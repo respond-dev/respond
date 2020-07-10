@@ -6,7 +6,7 @@ export function bootScript(modules: ModulesType): string {
 
   return /* js */ `
     import("/dist-esm/lib/requester.mjs")
-      .then(function (requester) {
+      .then(function ({ requester }) {
         return requester(${modulesJson}, { client: window })
       })
   `.replace(/\n\s{4}/gm, "\n")

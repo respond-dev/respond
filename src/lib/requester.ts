@@ -1,4 +1,3 @@
-import { join, relative } from "path"
 import { ModulesType } from "../lib/modulesLister"
 import {
   FinalizerInputType,
@@ -65,10 +64,7 @@ export async function requester(
 
     moduleMatches = {
       ...moduleMatches,
-      [phase]: result.map(
-        (r) =>
-          "/" + relative(join(__dirname, "../../"), r[0])
-      ),
+      [phase]: result.map((r) => r[0]),
     }
 
     input = Object.assign({}, input, ...outputs, {
