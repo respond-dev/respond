@@ -1,9 +1,9 @@
 import expect from "../lib/expect"
-import directoryCaller from "../lib/directoryCaller"
+import importer from "../lib/importer"
 
-describe("directoryCaller", () => {
+describe("importer", () => {
   it("tests acceptance", async () => {
-    const testInitializer = await directoryCaller(
+    const testInitializer = await importer(
       ["/dist-cjs/initializers/testInitializer"],
       { test: true }
     )

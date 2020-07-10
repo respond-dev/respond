@@ -1,4 +1,4 @@
-export async function directoryCaller(
+export async function importer(
   paths: string[],
   arg: unknown
 ): Promise<[string, any][]> {
@@ -29,4 +29,4 @@ export async function directoryCaller(
   ).filter((p) => p && p[1])
 }
 
-export default directoryCaller
+export default importer
