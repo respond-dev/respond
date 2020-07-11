@@ -1,9 +1,9 @@
 import expect from "../lib/expect"
-import importer from "../lib/importer"
+import importRunner from "../lib/importRunner"
 
-describe("importer", () => {
+describe("importRunner", () => {
   it("tests acceptance", async () => {
-    const testInitializer = await importer(
+    const testInitializer = await importRunner(
       ["/dist-cjs/initializers/testInitializer"],
       { test: true }
     )

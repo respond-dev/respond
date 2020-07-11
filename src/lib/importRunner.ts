@@ -1,4 +1,4 @@
-export async function importer(
+export async function importRunner(
   paths: string[],
   arg: unknown
 ): Promise<[string, any][]> {
@@ -29,4 +29,4 @@ export async function importer(
   ).filter((p) => p && p[1])
 }
 
-export default importer
+export default importRunner

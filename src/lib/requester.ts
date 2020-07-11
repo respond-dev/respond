@@ -3,7 +3,7 @@ import {
   FinalizerInputType,
   FinalizerOutputType,
 } from "../types/finalizerTypes"
-import importer from "./importer"
+import importRunner from "./importRunner"
 
 export const requesterPhases = [
   "initializers",
@@ -30,7 +30,7 @@ export async function requester(
   let moduleMatches: Record<string, string[]> = {}
 
   for (const phase of requesterPhases) {
-    const result = await importer(modules[phase], input)
+    const result = await importRunner(modules[phase], input)
 
     let elements: Element[] = []
     let strings: string[] = []
