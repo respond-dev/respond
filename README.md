@@ -4,11 +4,11 @@ TypeScript web framework optimized for delivery 🚚
 
 ## New tech
 
-- Universal routing (SSR & SPA)
+- Universal routing (SSR & SPA 🧖‍♀️)
 - Client side ES modules (🚫 webpack)
 - TypeScript source in devtools (🚫 compiled JS)
 - Built-in server environments (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
-- JSX
+- JSX 🧱
 
 ## Old wisdom
 
