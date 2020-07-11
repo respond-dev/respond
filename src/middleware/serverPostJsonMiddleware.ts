@@ -4,15 +4,13 @@ import {
 } from "../types/middlewareTypes"
 import streamStringifier from "../lib/streamStringifier"
 
-export async function postJsonMiddleware({
+export async function serverPostJsonMiddleware({
   apiGatewayProxyEvent,
-  client,
   headers,
   httpIncomingMessage,
   method,
 }: MiddlewareInputType): Promise<MiddlewareOutputType> {
   if (
-    client ||
     method !== "POST" ||
     !headers["content-type"].startsWith("application/json")
   ) {
@@ -34,4 +32,4 @@ export async function postJsonMiddleware({
   return { json }
 }
 
-export default postJsonMiddleware
+export default serverPostJsonMiddleware

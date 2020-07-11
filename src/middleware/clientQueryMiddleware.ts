@@ -26,6 +26,7 @@ export function queryClientParse(
     ? string.substr(1)
     : string
   ).split("&")
+
   for (let i = 0; i < pairs.length; i++) {
     const pair = pairs[i].split("=")
     const key = decodeURIComponent(pair[0])

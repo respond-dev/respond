@@ -4,15 +4,13 @@ import {
 } from "../types/middlewareTypes"
 import { busboyBuilder } from "../lib/busboyBuilder"
 
-export async function postFormMiddleware({
+export async function serverPostFormMiddleware({
   apiGatewayProxyEvent,
-  client,
   headers,
   httpIncomingMessage,
   method,
 }: MiddlewareInputType): Promise<MiddlewareOutputType> {
   if (
-    client ||
     method !== "POST" ||
     (!apiGatewayProxyEvent && !httpIncomingMessage) ||
     headers["content-type"].startsWith("application/json")
@@ -39,4 +37,4 @@ export async function postFormMiddleware({
   return { form: await finished }
 }
 
-export default postFormMiddleware
+export default serverPostFormMiddleware
