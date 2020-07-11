@@ -5,7 +5,7 @@ JavaScript web framework optimized for delivery 🚚
 ## New tech
 
 - ES modules (🚫 webpack)
-- TypeScript in devtools (🚫 compiled code)
+- TypeScript in devtools (🚫 debugging compiled code)
 - Run anywhere: Bare metal (Node HTTP), AWS Lambda, Cloudflare Worker ☁️
 - Universal routing (SSR & SPA)
 - JSX support
