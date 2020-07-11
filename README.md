@@ -15,7 +15,7 @@ TypeScript web framework optimized for delivery 🚚
 - Structured request pipeline (initializers, middleware, layouts 🏗️)
 - First class approach to server side execution 🥇
 - Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
-- Remote function calls 🛰️
+- Simple remote function calls 🛰️
 - Very few production NPM dependencies 🚫📦
 
 ## New project
