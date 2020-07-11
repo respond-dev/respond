@@ -35,7 +35,7 @@ npm start
 ## Request phases
 
 1. [`initializers`](src/initializers) — Prepare basic universal inputs (headers, method, and url)
-2. [`middleware`](src/middleware) — Prepare conditional inputs (params, cookies, uploads)
-3. [`routes`](src/routes) — User code to build output (retrieve data, return elements)
-4. [`layouts`](src/layouts) — Views that wrap the route output
+2. [`middleware`](src/middleware) — Prepare conditional complex inputs (params, cookies, uploads)
+3. [`routes`](src/routes) — Render output for particular conditions (typically by url)
+4. [`layouts`](src/layouts) — Layouts wrap the route output
 5. [`finalizers`](src/finalizers) — Prepares final output (body, MIME type, HTTP code)
