@@ -5,16 +5,16 @@ JavaScript web framework optimized for delivery 🚚
 ## New tech
 
 - Client side ES modules (🚫 webpack)
-- TypeScript in devtools (🚫 compiled JS)
+- TypeScript source in devtools (🚫 compiled JS)
 - Multiple server modes (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
 - Universal routing (SSR & SPA)
 - JSX
 
 ## Old wisdom
 
-- Framework included (hack on the framework live ⚡)
-- First class approach to server side code execution
-- Thin JSX implementation (🚫 virtual dom, ✅ `createElement`)
+- Structured request pipeline (initializers, middleware, layouts, etc)
+- First class approach to server side execution
+- Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
 - Remote function calls (🚫 graphql)
 - Very few production NPM dependencies
 
