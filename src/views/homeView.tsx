@@ -6,7 +6,8 @@ export function homeView(
   input: HomeViewInputType,
   id = "home"
 ): ViewOutputType {
-  return <div id={id}></div>
+  const client = typeof history !== "undefined"
+  return <div id={id}>{client ? "client" : "server"}</div>
 }
 
 export default homeView
