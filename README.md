@@ -1,13 +1,13 @@
 # Respond
 
-JavaScript web framework optimized for delivery 🚚
+TypeScript web framework optimized for delivery 🚚
 
 ## New tech
 
+- Universal routing (SSR & SPA)
 - Client side ES modules (🚫 webpack)
 - TypeScript source in devtools (🚫 compiled JS)
-- Plug and play servers (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
-- Universal routing (SSR & SPA)
+- Built-in server environments (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
 - JSX
 
 ## Old wisdom
