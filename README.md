@@ -6,7 +6,7 @@ TypeScript web framework optimized for delivery 🚚
 
 - Universal routing (SSR & SPA 🧖‍♀️)
 - Client side ES modules (🚫 webpack)
-- TypeScript source in devtools (🚫 compiled JS)
+- TypeScript source/breakpoints in devtools 👨‍💻
 - Built-in server environments (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
 - JSX 🏭
 
