@@ -13,8 +13,8 @@ TypeScript web framework optimized for delivery 🚚
 ## Old wisdom
 
 - Structured request pipeline (initializers, middleware, layouts 🏗️)
-- First class approach to server side execution 🥇
 - Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
+- First class approach to server side execution 🥇
 - Simple remote function calls 🛰️
 - Very few production NPM dependencies 🚫📦
 
