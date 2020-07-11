@@ -16,7 +16,7 @@ TypeScript web framework optimized for delivery 🚚
 - First class approach to server side execution 🥇
 - Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
 - Remote function calls (🚫 graphql)
-- Very few production NPM dependencies (🚫📦)
+- Very few production NPM dependencies 🚫📦
 
 ## New project
 
