@@ -8,7 +8,7 @@ TypeScript web framework optimized for delivery 🚚
 - Client side ES modules (🚫 webpack)
 - TypeScript source in devtools (🚫 compiled JS)
 - Built-in server environments (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
-- JSX 🧱
+- JSX 🏭
 
 ## Old wisdom
 
