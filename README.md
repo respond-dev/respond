@@ -12,8 +12,8 @@ JavaScript web framework optimized for delivery 🚚
 
 ## Old wisdom
 
-- Live-in framework code (easy to hack/contribute)
+- Framework included (hack on the framework live)
+- First class approach to server side execution
 - Thin `createElement` JSX implementation (🚫 virtual dom)
 - Remote function calls (🚫 graphql)
-- First class approach to server side code
 - Very few production NPM dependencies
