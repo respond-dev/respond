@@ -12,7 +12,7 @@ JavaScript web framework optimized for delivery 🚚
 
 ## Old wisdom
 
-- Live-in framework (edit the framework live ⚡)
+- Framework included (hack on the framework live ⚡)
 - First class approach to server side code execution
 - Thin JSX implementation (🚫 virtual dom, ✅ `createElement`)
 - Remote function calls (🚫 graphql)
