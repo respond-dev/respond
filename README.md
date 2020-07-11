@@ -6,7 +6,7 @@ JavaScript web framework optimized for delivery 🚚
 
 - Client side ES modules (🚫 webpack)
 - TypeScript in devtools (🚫 debugging compiled code)
-- Run anywhere: Bare metal (Node HTTP), AWS Lambda, Cloudflare Worker ☁️
+- Server modes: Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️
 - Universal routing (SSR & SPA)
 - JSX support
 
