@@ -1,4 +1,5 @@
 import modulesLister from "../lib/modulesLister"
+import modulesToEsm from "../lib/modulesToEsm"
 import {
   LayoutInputType,
   LayoutOutputType,
@@ -9,11 +10,11 @@ export async function serverLayout({
   elements,
   moduleMatches,
 }: LayoutInputType): Promise<LayoutOutputType> {
-  const clientModules = {
+  const clientModules = modulesToEsm({
     ...(await modulesLister(true)),
     layouts: [],
     routes: moduleMatches["routes"],
-  }
+  })
 
   return (
     <html>

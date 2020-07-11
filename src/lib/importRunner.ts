@@ -4,12 +4,6 @@ export async function importRunner(
 ): Promise<[string, any][]> {
   const isBrowser = typeof history !== "undefined"
 
-  if (isBrowser) {
-    paths = paths.map((path) =>
-      path.replace(/\/dist-cjs\//, "/dist-esm/")
-    )
-  }
-
   return (
     await Promise.all(
       paths.map(
