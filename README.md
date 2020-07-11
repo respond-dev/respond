@@ -6,7 +6,7 @@ JavaScript web framework optimized for delivery 🚚
 
 - Client side ES modules (🚫 webpack)
 - TypeScript source in devtools (🚫 compiled JS)
-- Multiple server modes (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
+- Any server environment (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
 - Universal routing (SSR & SPA)
 - JSX
 
