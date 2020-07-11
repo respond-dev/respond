@@ -17,3 +17,17 @@ JavaScript web framework optimized for delivery 🚚
 - Thin JSX implementation (🚫 virtual dom, ✅ `createElement`)
 - Remote function calls (🚫 graphql)
 - Very few production NPM dependencies
+
+## New project
+
+```bash
+git clone git@github.com:respond-dev/respond.git [project-name]
+cd [project-name]
+npm install
+```
+
+## Start server
+
+```bash
+npm start
+```

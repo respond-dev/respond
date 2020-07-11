@@ -5,9 +5,10 @@
   "bin": {},
   "scripts": {
     "build": "rm -rf dist-*; tsc -b -v",
-    "update": "ncu -u",
+    "postinstall": "npm run build",
     "start": "./taskRunner startHttp",
     "test": "mocha",
+    "update": "ncu -u",
     "watch": "./taskRunner watchCjs watchEsm"
   },
   "repository": {
