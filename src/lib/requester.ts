@@ -27,9 +27,10 @@ export async function requester(
 
   for (const phase of requesterPhases) {
     if (constructorsCalled && phase === "constructors") {
-      constructorsCalled = true
       continue
     }
+
+    constructorsCalled = true
 
     const result = await importRunner(modules[phase], input)
     const outputs = result.map((r) => r[1])
