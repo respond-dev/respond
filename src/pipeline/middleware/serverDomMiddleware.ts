@@ -1,4 +1,4 @@
-import promiseAllDefault from "../lib/promiseAllDefault"
+import promiseAllDefault from "../../lib/promiseAllDefault"
 
 export async function serverDomMiddleware(): Promise<void> {
   if (global["document"]) {
@@ -6,7 +6,7 @@ export async function serverDomMiddleware(): Promise<void> {
   }
 
   const { domBuilder } = await promiseAllDefault({
-    domBuilder: import("../lib/domBuilder"),
+    domBuilder: import("../../lib/domBuilder"),
   })
 
   const dom = domBuilder()

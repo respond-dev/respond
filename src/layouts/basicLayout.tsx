@@ -6,14 +6,11 @@ import {
 } from "../types/layoutTypes"
 import bootScriptView from "../views/bootScriptView"
 
-export async function serverLayout({
-  elements,
-  moduleMatches,
+export async function basicLayout({
+  output,
 }: LayoutInputType): Promise<LayoutOutputType> {
   const clientModules = modulesToEsm({
     ...(await modulesLister(true)),
-    layouts: [],
-    routes: moduleMatches["routes"],
   })
 
   return (
@@ -27,11 +24,11 @@ export async function serverLayout({
         <link rel="icon" href="data:," />
       </head>
       <body>
-        {elements}
+        {output}
         {bootScriptView(clientModules)}
       </body>
     </html>
   )
 }
 
-export default serverLayout
+export default basicLayout

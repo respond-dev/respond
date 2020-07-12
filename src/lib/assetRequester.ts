@@ -7,14 +7,14 @@ import {
   ReadStream,
 } from "fs"
 
-import { FinalizerOutputType } from "../types/finalizerTypes"
+import { SettlerOutputType } from "../pipeline/types/settlerTypes"
 
 export const EXT_REGEX = /(.+)(\.[^\.]+)$/
 
 export async function assetRequester(
   urlPath: string,
   base64 = false
-): Promise<FinalizerOutputType> {
+): Promise<SettlerOutputType> {
   const match = urlPath.match(EXT_REGEX)
 
   if (!match || !match[2]) {

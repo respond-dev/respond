@@ -1,11 +1,11 @@
-import { RouteInputType } from "../types/routeTypes"
+import { RouterInputType } from "../pipeline/types/routerTypes"
 
 export interface HomeModelOutputType {
   home?: boolean
 }
 
 export function homeModel(
-  input: RouteInputType
+  input: RouterInputType
 ): HomeModelOutputType {
   return {}
 }

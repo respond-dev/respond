@@ -3,7 +3,7 @@ import assetRequester from "../lib/assetRequester"
 import libHttpServer from "../lib/httpServer"
 import modulesLister from "../lib/modulesLister"
 import requester from "../lib/requester"
-import { FinalizerOutputType } from "../types/finalizerTypes"
+import { SettlerOutputType } from "../pipeline/types/settlerTypes"
 
 export async function startHttpTask(): Promise<
   http.Server
@@ -15,7 +15,7 @@ export async function startHttpTask(): Promise<
   const modules = await modulesLister()
 
   return libHttpServer(port, async (incoming, response) => {
-    let output: FinalizerOutputType
+    let output: SettlerOutputType
 
     output = await assetRequester(incoming.url)
 

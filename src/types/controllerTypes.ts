@@ -1,8 +1,8 @@
 import { RouterInputType } from "../pipeline/types/routerTypes"
 
-export type LayoutInputType = RouterInputType
+export type ControllerInputType = RouterInputType
 
-export type LayoutOutputType =
+export type ControllerOutputType =
   | (Element | string)[]
   | Element
   | string

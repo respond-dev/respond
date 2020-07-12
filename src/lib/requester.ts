@@ -1,82 +1,58 @@
 import { ModulesType } from "../lib/modulesLister"
 import {
-  FinalizerInputType,
-  FinalizerOutputType,
-} from "../types/finalizerTypes"
+  SettlerInputType,
+  SettlerOutputType,
+} from "../pipeline/types/settlerTypes"
 import elementReplacer from "./elementReplacer"
 import importRunner from "./importRunner"
 
 export const requesterPhases = [
   "initializers",
   "middleware",
-  "routes",
-  "layouts",
-  "finalizers",
+  "routers",
+  "settlers",
 ]
 
-export interface RequesterAdditionsType {
-  elements?: Element[]
-  moduleMatches?: Record<string, string[]>
-  strings?: string[]
-}
-
-export type RequesterOutputType = FinalizerInputType &
-  FinalizerOutputType &
-  RequesterAdditionsType
+export type RequesterOutputType = SettlerInputType &
+  SettlerOutputType
 
 export async function requester(
   modules: ModulesType,
   input: unknown
 ): Promise<RequesterOutputType> {
-  let moduleMatches: Record<string, string[]> = {}
+  let outputFound = false
 
   for (const phase of requesterPhases) {
     const result = await importRunner(modules[phase], input)
+    const outputs = result.map((r) => r[1])
 
-    let elements: Element[] = []
-    let strings: string[] = []
-    let outputs = result.map((r) => r[1])
+    let out: (Element | string)[] = []
 
-    outputs = outputs.filter((output) => {
-      if (Array.isArray(output)) {
-        if (typeof output[0] === "string") {
-          strings = strings.concat(output)
-        } else if (output[0]?.nodeType) {
-          elementReplacer(output)
-          elements = elements.concat(output)
-        }
-      } else if (typeof output === "string") {
-        strings = strings.concat(output)
-      } else if (output?.nodeType) {
-        elementReplacer([output])
-        elements = elements.concat(output)
-      } else {
-        return true
+    for (let { output } of outputs) {
+      if (!output) {
+        continue
       }
-    })
 
-    if (
-      phase === "layouts" &&
-      !(elements.length || strings.length)
-    ) {
-      break
-    }
+      outputFound = true
 
-    moduleMatches = {
-      ...moduleMatches,
-      [phase]: result.map((r) => r[0]),
+      if (!Array.isArray(output)) {
+        output = [output]
+      }
+
+      for (const item of output) {
+        if (item?.nodeType) {
+          elementReplacer(item)
+        }
+      }
+
+      out = out.concat(output.filter((o) => o))
     }
 
     input = Object.assign({}, input, ...outputs, {
-      elements,
       modules,
-      moduleMatches,
     })
 
-    if (
-      (elements.length || strings.length) &&
-      !["routes", "layouts"].includes(phase)
-    ) {
+    if (outputFound && phase === "middleware") {
       break
     }
   }

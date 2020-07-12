@@ -1,1 +1,4 @@
-export type ViewOutputType = Element | Element[]
+export type ViewOutputType =
+  | (Element | string)[]
+  | Element
+  | string

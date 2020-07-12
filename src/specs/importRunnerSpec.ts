@@ -4,7 +4,7 @@ import importRunner from "../lib/importRunner"
 describe("importRunner", () => {
   it("tests acceptance", async () => {
     const testInitializer = await importRunner(
-      ["/dist-cjs/initializers/testInitializer"],
+      ["/dist-cjs/pipeline/initializers/testInitializer"],
       { test: true }
     )
     expect(testInitializer.length).toBe(1)

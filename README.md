@@ -32,10 +32,16 @@ npm install
 npm start
 ```
 
-## Request phases
+## Request pipeline
 
-1. [`initializers`](src/initializers) — Prepare basic universal inputs (headers, method, and url)
-2. [`middleware`](src/middleware) — Prepare conditional complex inputs (params, cookies, uploads)
-3. [`routes`](src/routes) — Render output for particular conditions (typically by url)
-4. [`layouts`](src/layouts) — Layouts wrap the route output
-5. [`finalizers`](src/finalizers) — Prepares final output (body, MIME type, HTTP code)
+There are five successive phases of the request pipeline. Each phase corresponds to a directory of source files:
+
+1. [`src/pipeline/constructors`](src/pipeline/constructors) — Builds input for initializers (⚠️ only executes on very first request)
+2. [`src/pipeline/initializers`](src/pipeline/initializers) — Builds input for middleware (⚠️ in SPA mode, only executes when route changes)
+3. [`src/pipeline/middleware`](src/pipeline/middleware) — Builds input for routers
+4. [`src/pipeline/routers`](src/pipeline/routers) — Executes user code to build output
+5. [`src/pipeline/settlers`](src/pipeline/settlers) — Builds the final output
+
+Each source file exports a default function. This function executes in parallel with other functions of the same directory (phase), and its collective output combines to build the input for the next phase of the pipeline.
+
+If a source file begins with `client` or `server`, it will only execute on the respective environment. Otherwise, it is up to the function to conditionally enable or disable itself.

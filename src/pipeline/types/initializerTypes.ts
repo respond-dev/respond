@@ -11,5 +11,6 @@ export interface InitializerInputType {
 export interface InitializerOutputType {
   headers: Record<string, string>
   method: string
+  output?: (Element | string)[] | Element | string
   url: UrlWithStringQuery
 }

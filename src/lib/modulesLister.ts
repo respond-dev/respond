@@ -4,9 +4,8 @@ import promiseAll from "./promiseAll"
 export interface ModulesType {
   initializers?: string[]
   middleware?: string[]
-  routes?: string[]
-  layouts?: string[]
-  finalizers?: string[]
+  routers?: string[]
+  settlers?: string[]
 }
 
 export async function modulesLister(
@@ -21,10 +20,9 @@ export async function modulesLister(
       "middleware",
       clientMode
     ),
-    routes: modulesDirectoryLister("routes", clientMode),
-    layouts: modulesDirectoryLister("layouts", clientMode),
-    finalizers: modulesDirectoryLister(
-      "finalizers",
+    routers: modulesDirectoryLister("routers", clientMode),
+    settlers: modulesDirectoryLister(
+      "settlers",
       clientMode
     ),
   })

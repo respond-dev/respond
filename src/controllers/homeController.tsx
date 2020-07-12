@@ -1,19 +1,13 @@
 import promiseAll from "../lib/promiseAll"
 import promiseAllDefault from "../lib/promiseAllDefault"
 import {
-  RouteInputType,
-  RouteOutputType,
-} from "../types/routeTypes"
+  ControllerInputType,
+  ControllerOutputType,
+} from "../types/controllerTypes"
 
-export async function homeRoute(
-  input: RouteInputType
-): Promise<RouteOutputType> {
-  const { url } = input
-
-  if (url.pathname !== "/") {
-    return
-  }
-
+export async function homeController(
+  input: ControllerInputType
+): Promise<ControllerOutputType> {
   const {
     articleModel,
     homeModel,
@@ -35,4 +29,4 @@ export async function homeRoute(
   })
 }
 
-export default homeRoute
+export default homeController

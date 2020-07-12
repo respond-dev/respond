@@ -1,24 +1,6 @@
 import { ModulesType } from "../lib/modulesLister"
 import { ViewOutputType } from "../types/viewTypes"
 
-export function bootScript(modules: ModulesType): string {
-  const modulesJson = JSON.stringify(modules)
-  const joinStr = '"),\n  import("'
-
-  return /* js */ `
-    Promise.all([
-      import("/dist-esm/lib/requester.mjs"),
-      import("${modules.initializers.join(joinStr)}"),
-      import("${modules.middleware.join(joinStr)}"),
-      import("${modules.routes.join(joinStr)}"),
-      import("${modules.finalizers.join(joinStr)}")
-    ])
-      .then(function ([{ requester }]) {
-        return requester(${modulesJson}, { client: window })
-      })
-  `.replace(/\n\s{4}/gm, "\n")
-}
-
 export function bootScriptView(
   modules: ModulesType,
   id = "clientScript"
@@ -29,9 +11,32 @@ export function bootScriptView(
       type="module"
       crossorigin="use-credentials"
     >
-      {bootScript(modules)}
+      {scriptTag(modules)}
     </script>
   )
+}
+
+export function scriptTag(modules: ModulesType): string {
+  const modulesJson = JSON.stringify(modules)
+
+  return /* js */ `
+    Promise.all([
+      ${importCalls([
+        "/dist-esm/lib/requester.mjs",
+        ...modules.initializers,
+        ...modules.middleware,
+        ...modules.routers,
+        ...modules.settlers,
+      ])}
+    ])
+      .then(function ([{ requester }]) {
+        return requester(${modulesJson}, { client: window })
+      })
+  `.replace(/\n\s{4}/gm, "\n")
+}
+
+export function importCalls(paths: string[]): string {
+  return paths.map((path) => `import("${path}")`).join(", ")
 }
 
 export default bootScriptView

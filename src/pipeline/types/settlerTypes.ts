@@ -1,15 +1,13 @@
 import { ReadStream } from "fs"
-import { RequesterAdditionsType } from "../lib/requester"
 import {
   MiddlewareInputType,
   MiddlewareOutputType,
 } from "./middlewareTypes"
 
-export type FinalizerInputType = MiddlewareInputType &
-  MiddlewareOutputType &
-  RequesterAdditionsType
+export type SettlerInputType = MiddlewareInputType &
+  MiddlewareOutputType
 
-export interface FinalizerOutputType {
+export interface SettlerOutputType {
   finalHttpCode?: number
   finalMimeType?: string
   finalOutput?: string
