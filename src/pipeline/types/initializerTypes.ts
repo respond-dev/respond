@@ -1,12 +1,11 @@
-import { APIGatewayProxyEvent } from "aws-lambda"
-import { IncomingMessage } from "http"
 import { UrlWithStringQuery } from "url"
+import {
+  ConstructorInputType,
+  ConstructorOutputType,
+} from "./constructorTypes"
 
-export interface InitializerInputType {
-  client?: boolean
-  apiGatewayProxyEvent?: APIGatewayProxyEvent
-  httpIncomingMessage?: IncomingMessage
-}
+export type InitializerInputType = ConstructorInputType &
+  ConstructorOutputType
 
 export interface InitializerOutputType {
   headers: Record<string, string>

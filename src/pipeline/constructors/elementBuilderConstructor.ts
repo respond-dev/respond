@@ -1,9 +1,9 @@
 import promiseAllDefault from "../../lib/promiseAllDefault"
-import { MiddlewareInputType } from "../types/middlewareTypes"
+import { ConstructorInputType } from "../types/constructorTypes"
 
-export async function elementMiddleware({
+export async function elementBuilderConstructor({
   client,
-}: MiddlewareInputType): Promise<void> {
+}: ConstructorInputType): Promise<void> {
   const { elementBuilder } = await promiseAllDefault({
     elementBuilder: import("../../lib/elementBuilder"),
   })
@@ -16,4 +16,4 @@ export async function elementMiddleware({
   }
 }
 
-export default elementMiddleware
+export default elementBuilderConstructor

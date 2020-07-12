@@ -7,6 +7,7 @@ import elementReplacer from "./elementReplacer"
 import importRunner from "./importRunner"
 
 export const requesterPhases = [
+  "constructors",
   "initializers",
   "middleware",
   "routers",
@@ -16,6 +17,8 @@ export const requesterPhases = [
 export type RequesterOutputType = SettlerInputType &
   SettlerOutputType
 
+export let constructorsCalled = false
+
 export async function requester(
   modules: ModulesType,
   input: unknown
@@ -23,6 +26,11 @@ export async function requester(
   let outputFound = false
 
   for (const phase of requesterPhases) {
+    if (constructorsCalled && phase === "constructors") {
+      constructorsCalled = true
+      continue
+    }
+
     const result = await importRunner(modules[phase], input)
     const outputs = result.map((r) => r[1])
 
@@ -45,12 +53,12 @@ export async function requester(
         }
       }
 
-      out = out.concat(output.filter((o) => o))
+      out = out.concat(
+        output.filter((o: Element | string) => o)
+      )
     }
 
-    input = Object.assign({}, input, ...outputs, {
-      modules,
-    })
+    input = Object.assign({}, input, ...outputs)
 
     if (outputFound && phase === "middleware") {
       break
