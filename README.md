@@ -17,7 +17,7 @@ TypeScript web framework optimized for delivery 🚚
 - Simple remote function calls 🛰️
 - Very few production NPM dependencies 📉📦
 
-## New project
+## Create a new project
 
 ```bash
 git clone git@github.com:respond-dev/respond.git [project-name]
