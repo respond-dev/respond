@@ -41,6 +41,6 @@ There are five successive phases of the universal request pipeline. Each phase c
 4. [`src/pipeline/routers`](src/pipeline/routers) — Executes user code to build output
 5. [`src/pipeline/settlers`](src/pipeline/settlers) — Builds the final output
 
-Each source file exports a default function, which executes in parallel with other functions of the same directory (phase).Its collective output combines to build the input for the next phase of the pipeline.
+Each source file exports a default function, which executes in parallel with other functions of the same directory (phase). Its collective output combines to build the input for the next phase of the pipeline.
 
 If a source file begins with `client` or `server`, it will only execute on the respective environment. Otherwise, it is up to the function to conditionally enable or disable itself.
