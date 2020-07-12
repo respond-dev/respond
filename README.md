@@ -4,16 +4,15 @@ TypeScript web framework optimized for delivery 🚚
 
 ## New tech
 
-- Universal routing (SSR & SPA 🧖‍♀️)
-- Client side ES modules (🚫 webpack, ✅ dynamic imports)
+- First class universal routing (SSR & SPA 🧖‍♀️)
+- Client side ES modules (🚫 webpack, ✅ imports)
 - TypeScript sources in devtools (breakpoints! 🔴)
 - Built-in server environments (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
 - JSX 🏭
 
 ## Old wisdom
 
-- First class approach to server side execution 🥇
-- Structured request pipeline (initializers, middleware, layouts 🏗️)
+- Highly structured request pipeline (initializers, middleware, etc 🏗️)
 - Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
 - Simple remote function calls 🛰️
 - Very few production NPM dependencies 🚫📦
@@ -36,8 +35,8 @@ npm start
 
 There are five successive phases of the request pipeline. Each phase corresponds to a directory of source files:
 
-1. [`src/pipeline/constructors`](src/pipeline/constructors) — Builds input for initializers (⚠️ only executes on very first request)
-2. [`src/pipeline/initializers`](src/pipeline/initializers) — Builds input for middleware (⚠️ in SPA mode, only executes when route changes)
+1. [`src/pipeline/constructors`](src/pipeline/constructors) — Builds input for initializers<br/>(⚠️ only executes on very first request)
+2. [`src/pipeline/initializers`](src/pipeline/initializers) — Builds input for middleware<br/>(⚠️ in SPA mode, only executes when route changes)
 3. [`src/pipeline/middleware`](src/pipeline/middleware) — Builds input for routers
 4. [`src/pipeline/routers`](src/pipeline/routers) — Executes user code to build output
 5. [`src/pipeline/settlers`](src/pipeline/settlers) — Builds the final output
