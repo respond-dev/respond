@@ -1,5 +1,5 @@
 import { join, relative } from "path"
-import { deepDirectoryLister } from "../lib/directoryLister"
+import { deepDirectoryLister } from "../../lib/directoryLister"
 
 export const clientRegExp = /^((?!(^|\/)(server|test)).)*$/
 export const serverRegExp = /^((?!(^|\/)(client|test)).)*$/

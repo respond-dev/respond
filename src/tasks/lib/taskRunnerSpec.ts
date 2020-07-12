@@ -1,4 +1,4 @@
-import expect from "../lib/expect"
+import expect from "../../lib/expect"
 import taskRunner from "../lib/taskRunner"
 
 describe("taskRunner", () => {

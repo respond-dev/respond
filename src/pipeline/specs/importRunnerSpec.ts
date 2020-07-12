@@ -1,4 +1,4 @@
-import expect from "../lib/expect"
+import expect from "../../lib/expect"
 import importRunner from "../lib/importRunner"
 
 describe("importRunner", () => {

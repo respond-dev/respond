@@ -1,4 +1,4 @@
-import expect from "../lib/expect"
+import expect from "../../lib/expect"
 import ptySpawner from "../lib/ptySpawner"
 
 describe("ptySpawner", () => {
