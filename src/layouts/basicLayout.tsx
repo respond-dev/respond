@@ -1,5 +1,5 @@
 import modulesLister from "../pipeline/lib/modulesLister"
-import modulesToEsm from "../pipeline/lib/modulesToEsm"
+import modulesToEsm from "../lib/modulesToEsm"
 import {
   LayoutInputType,
   LayoutOutputType,
