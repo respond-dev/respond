@@ -1,4 +1,4 @@
-import streamStringifier from "../../lib/streamStringifier"
+import streamStringifier from "../lib/streamStringifier"
 import {
   MiddlewareInputType,
   MiddlewareOutputType,

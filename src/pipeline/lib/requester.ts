@@ -2,7 +2,7 @@ import { ModulesType } from "../lib/modulesLister"
 import {
   SettlerInputType,
   SettlerOutputType,
-} from "../pipeline/types/settlerTypes"
+} from "../types/settlerTypes"
 import elementReplacer from "./elementReplacer"
 import importRunner from "./importRunner"
 

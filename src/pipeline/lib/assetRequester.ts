@@ -7,7 +7,7 @@ import {
   ReadStream,
 } from "fs"
 
-import { SettlerOutputType } from "../pipeline/types/settlerTypes"
+import { SettlerOutputType } from "../types/settlerTypes"
 
 export const EXT_REGEX = /(.+)(\.[^\.]+)$/
 
@@ -33,7 +33,10 @@ export async function assetRequester(
     ext = ".js"
   }
 
-  const path = join(__dirname, `../../${name}${ext}${map}`)
+  const path = join(
+    __dirname,
+    `../../../${name}${ext}${map}`
+  )
 
   const exists = await new Promise((resolve) => {
     access(path, constants.F_OK, (err) => {

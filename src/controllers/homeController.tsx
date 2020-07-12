@@ -1,5 +1,5 @@
-import promiseAll from "../lib/promiseAll"
-import promiseAllDefault from "../lib/promiseAllDefault"
+import promiseAll from "../pipeline/lib/promiseAll"
+import promiseAllDefault from "../pipeline/lib/promiseAllDefault"
 import {
   ControllerInputType,
   ControllerOutputType,

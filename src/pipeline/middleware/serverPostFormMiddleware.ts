@@ -1,4 +1,4 @@
-import { busboyBuilder } from "../../lib/busboyBuilder"
+import { busboyBuilder } from "../lib/busboyBuilder"
 import {
   MiddlewareInputType,
   MiddlewareOutputType,

@@ -1,5 +1,5 @@
 import URL from "url"
-import { headerCleaner } from "../../lib/headerCleaner"
+import { headerCleaner } from "../lib/headerCleaner"
 import {
   InitializerInputType,
   InitializerOutputType,

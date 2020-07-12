@@ -10,7 +10,7 @@ export async function importRunner(
         async (path): Promise<[string, any]> => {
           const importPath = isBrowser
             ? path
-            : __dirname + "/../.." + path
+            : __dirname + "/../../.." + path
 
           const { default: fn } = await import(importPath)
 

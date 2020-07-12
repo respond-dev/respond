@@ -13,14 +13,14 @@ export async function modulesDirectoryLister(
     : serverRegExp
 
   const { filePaths } = await deepDirectoryLister(
-    join(__dirname, "../pipeline", dirName),
+    join(__dirname, "../../pipeline", dirName),
     modulesRegExp,
     ".js"
   )
 
   return filePaths.map(
     (path) =>
-      "/" + relative(join(__dirname, "../../"), path)
+      "/" + relative(join(__dirname, "../../../"), path)
   )
 }
 

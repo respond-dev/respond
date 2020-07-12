@@ -1,4 +1,4 @@
-import { ModulesType } from "../lib/modulesLister"
+import { ModulesType } from "../pipeline/lib/modulesLister"
 import { ViewOutputType } from "../types/viewTypes"
 
 export function bootScriptView(

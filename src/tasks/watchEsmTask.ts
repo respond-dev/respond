@@ -1,4 +1,4 @@
-import ptySpawner from "../lib/ptySpawner"
+import ptySpawner from "../pipeline/lib/ptySpawner"
 import { join } from "path"
 
 export async function watchEsmTask(): Promise<void> {

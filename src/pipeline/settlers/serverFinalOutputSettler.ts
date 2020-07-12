@@ -1,4 +1,4 @@
-import elementSerializer from "../../lib/elementSerializer"
+import elementSerializer from "../lib/elementSerializer"
 import {
   SettlerInputType,
   SettlerOutputType,
