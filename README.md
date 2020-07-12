@@ -38,8 +38,8 @@ There are five successive phases of the universal request pipeline. Each phase c
 1. [`src/pipeline/constructors`](src/pipeline/constructors) — Builds input for initializers, only runs once
 2. [`src/pipeline/initializers`](src/pipeline/initializers) — Builds input for middleware, only runs when route changes
 3. [`src/pipeline/middleware`](src/pipeline/middleware) — Builds input for routers
-4. [`src/pipeline/routers`](src/pipeline/routers) — Executes user code to build output
-5. [`src/pipeline/settlers`](src/pipeline/settlers) — Builds the final output
+4. [`src/pipeline/routers`](src/pipeline/routers) — Executes user code to build output for settlers
+5. [`src/pipeline/settlers`](src/pipeline/settlers) — Settles the final output
 
 Each source file exports a default function, which executes in parallel with other functions of the same directory (phase). Its collective output combines to build the input for the next phase of the pipeline.
 
