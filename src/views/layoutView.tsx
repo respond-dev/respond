@@ -6,7 +6,7 @@ import {
 } from "../types/layoutTypes"
 import bootScriptView from "../views/bootScriptView"
 
-export async function basicLayout({
+export async function layoutView({
   output,
 }: LayoutInputType): Promise<LayoutOutputType> {
   const clientModules = modulesToEsm({
@@ -31,4 +31,4 @@ export async function basicLayout({
   )
 }
 
-export default basicLayout
+export default layoutView

@@ -16,11 +16,11 @@ export async function pageRouter(
   }
 
   if (!client) {
-    const { basicLayout } = await import(
-      "../../layouts/basicLayout"
+    const { layoutView } = await import(
+      "../../views/layoutView"
     )
     return {
-      output: await basicLayout({ ...input, output }),
+      output: await layoutView({ ...input, output }),
     }
   }
 
