@@ -42,7 +42,7 @@ export async function generateTask(): Promise<void> {
   ])
 
   for (const relPath of generators) {
-    const srcPath = join(__dirname, "../../", relPath)
+    const srcPath = join(__dirname, "../../src", relPath)
     const destPath = srcPath.replace(/example/, name)
 
     await copyFile(srcPath, destPath, [
