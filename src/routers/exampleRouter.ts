@@ -16,10 +16,10 @@ export async function exampleRouter(
   }
 
   if (!client) {
-    const { exampleLayoutView } = await import(
-      "../views/exampleLayoutView"
+    const { layoutView } = await import(
+      "../views/layoutView"
     )
-    output = await exampleLayoutView({ ...input, output })
+    output = await layoutView({ ...input, output })
   }
 
   return { output }
