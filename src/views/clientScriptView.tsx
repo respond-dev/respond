@@ -1,7 +1,7 @@
 import { ModulesType } from "../pipeline/lib/modulesLister"
 import { ViewOutputType } from "../types/viewTypes"
 
-export function bootScriptView(
+export function clientScriptView(
   modules: ModulesType,
   id = "clientScript"
 ): Promise<ViewOutputType> {
@@ -40,4 +40,4 @@ export function importCalls(paths: string[]): string {
   return paths.map((path) => `import("${path}")`).join(", ")
 }
 
-export default bootScriptView
+export default clientScriptView

@@ -4,9 +4,9 @@ import {
   LayoutInputType,
   LayoutOutputType,
 } from "../types/layoutTypes"
-import bootScriptView from "../views/bootScriptView"
+import clientScriptView from "../views/clientScriptView"
 
-export async function layoutView({
+export async function exampleLayoutView({
   output,
 }: LayoutInputType): Promise<LayoutOutputType> {
   const clientModules = modulesToEsm({
@@ -25,10 +25,10 @@ export async function layoutView({
       </head>
       <body>
         {output}
-        {bootScriptView(clientModules)}
+        {clientScriptView(clientModules)}
       </body>
     </html>
   )
 }
 
-export default layoutView
+export default exampleLayoutView

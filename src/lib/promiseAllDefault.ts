@@ -7,7 +7,7 @@ import {
 export type PromiseAllDefaultOutputType<
   T extends PromiseAllMapType
 > = {
-  [K in keyof T]: PromiseOutputType<T[K]>["default"]
+  [K in keyof T]: PromiseOutputType<T[K]>[K]
 }
 
 export async function promiseAllDefault<

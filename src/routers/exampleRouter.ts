@@ -2,9 +2,9 @@ import {
   RouterInputType,
   RouterOutputType,
 } from "../pipeline/types/routerTypes"
-import homeController from "../controllers/homeController"
+import exampleController from "../controllers/exampleController"
 
-export async function pageWithLayoutRouter(
+export async function exampleRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
   const { client, url } = input
@@ -12,17 +12,17 @@ export async function pageWithLayoutRouter(
   let output: (Element | string)[] | Element | string
 
   if (url.pathname === "/") {
-    output = await homeController(input)
+    output = await exampleController(input)
   }
 
   if (!client) {
-    const { layoutView } = await import(
-      "../views/layoutView"
+    const { exampleLayoutView } = await import(
+      "../views/exampleLayoutView"
     )
-    output = await layoutView({ ...input, output })
+    output = await exampleLayoutView({ ...input, output })
   }
 
   return { output }
 }
 
-export default pageWithLayoutRouter
+export default exampleRouter
