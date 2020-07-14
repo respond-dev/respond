@@ -8,8 +8,8 @@ export type InitializerInputType = ConstructorInputType &
   ConstructorOutputType
 
 export interface InitializerOutputType {
-  headers: Record<string, string>
-  method: string
+  headers?: Record<string, string>
+  method?: string
   output?: (Element | string)[] | Element | string
-  url: UrlWithStringQuery
+  url?: UrlWithStringQuery
 }

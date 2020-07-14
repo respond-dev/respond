@@ -9,12 +9,28 @@ export async function generateTask(): Promise<void> {
       name: "generators",
       choices: [
         {
+          name: "constructor",
+          value: "constructors/exampleConstructor.ts",
+        },
+        {
           name: "controller",
           value: "controllers/exampleController.ts",
         },
         {
+          name: "initializer",
+          value: "initializers/exampleInitializer.ts",
+        },
+        {
+          name: "middleware",
+          value: "middleware/exampleMiddleware.ts",
+        },
+        {
           name: "router",
           value: "routers/exampleRouter.ts",
+        },
+        {
+          name: "settler",
+          value: "settlers/exampleSettler.ts",
         },
         {
           name: "spec",
