@@ -7,14 +7,28 @@ export async function generateTask(): Promise<void> {
     {
       type: "checkbox",
       name: "generators",
+      default: [
+        "controllers/exampleController.ts",
+        "routers/exampleRouter.ts",
+        "views/exampleView.tsx",
+      ],
       choices: [
-        {
-          name: "constructor",
-          value: "constructors/exampleConstructor.ts",
-        },
         {
           name: "controller",
           value: "controllers/exampleController.ts",
+        },
+        {
+          name: "router",
+          value: "routers/exampleRouter.ts",
+        },
+        {
+          name: "view",
+          value: "views/exampleView.tsx",
+        },
+        new inquirer.Separator(),
+        {
+          name: "constructor",
+          value: "constructors/exampleConstructor.ts",
         },
         {
           name: "initializer",
@@ -25,29 +39,18 @@ export async function generateTask(): Promise<void> {
           value: "middleware/exampleMiddleware.ts",
         },
         {
-          name: "router",
-          value: "routers/exampleRouter.ts",
-        },
-        {
           name: "settler",
           value: "settlers/exampleSettler.ts",
-        },
-        {
-          name: "spec",
-          value: "specs/exampleSpec.ts",
         },
         {
           name: "task",
           value: "tasks/exampleTask.ts",
         },
         {
-          name: "view",
-          value: "views/exampleView.tsx",
-        },
-        {
           name: "view (layout)",
           value: "views/exampleLayoutView.tsx",
         },
+        new inquirer.Separator(),
       ],
     },
     {
