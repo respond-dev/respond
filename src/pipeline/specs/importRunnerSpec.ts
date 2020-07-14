@@ -7,10 +7,9 @@ describe("importRunner", () => {
       ["/dist-cjs/pipeline/initializers/testInitializer"],
       { test: true }
     )
-    expect(testInitializer.length).toBe(1)
-    expect(testInitializer[0][0]).toEqual(
-      expect.any(String)
-    )
-    expect(testInitializer[0][1]).toEqual(true)
+    expect(testInitializer).toEqual([
+      [{ testResult: true }],
+      [],
+    ])
   })
 })

@@ -1,26 +1,39 @@
 export async function importRunner(
   paths: string[],
   arg: unknown
-): Promise<[string, any][]> {
+): Promise<[any[], (Element | string)[]]> {
   const isBrowser = typeof history !== "undefined"
 
-  return (
-    await Promise.all(
-      paths.map(
-        async (path): Promise<[string, any]> => {
-          const importPath = isBrowser
-            ? path
-            : __dirname + "/../../.." + path
+  const objects = []
+  let outputs = []
 
-          const { default: fn } = await import(importPath)
+  await Promise.all(
+    paths.map(
+      async (path): Promise<void> => {
+        const importPath = isBrowser
+          ? path
+          : __dirname + "/../../.." + path
 
-          if (typeof fn === "function") {
-            return [path, await fn(arg)]
+        const { default: fn } = await import(importPath)
+
+        if (typeof fn === "function") {
+          const obj = await fn(arg)
+
+          if (typeof obj === "object" && obj !== null) {
+            const { output } = obj
+
+            objects.push(obj)
+
+            if (output) {
+              outputs = outputs.concat(output)
+            }
           }
         }
-      )
+      }
     )
-  ).filter((p) => p && p[1])
+  )
+
+  return [objects, outputs]
 }
 
 export default importRunner

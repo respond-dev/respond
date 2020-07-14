@@ -13,18 +13,12 @@ export function finalOutputSettler({
 
   const finalOutput: string[] = []
 
-  if (Array.isArray(output)) {
-    for (const out of output) {
-      if (typeof out === "string") {
-        finalOutput.push(out)
-      } else if (out?.nodeType) {
-        finalOutput.push(elementSerializer(out))
-      }
+  for (const out of output as (string | Element)[]) {
+    if (typeof out === "string") {
+      finalOutput.push(out)
+    } else if (out?.nodeType) {
+      finalOutput.push(elementSerializer(out))
     }
-  } else if (typeof output === "string") {
-    finalOutput.push(output)
-  } else if (output?.nodeType) {
-    finalOutput.push(elementSerializer(output))
   }
 
   return {

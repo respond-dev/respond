@@ -32,34 +32,22 @@ export async function requester(
 
     constructorsCalled = true
 
-    const result = await importRunner(modules[phase], input)
-    const outputs = result.map((r) => r[1])
+    const [objects, outputs] = await importRunner(
+      modules[phase],
+      input
+    )
 
-    let out: (Element | string)[] = []
-
-    for (let { output } of outputs) {
-      if (!output) {
-        continue
-      }
-
+    for (const el of outputs) {
       outputFound = true
 
-      if (!Array.isArray(output)) {
-        output = [output]
+      if (typeof el !== "string" && el.nodeType) {
+        elementReplacer(el)
       }
-
-      for (const item of output) {
-        if (item?.nodeType) {
-          elementReplacer(item)
-        }
-      }
-
-      out = out.concat(
-        output.filter((o: Element | string) => o)
-      )
     }
 
-    input = Object.assign({}, input, ...outputs)
+    input = Object.assign({}, input, ...objects, {
+      output: outputs,
+    })
 
     if (outputFound && phase === "middleware") {
       break

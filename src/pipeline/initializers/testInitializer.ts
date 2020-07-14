@@ -2,8 +2,8 @@ export function testInitializer({
   test,
 }: {
   test: boolean
-}): boolean {
-  return !!test
+}): { testResult: boolean } {
+  return { testResult: !!test }
 }
 
 export default testInitializer
