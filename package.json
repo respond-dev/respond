@@ -5,6 +5,7 @@
   "bin": {},
   "scripts": {
     "build": "rm -rf dist-*; tsc -b -v",
+    "generate": "./taskRunner generate",
     "postinstall": "npm run build",
     "start": "./taskRunner startHttp",
     "test": "mocha",

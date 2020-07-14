@@ -3,6 +3,6 @@ import taskRunner from "../lib/taskRunner"
 
 describe("taskRunner", () => {
   it("runs a task", async () => {
-    expect(await taskRunner(["ok"])).toEqual(["ok"])
+    expect(await taskRunner(["example"])).toEqual(["ok"])
   })
 })
