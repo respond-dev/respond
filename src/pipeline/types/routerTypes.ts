@@ -3,6 +3,12 @@ import {
   MiddlewareOutputType,
 } from "./middlewareTypes"
 
+export type RoutesType = [
+  string | RegExp, // matcher
+  string, // controller
+  string? // layout
+][]
+
 export type RouterInputType = MiddlewareInputType &
   MiddlewareOutputType
 
