@@ -1,5 +1,5 @@
-import expect from "../../lib/expect"
-import ptySpawner from "../../lib/ptySpawner"
+import expect from "../lib/expect"
+import ptySpawner from "../lib/ptySpawner"
 
 describe("ptySpawner", () => {
   it("spawns a pseudoterminal", async () => {
