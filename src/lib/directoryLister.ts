@@ -19,16 +19,23 @@ export async function directoryLister(
     return directoryListerCache[key]
   }
 
-  const names = await new Promise<string[]>(
-    (resolve, reject) => {
-      readdir(dir, (err, filePaths) => {
-        err ? reject(err) : resolve(filePaths)
-      })
-    }
-  )
-
   const dirPaths = []
   const filePaths = []
+
+  let names: string[]
+
+  try {
+    names = await new Promise<string[]>(
+      (resolve, reject) => {
+        readdir(dir, (err, filePaths) => {
+          err ? reject(err) : resolve(filePaths)
+        })
+      }
+    )
+  } catch (e) {
+    directoryListerCache[key] = { dirPaths, filePaths }
+    return directoryListerCache[key]
+  }
 
   await Promise.all(
     names.map(async (name) => {

@@ -14,20 +14,20 @@ export async function modulesLister(
 ): Promise<ModulesType> {
   return await promiseAll({
     constructors: modulesDirectoryLister(
-      "pipeline/constructors",
+      "constructors",
       clientMode
     ),
     initializers: modulesDirectoryLister(
-      "pipeline/initializers",
+      "initializers",
       clientMode
     ),
     middleware: modulesDirectoryLister(
-      "pipeline/middleware",
+      "middleware",
       clientMode
     ),
     routers: modulesDirectoryLister("routers", clientMode),
     settlers: modulesDirectoryLister(
-      "pipeline/settlers",
+      "settlers",
       clientMode
     ),
   })
