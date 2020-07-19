@@ -33,7 +33,7 @@ npm start
 
 ## Universal request pipeline
 
-There are five successive phases of the universal request pipeline. Each phase corresponds to a directory of source files:
+There are five successive phases of the universal request pipeline. Each phase corresponds to a directory of source files that export a default function:
 
 1. [`src/pipeline/constructors`](src/pipeline/constructors) — Builds input for initializers, only runs once
 2. [`src/pipeline/initializers`](src/pipeline/initializers) — Builds input for middleware, only runs when route changes
