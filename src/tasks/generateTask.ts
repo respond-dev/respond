@@ -2,6 +2,9 @@ import { join } from "path"
 import inquirer from "inquirer"
 import { copyFile } from "../lib/copyFile"
 
+const injectionPlaceholder =
+  "// injection placeholder (don't delete)"
+
 export async function generateTask(): Promise<void> {
   const { generators, name } = await inquirer.prompt([
     {
@@ -9,7 +12,7 @@ export async function generateTask(): Promise<void> {
       name: "generators",
       default: [
         "controllers/exampleController.ts",
-        "routers/exampleRouter.ts",
+        "routers/defaultRouter.ts",
         "views/exampleView.tsx",
       ],
       choices: [
@@ -18,8 +21,8 @@ export async function generateTask(): Promise<void> {
           value: "controllers/exampleController.ts",
         },
         {
-          name: "router",
-          value: "routers/exampleRouter.ts",
+          name: "router entry (defaultRouter)",
+          value: "routers/defaultRouter.ts",
         },
         {
           name: "view",
@@ -37,6 +40,10 @@ export async function generateTask(): Promise<void> {
         {
           name: "middleware",
           value: "middleware/exampleMiddleware.ts",
+        },
+        {
+          name: "router",
+          value: "routers/exampleRouter.ts",
         },
         {
           name: "settler",
@@ -64,13 +71,22 @@ export async function generateTask(): Promise<void> {
     const srcPath = join(__dirname, "../../src", relPath)
     const destPath = srcPath.replace(/example/, name)
 
-    await copyFile(srcPath, destPath, [
+    const replacements: [string | RegExp, string][] = [
       [/example/g, name],
       [
         /Example/g,
         name.charAt(0).toUpperCase() + name.slice(1),
       ],
-    ])
+    ]
+
+    if (relPath.match(/defaultRouter/)) {
+      replacements.push([
+        injectionPlaceholder,
+        `["/", "${name}", "layout"],\n    ${injectionPlaceholder}`,
+      ])
+    }
+
+    await copyFile(srcPath, destPath, replacements)
   }
 }
 
