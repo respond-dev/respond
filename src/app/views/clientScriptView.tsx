@@ -1,5 +1,5 @@
 import { ModulesType } from "../../framework/lib/modulesLister"
-import { ViewOutputType } from "../../types/viewTypes"
+import { ViewOutputType } from "../types/viewTypes"
 
 export function clientScriptView(
   modules: ModulesType,
