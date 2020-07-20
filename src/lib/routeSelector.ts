@@ -13,8 +13,8 @@ export async function routeSelector(
         return input.url.pathname.match(matcher)
       })
       .map(([, name, layout]) => {
-        const path = `../controllers/${name}Controller`
-        const layoutPath = `../views/${layout}View`
+        const path = `../app/controllers/${name}Controller`
+        const layoutPath = `../app/views/${layout}View`
 
         if (!input.client && layout) {
           return Promise.all([
