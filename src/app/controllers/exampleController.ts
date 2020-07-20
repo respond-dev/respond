@@ -1,8 +1,8 @@
-import promiseAllDefault from "../lib/promiseAllDefault"
+import promiseAllDefault from "../../lib/promiseAllDefault"
 import {
   ControllerInputType,
   ControllerOutputType,
-} from "../types/controllerTypes"
+} from "../../types/controllerTypes"
 
 export async function exampleController(
   input: ControllerInputType

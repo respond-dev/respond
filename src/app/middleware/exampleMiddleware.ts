@@ -1,7 +1,7 @@
 import {
   MiddlewareInputType,
   MiddlewareOutputType,
-} from "../framework/types/middlewareTypes"
+} from "../../framework/types/middlewareTypes"
 
 export async function exampleMiddleware(
   input: MiddlewareInputType

@@ -71,7 +71,11 @@ export async function generateTask(): Promise<void> {
 
   for (const generator of generators) {
     const relPath = pathMap[generator]
-    const srcPath = join(__dirname, "../../src", relPath)
+    const srcPath = join(
+      __dirname,
+      "../../src/app",
+      relPath
+    )
     const destPath = srcPath.replace(/example/, name)
 
     const replacements: [string | RegExp, string][] = [
