@@ -1,4 +1,4 @@
-import { ModulesType } from "../pipeline/lib/modulesLister"
+import { ModulesType } from "../framework/lib/modulesLister"
 import { ViewOutputType } from "../types/viewTypes"
 
 export function clientScriptView(
@@ -22,7 +22,7 @@ export function scriptTag(modules: ModulesType): string {
   return /* js */ `
     Promise.all([
       ${importCalls([
-        "/dist-esm/pipeline/lib/requester.mjs",
+        "/dist-esm/framework/lib/requester.mjs",
         ...modules.constructors,
         ...modules.initializers,
         ...modules.middleware,

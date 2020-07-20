@@ -2,7 +2,7 @@ import routeSelector from "../lib/routeSelector"
 import {
   RouterInputType,
   RouterOutputType,
-} from "../pipeline/types/routerTypes"
+} from "../framework/types/routerTypes"
 
 export async function exampleRouter(
   input: RouterInputType

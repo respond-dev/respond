@@ -1,4 +1,4 @@
-import { RouterInputType } from "../pipeline/types/routerTypes"
+import { RouterInputType } from "../framework/types/routerTypes"
 
 export type LayoutInputType = RouterInputType
 

@@ -1,7 +1,7 @@
 import {
   RouterInputType,
   RoutesType,
-} from "../pipeline/types/routerTypes"
+} from "../framework/types/routerTypes"
 
 export async function routeSelector(
   input: RouterInputType,

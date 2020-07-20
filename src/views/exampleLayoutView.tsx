@@ -1,4 +1,4 @@
-import modulesLister from "../pipeline/lib/modulesLister"
+import modulesLister from "../framework/lib/modulesLister"
 import modulesToEsm from "../lib/modulesToEsm"
 import {
   LayoutInputType,

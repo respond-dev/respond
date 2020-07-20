@@ -1,9 +1,9 @@
 import http from "http"
-import assetRequester from "../pipeline/lib/assetRequester"
-import libHttpServer from "../pipeline/lib/httpServer"
-import modulesLister from "../pipeline/lib/modulesLister"
-import requester from "../pipeline/lib/requester"
-import { SettlerOutputType } from "../pipeline/types/settlerTypes"
+import assetRequester from "../framework/lib/assetRequester"
+import libHttpServer from "../framework/lib/httpServer"
+import modulesLister from "../framework/lib/modulesLister"
+import requester from "../framework/lib/requester"
+import { SettlerOutputType } from "../framework/types/settlerTypes"
 
 export async function startHttpTask(): Promise<
   http.Server

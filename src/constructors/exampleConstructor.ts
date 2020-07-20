@@ -1,7 +1,7 @@
 import {
   ConstructorInputType,
   ConstructorOutputType,
-} from "../pipeline/types/constructorTypes"
+} from "../framework/types/constructorTypes"
 
 export async function exampleConstructor(
   input: ConstructorInputType
