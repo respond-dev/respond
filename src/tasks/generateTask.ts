@@ -1,61 +1,47 @@
 import { join } from "path"
 import inquirer from "inquirer"
-import { copyFile } from "../lib/copyFile"
+import controllerBodyBuilder from "./lib/controllerBodyBuilder"
+import copyFile from "../lib/copyFile"
 
 const injectionPlaceholder =
   "// injection placeholder (don't delete)"
+
+const pathMap = {
+  constructor: "constructors/exampleConstructor.ts",
+  controller: "controllers/exampleController.ts",
+  initializer: "initializers/exampleInitializer.ts",
+  layoutView: "views/exampleLayoutView.tsx",
+  middleware: "middleware/exampleMiddleware.ts",
+  router: "routers/exampleRouter.ts",
+  routerEntry: "routers/defaultRouter.ts",
+  settler: "settlers/exampleSettler.ts",
+  task: "tasks/exampleTask.ts",
+  view: "views/exampleView.tsx",
+}
 
 export async function generateTask(): Promise<void> {
   const { generators, name } = await inquirer.prompt([
     {
       type: "checkbox",
       name: "generators",
-      default: [
-        "controllers/exampleController.ts",
-        "routers/defaultRouter.ts",
-        "views/exampleView.tsx",
-      ],
+      default: ["controller", "routerEntry", "view"],
       choices: [
-        {
-          name: "controller",
-          value: "controllers/exampleController.ts",
-        },
+        { name: "controller" },
         {
           name: "router entry (defaultRouter)",
-          value: "routers/defaultRouter.ts",
+          value: "routerEntry",
         },
-        {
-          name: "view",
-          value: "views/exampleView.tsx",
-        },
+        { name: "view" },
         new inquirer.Separator(),
-        {
-          name: "constructor",
-          value: "constructors/exampleConstructor.ts",
-        },
-        {
-          name: "initializer",
-          value: "initializers/exampleInitializer.ts",
-        },
-        {
-          name: "middleware",
-          value: "middleware/exampleMiddleware.ts",
-        },
-        {
-          name: "router",
-          value: "routers/exampleRouter.ts",
-        },
-        {
-          name: "settler",
-          value: "settlers/exampleSettler.ts",
-        },
-        {
-          name: "task",
-          value: "tasks/exampleTask.ts",
-        },
+        { name: "constructor" },
+        { name: "initializer" },
+        { name: "middleware" },
+        { name: "router" },
+        { name: "settler" },
+        { name: "task" },
         {
           name: "view (layout)",
-          value: "views/exampleLayoutView.tsx",
+          value: "layoutView",
         },
         new inquirer.Separator(),
       ],
@@ -67,7 +53,8 @@ export async function generateTask(): Promise<void> {
     },
   ])
 
-  for (const relPath of generators) {
+  for (const generator of generators) {
+    const relPath = pathMap[generator]
     const srcPath = join(__dirname, "../../src", relPath)
     const destPath = srcPath.replace(/example/, name)
 
@@ -79,7 +66,14 @@ export async function generateTask(): Promise<void> {
       ],
     ]
 
-    if (relPath.match(/defaultRouter/)) {
+    if (generator === "controller") {
+      replacements.push([
+        /  const (.*\n){5}/gm,
+        controllerBodyBuilder(generators, name),
+      ])
+    }
+
+    if (generator === "routerEntry") {
       replacements.push([
         injectionPlaceholder,
         `["/", "${name}", "layout"],\n    ${injectionPlaceholder}`,
