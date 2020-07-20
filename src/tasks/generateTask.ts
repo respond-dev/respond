@@ -12,6 +12,7 @@ const pathMap = {
   initializer: "initializers/exampleInitializer.ts",
   layoutView: "views/exampleLayoutView.tsx",
   middleware: "middleware/exampleMiddleware.ts",
+  model: "models/exampleModel.ts",
   router: "routers/exampleRouter.ts",
   routerEntry: "routers/defaultRouter.ts",
   settler: "settlers/exampleSettler.ts",
@@ -24,9 +25,15 @@ export async function generateTask(): Promise<void> {
     {
       type: "checkbox",
       name: "generators",
-      default: ["controller", "routerEntry", "view"],
+      default: [
+        "controller",
+        "model",
+        "routerEntry",
+        "view",
+      ],
       choices: [
         { name: "controller" },
+        { name: "model" },
         {
           name: "router entry (defaultRouter)",
           value: "routerEntry",
@@ -53,6 +60,8 @@ export async function generateTask(): Promise<void> {
     },
   ])
 
+  const hasView = generators.includes("view")
+
   for (const generator of generators) {
     const relPath = pathMap[generator]
     const srcPath = join(__dirname, "../../src", relPath)
@@ -76,7 +85,9 @@ export async function generateTask(): Promise<void> {
     if (generator === "routerEntry") {
       replacements.push([
         injectionPlaceholder,
-        `["/", "${name}", "layout"],\n    ${injectionPlaceholder}`,
+        `["/", "${name}"${
+          hasView ? ', "layout"' : ""
+        }],\n    ${injectionPlaceholder}`,
       ])
     }
 

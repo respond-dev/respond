@@ -4,9 +4,19 @@ export function controllerBodyBuilder(
 ): string {
   const imports = []
   const variables = []
-  let returns = '""'
+
+  let body = ""
+  let returns = "JSON.stringify({})"
 
   for (const generator of generators) {
+    if (generator === "model") {
+      variables.push(`${name}Model`)
+      imports.push(
+        `${name}Model: import("../models/${name}Model"),`
+      )
+      body += `\n  const ${name} = await ${name}Model({})\n  `
+    }
+
     if (generator === "view") {
       variables.push(`${name}View`)
       imports.push(
@@ -22,7 +32,7 @@ export function controllerBodyBuilder(
   )} } = await promiseAllDefault({
     ${imports.join("\n    ")}
   })
-
+  ${body}
   return ${returns}
   `
 }
