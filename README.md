@@ -25,11 +25,23 @@ cd [project-name]
 npm install
 ```
 
+## Generate a homepage
+
+```bash
+npm run generate
+```
+
+1. When prompted for generator selections, press `<enter>` (default selections).
+2. When prompted for a name, type `homePage` (or whatever you like).
+3. When prompted for a path, press `<enter>` (default path).
+
 ## Start server
 
 ```bash
 npm start
 ```
+
+Visit <http://localhost:3000> to view your page!
 
 ## Universal request pipeline
 
@@ -38,7 +50,7 @@ There are five successive phases of the universal request pipeline. Each phase c
 1. **constructors** — Builds input for initializers, only runs once [[app](src/constructors)] [[framework](src/framework/constructors)]
 2. **initializers** — Builds input for middleware, only runs when route changes [[app](src/initializers)] [[framework](src/framework/initializers)]
 3. **middleware** — Builds input for routers [[app](src/middleware)] [[framework](src/framework/middleware)]
-4. **routers** — Executes user code to build output for settlers [[app](src/routers)] [[framework](src/framework/routers)]
+4. **routers** — Executes user code to build output for settlers [[app](src/routers)]
 5. **settlers** — Settles the final output [[app](src/settlers)] [[framework](src/framework/settlers)]
 
 With each phase of the request pipeline, the functions in each respective directory execute in parallel. Their collective output combines to build the input for the next phase of the pipeline.

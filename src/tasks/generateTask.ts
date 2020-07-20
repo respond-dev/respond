@@ -21,7 +21,11 @@ const pathMap = {
 }
 
 export async function generateTask(): Promise<void> {
-  const { generators, name } = await inquirer.prompt([
+  const {
+    generators,
+    name,
+    routerPath,
+  } = await inquirer.prompt([
     {
       type: "checkbox",
       name: "generators",
@@ -52,6 +56,15 @@ export async function generateTask(): Promise<void> {
       name: "name",
       message: "name (camelCase)",
     },
+    {
+      type: "input",
+      name: "routerPath",
+      default: "/",
+      message: "router entry path",
+      when: ({ generators }) =>
+        generators.includes("router") ||
+        generators.includes("router entry"),
+    },
   ])
 
   const hasView = generators.includes("view")
@@ -79,7 +92,7 @@ export async function generateTask(): Promise<void> {
     if (generator === "router entry") {
       replacements.push([
         injectionPlaceholder,
-        `["/", "${name}"${
+        `["${routerPath}", "${name}"${
           hasView ? ', "layout"' : ""
         }],\n    ${injectionPlaceholder}`,
       ])
