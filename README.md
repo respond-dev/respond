@@ -45,7 +45,7 @@ Visit <http://localhost:3000> to view your universally rendered homepage!
 
 ## Universal request pipeline
 
-There are five successive phases of the universal request pipeline. Each phase corresponds to a directory of source files that export a default function:
+There are five successive phases of the universal request pipeline. Each phase corresponds to a directory of source files:
 
 1. **constructors** — Builds input for initializers, only runs once [[app](src/constructors)] [[framework](src/framework/constructors)]
 2. **initializers** — Builds input for middleware, only runs when route changes [[app](src/initializers)] [[framework](src/framework/initializers)]
@@ -53,6 +53,6 @@ There are five successive phases of the universal request pipeline. Each phase c
 4. **routers** — Executes user code to build output for settlers [[app](src/routers)]
 5. **settlers** — Settles the final output [[app](src/settlers)] [[framework](src/framework/settlers)]
 
-With each phase of the request pipeline, the functions in each respective directory execute in parallel. Their collective output combines to build the input for the next phase of the pipeline.
+In each directory, the default function of each source file is executed in parallel. The collective output of those functions combine to build the input for the next phase of the pipeline.
 
 If a source file begins with `client` or `server`, it will only execute on that environment. Otherwise, it is up to the function to conditionally enable or disable itself.
