@@ -10,11 +10,11 @@ const pathMap = {
   constructor: "constructors/exampleConstructor.ts",
   controller: "controllers/exampleController.ts",
   initializer: "initializers/exampleInitializer.ts",
-  layoutView: "views/exampleLayoutView.tsx",
+  "layout view": "views/exampleLayoutView.tsx",
   middleware: "middleware/exampleMiddleware.ts",
   model: "models/exampleModel.ts",
   router: "routers/exampleRouter.ts",
-  routerEntry: "routers/defaultRouter.ts",
+  "router entry": "routers/defaultRouter.ts",
   settler: "settlers/exampleSettler.ts",
   task: "tasks/exampleTask.ts",
   view: "views/exampleView.tsx",
@@ -28,28 +28,22 @@ export async function generateTask(): Promise<void> {
       default: [
         "controller",
         "model",
-        "routerEntry",
+        "router entry",
         "view",
       ],
       choices: [
         { name: "controller" },
         { name: "model" },
-        {
-          name: "router entry (defaultRouter)",
-          value: "routerEntry",
-        },
+        { name: "router entry" },
         { name: "view" },
         new inquirer.Separator(),
         { name: "constructor" },
         { name: "initializer" },
+        { name: "layout view" },
         { name: "middleware" },
         { name: "router" },
         { name: "settler" },
         { name: "task" },
-        {
-          name: "view (layout)",
-          value: "layoutView",
-        },
         new inquirer.Separator(),
       ],
     },
@@ -82,7 +76,7 @@ export async function generateTask(): Promise<void> {
       ])
     }
 
-    if (generator === "routerEntry") {
+    if (generator === "router entry") {
       replacements.push([
         injectionPlaceholder,
         `["/", "${name}"${
