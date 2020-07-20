@@ -1,7 +1,7 @@
 import { join } from "path"
 import inquirer from "inquirer"
 import controllerBodyBuilder from "./lib/controllerBodyBuilder"
-import copyFile from "../lib/copyFile"
+import copyFile from "./lib/copyFile"
 
 const injectionPlaceholder =
   "// injection placeholder (don't delete)"
