@@ -8,7 +8,6 @@ export async function defaultRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
   const output = await routeSelector(input, [
-    ["/", "home", "layout"],
     // injection placeholder (don't delete)
   ])
 
