@@ -14,7 +14,7 @@ export function controllerBodyBuilder(
       imports.push(
         `${name}Model: import("../models/${name}Model"),`
       )
-      body += `\n  const ${name} = await ${name}Model({})\n  `
+      body += `\n\n  const ${name} = await ${name}Model({})\n`
     }
 
     if (generator === "view") {
@@ -26,15 +26,12 @@ export function controllerBodyBuilder(
     }
   }
 
-  return /* typescript */ `
-  const { ${variables.join(
+  return /* typescript */ `  const { ${variables.join(
     ", "
   )} } = await promiseAllDefault({
     ${imports.join("\n    ")}
-  })
-  ${body}
-  return ${returns}
-  `
+  })${body}
+  return ${returns}\n`
 }
 
 export default controllerBodyBuilder
