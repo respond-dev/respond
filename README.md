@@ -49,9 +49,9 @@ There are five successive phases of the universal request pipeline. Each phase c
 
 1. **constructors** — Builds input for initializers, only runs once ([📁 app](src/app/constructors), [📁 framework](src/framework/constructors))
 2. **initializers** — Builds input for middleware, only runs when route changes ([📁 app](src/app/initializers), [📁framework](src/framework/initializers))
-3. **middleware** — Builds input for routers ([📁 app](src/app/middleware), [📁 framework](src/framework/middleware))
-4. **routers** — Executes user code to build output for settlers ([📁 app](src/app/routers))
-5. **settlers** — Settles the final output ([📁 app](src/app/settlers), [📁 framework](src/framework/settlers))
+3. **middleware** — Builds input for routers, runs on every request ([📁 app](src/app/middleware), [📁 framework](src/framework/middleware))
+4. **routers** — Returns an element or string, runs on every request ([📁 app](src/app/routers))
+5. **settlers** — Settles the final output, runs on every request ([📁 app](src/app/settlers), [📁 framework](src/framework/settlers))
 
 In each directory, the default function of each source file is executed in parallel. The collective output of those functions combine to build the input for the next phase of the pipeline.
 
