@@ -32,7 +32,7 @@ npm run generate
 ```
 
 1. When prompted for generator selections, press `<enter>` (default selections).
-2. When prompted for a name, type `homePage` (or whatever you like).
+2. When prompted for a name, type `homePage` (or any name you like).
 3. When prompted for a path, press `<enter>` (default path).
 
 ## Start server
@@ -41,7 +41,7 @@ npm run generate
 npm start
 ```
 
-Visit <http://localhost:3000> to view your page!
+Visit <http://localhost:3000> to view your universally rendered homepage!
 
 ## Universal request pipeline
 
