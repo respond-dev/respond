@@ -35,11 +35,11 @@ npm start
 
 There are five successive phases of the universal request pipeline. Each phase corresponds to a directory of source files that export a default function:
 
-1. [`src/constructors`](src/constructors), [`src/framework/constructors`](src/framework/constructors) — Builds input for initializers, only runs once
-2. [`src/initializers`](src/initializers), [`src/framework/initializers`](src/framework/initializers) — Builds input for middleware, only runs when route changes
-3. [`src/middleware`](src/middleware), [`src/framework/middleware`](src/framework/middleware) — Builds input for routers
-4. [`src/routers`](src/routers), [`src/framework/routers`](src/framework/routers) — Executes user code to build output for settlers
-5. [`src/settlers`](src/settlers), [`src/framework/settlers`](src/framework/settlers) — Settles the final output
+1. **constructors** ([user](src/constructors), [framework](src/framework/constructors)) — Builds input for initializers, only runs once
+2. **initializers** ([user](src/initializers), [framework](src/framework/initializers)) — Builds input for middleware, only runs when route changes
+3. **middleware** ([user](src/middleware), [framework](src/framework/middleware)) — Builds input for routers
+4. **routers** ([user](src/routers), [framework](src/framework/routers)) — Executes user code to build output for settlers
+5. **settlers** ([user](src/settlers), [framework](src/framework/settlers)) — Settles the final output
 
 With each phase of the request pipeline, the functions in each respective directory execute in parallel. Their collective output combines to build the input for the next phase of the pipeline.
 
