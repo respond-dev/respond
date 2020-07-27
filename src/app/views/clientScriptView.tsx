@@ -23,6 +23,7 @@ export function scriptTag(modules: ModulesType): string {
     Promise.all([
       ${importCalls([
         "/dist-esm/framework/lib/requester.mjs",
+        "/dist-esm/framework/lib/remoteCaller.mjs",
         ...modules.constructors,
         ...modules.initializers,
         ...modules.middleware,

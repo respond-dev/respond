@@ -71,23 +71,8 @@ export async function assetRequester(
     let type = "text/javascript"
 
     if (ext === ".js") {
-      body = body.replace(
-        /([^\w]|^)(import|export)[\s(][^\("'=;\/]*["'][^'",]*["']/gim,
-        (str) =>
-          str
-            .slice(0, -1)
-            .replace(
-              /"tslib$/,
-              '"/node_modules/tslib/tslib.es6'
-            )
-            .replace(
-              /[\.\/]+\/node_modules\//,
-              "/node_modules/"
-            )
-            .replace(/\.js$/, "") +
-          ".mjs" +
-          str[str.length - 1]
-      )
+      body = replaceImports(body)
+      body = replaceServerFunctions(path, body)
     }
 
     if (ext === ".css") {
@@ -112,6 +97,48 @@ export async function assetRequester(
       finalStream: stream,
     }
   }
+}
+
+export function replaceImports(body: string): string {
+  return body.replace(
+    /([^\w]|^)(import|export)[\s(][^\("'=;\/]*["'][^'",]*["']/gim,
+    (str) => {
+      if (str.match(/server[A-Z][a-zA-Z]+["']$/)) {
+        return ""
+      } else {
+        return (
+          str
+            .slice(0, -1)
+            .replace(
+              /"tslib$/,
+              '"/node_modules/tslib/tslib.es6'
+            )
+            .replace(
+              /[\.\/]+\/node_modules\//,
+              "/node_modules/"
+            )
+            .replace(/\.js$/, "") +
+          ".mjs" +
+          str[str.length - 1]
+        )
+      }
+    }
+  )
+}
+
+export function replaceServerFunctions(
+  path: string,
+  body: string
+): string {
+  return body.replace(
+    /([^\w]|^)server[A-Z][a-zA-Z]+\(/gm,
+    (str) => {
+      const [, space, name] = str.match(
+        /([^\w]|^)(server[A-Z][a-zA-Z]+)\(/
+      )
+      return space + `window.remoteCaller("${name}", `
+    }
+  )
 }
 
 export default assetRequester

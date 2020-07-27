@@ -8,6 +8,7 @@ export async function defaultRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
   const output = await routeSelector(input, [
+    [/\/rpc\/[^\.]+.json/, "remoteCaller"],
     // injection placeholder (don't delete)
   ])
 

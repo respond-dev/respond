@@ -10,7 +10,11 @@ export async function routeSelector(
   const imports = await Promise.all(
     routes
       .filter(([matcher]) => {
-        return input.url.pathname.match(matcher)
+        if (typeof matcher === "string") {
+          return input.url.pathname === matcher
+        } else {
+          return input.url.pathname.match(matcher)
+        }
       })
       .map(([, name, layout]) => {
         const path = `../../app/controllers/${name}Controller`

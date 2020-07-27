@@ -2,12 +2,15 @@ import { join } from "path"
 import http from "http"
 import chokidar from "chokidar"
 import debounce from "./lib/debounce"
-import startHttpServer from "./lib/startHttpServer"
 
 export async function startDevHttpTask(): Promise<void> {
   const port = process.env.PORT
     ? parseInt(process.env.PORT)
     : 3000
+
+  const { startHttpServer } = await import(
+    "./lib/startHttpServer"
+  )
 
   let server: http.Server = await startHttpServer(
     port,
@@ -32,16 +35,16 @@ export async function startDevHttpTask(): Promise<void> {
           delete require.cache[key]
         })
 
-        if (server.listening) {
-          server.close(async () => {
-            server = await startHttpServer(port, true)
-          })
-        } else {
-          server = await startHttpServer(port, true)
-        }
+        server.close(async () => {
+          const { startHttpServer } = await import(
+            "./lib/startHttpServer"
+          )
 
-        // eslint-disable-next-line no-console
-        console.log("🐸 Ready!")
+          server = await startHttpServer(port, true)
+
+          // eslint-disable-next-line no-console
+          console.log("🐸 Ready!")
+        })
       })
     )
 }
