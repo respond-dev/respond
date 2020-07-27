@@ -32,6 +32,7 @@ export function shutdownHandler(server: http.Server) {
 
 export function httpServer(
   port: number,
+  devMode: boolean,
   request: (
     req: IncomingMessage,
     res: ServerResponse
@@ -73,13 +74,18 @@ export function httpServer(
       logger({ listen: `http://localhost:${port}` })
     )
 
-  process.once("SIGINT", shutdownHandler(server))
-  process.once("SIGTERM", shutdownHandler(server))
-  process.once("uncaughtException", shutdownHandler(server))
-  process.once(
-    "unhandledRejection",
-    shutdownHandler(server)
-  )
+  if (!devMode) {
+    process.once("SIGINT", shutdownHandler(server))
+    process.once("SIGTERM", shutdownHandler(server))
+    process.once(
+      "uncaughtException",
+      shutdownHandler(server)
+    )
+    process.once(
+      "unhandledRejection",
+      shutdownHandler(server)
+    )
+  }
 
   return server
 }
