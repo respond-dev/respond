@@ -1,16 +1,14 @@
-import promiseAllDefault from "../../lib/promiseAllDefault"
 import {
   ControllerInputType,
   ControllerOutputType,
 } from "../types/controllerTypes"
+import exampleView from "../views/exampleView"
+// import injection placeholder
 
 export async function exampleController(
   input: ControllerInputType
 ): Promise<ControllerOutputType> {
-  const { exampleView } = await promiseAllDefault({
-    exampleView: import("../views/exampleView"),
-  })
-
+  // controller injection placeholder
   return exampleView({})
 }
 
