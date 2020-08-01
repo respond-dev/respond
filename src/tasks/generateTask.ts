@@ -83,6 +83,8 @@ export async function generateTask(): Promise<void> {
       relPath
     )
 
+    const isModel = generator === "model"
+
     const modelName =
       modelType === "universal"
         ? name
@@ -91,9 +93,10 @@ export async function generateTask(): Promise<void> {
     const upperModelName =
       modelName.charAt(0).toUpperCase() + modelName.slice(1)
 
-    const destPath = srcPath.replace(/example/, name)
-
-    const isModel = generator === "model"
+    const destPath = srcPath.replace(
+      /example/,
+      isModel ? modelName : name
+    )
 
     const replacements: [string | RegExp, string][] = [
       [/example/g, isModel ? modelName : name],
