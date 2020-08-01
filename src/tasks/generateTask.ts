@@ -51,6 +51,7 @@ export async function generateTask(): Promise<void> {
       type: "input",
       name: "name",
       message: "name (camelCase)",
+      default: "home",
     },
     {
       type: "input",

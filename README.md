@@ -13,8 +13,8 @@ TypeScript web framework optimized for delivery 🚚
 ## Old wisdom
 
 - Structured request pipeline (initializers, middleware, etc 🏗️)
-- Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
 - Simple remote function calls 🛰️
+- Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
 - Code generators 📝
 - Very few production NPM dependencies 📉📦
 
@@ -32,9 +32,7 @@ npm install
 npm run generate
 ```
 
-1. When prompted for generator selections, press `<enter>` (default selections).
-2. When prompted for a name, type `homePage` (or any name you like).
-3. When prompted for a path, press `<enter>` (default path).
+Press `<enter>` at each prompt to accept the defaults.
 
 ## Start server
 
@@ -42,7 +40,7 @@ npm run generate
 npm start
 ```
 
-Visit <http://localhost:3000> to view your universally rendered homepage!
+Visit <http://localhost:3000> to view your new universally rendered homepage!
 
 ## Universal request pipeline
 
