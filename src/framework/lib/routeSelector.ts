@@ -1,7 +1,7 @@
 import {
   RouterInputType,
   RoutesType,
-} from "../../framework/types/routerTypes"
+} from "../types/routerTypes"
 
 export async function routeSelector(
   input: RouterInputType,

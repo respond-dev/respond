@@ -1,4 +1,4 @@
-import routeSelector from "../lib/routeSelector"
+import routeSelector from "../../framework/lib/routeSelector"
 import {
   RouterInputType,
   RouterOutputType,
