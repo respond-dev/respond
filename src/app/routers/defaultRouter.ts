@@ -9,7 +9,7 @@ export async function defaultRouter(
 ): Promise<RouterOutputType> {
   const output = await routeSelector(input, [
     [/\/rpc\/[^\.]+.json/, "remoteCaller"],
-    // injection placeholder (don't delete)
+    // inject new routes here
   ])
 
   return { output }

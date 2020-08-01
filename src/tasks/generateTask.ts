@@ -1,53 +1,49 @@
 import { join } from "path"
 import inquirer from "inquirer"
-import controllerBodyBuilder from "./lib/controllerBodyBuilder"
 import copyFile from "./lib/copyFile"
-
-const injectionPlaceholder =
-  "// injection placeholder (don't delete)"
 
 const pathMap = {
   constructor: "constructors/exampleConstructor.ts",
   controller: "controllers/exampleController.ts",
   initializer: "initializers/exampleInitializer.ts",
-  "layout view": "views/exampleLayoutView.tsx",
+  layout: "views/exampleLayoutView.tsx",
   middleware: "middleware/exampleMiddleware.ts",
   model: "models/exampleModel.ts",
   router: "routers/exampleRouter.ts",
-  "router entry": "routers/defaultRouter.ts",
+  route: "routers/defaultRouter.ts",
   settler: "settlers/exampleSettler.ts",
   task: "tasks/exampleTask.ts",
   view: "views/exampleView.tsx",
 }
 
+export function placeholder(str: string): string {
+  return `// inject ${str} here`
+}
+
 export async function generateTask(): Promise<void> {
   const {
     generators,
+    modelType,
     name,
-    routerPath,
+    routePath,
   } = await inquirer.prompt([
     {
       type: "checkbox",
       name: "generators",
-      default: [
+      default: ["controller", "model", "route", "view"],
+      choices: [
         "controller",
         "model",
-        "router entry",
+        "route",
         "view",
-      ],
-      choices: [
-        { name: "controller" },
-        { name: "model" },
-        { name: "router entry" },
-        { name: "view" },
         new inquirer.Separator(),
-        { name: "constructor" },
-        { name: "initializer" },
-        { name: "layout view" },
-        { name: "middleware" },
-        { name: "router" },
-        { name: "settler" },
-        { name: "task" },
+        "constructor",
+        "initializer",
+        "layout",
+        "middleware",
+        "router",
+        "settler",
+        "task",
         new inquirer.Separator(),
       ],
     },
@@ -58,16 +54,26 @@ export async function generateTask(): Promise<void> {
     },
     {
       type: "input",
-      name: "routerPath",
+      message: "route path",
+      name: "routePath",
       default: "/",
-      message: "router entry path",
       when: ({ generators }) =>
         generators.includes("router") ||
-        generators.includes("router entry"),
+        generators.includes("route"),
+    },
+    {
+      type: "list",
+      message: "model type",
+      name: "modelType",
+      choices: ["universal", "server", "client"],
+      when: ({ generators }) =>
+        generators.includes("model"),
     },
   ])
 
   const hasView = generators.includes("view")
+  const upperName =
+    name.charAt(0).toUpperCase() + name.slice(1)
 
   for (const generator of generators) {
     const relPath = pathMap[generator]
@@ -76,29 +82,63 @@ export async function generateTask(): Promise<void> {
       "../../src/app",
       relPath
     )
+
+    const modelName =
+      modelType === "universal"
+        ? name
+        : modelType + upperName
+
+    const upperModelName =
+      modelName.charAt(0).toUpperCase() + modelName.slice(1)
+
     const destPath = srcPath.replace(/example/, name)
 
+    const isModel = generator === "model"
+
     const replacements: [string | RegExp, string][] = [
-      [/example/g, name],
-      [
-        /Example/g,
-        name.charAt(0).toUpperCase() + name.slice(1),
-      ],
+      [/example/g, isModel ? modelName : name],
+      [/Example/g, isModel ? upperModelName : upperName],
     ]
 
-    if (generator === "controller") {
+    if (
+      generator === "controller" &&
+      generators.includes("model")
+    ) {
       replacements.push([
-        /  const (.*\n){5}/gm,
-        controllerBodyBuilder(generators, name),
+        placeholder("imports"),
+        `import ${modelName}Model from "../models/${modelName}Model"`,
+      ])
+      replacements.push([
+        /* js */ `return ${name}View({})`,
+        /* js */ `
+          const ${name} = await ${modelName}Model({})
+          return ${name}View({ ${name} })
+        `
+          .replace(/\s{2,}/gm, "\n  ")
+          .trim(),
       ])
     }
 
-    if (generator === "router entry") {
+    if (generator === "route") {
       replacements.push([
-        injectionPlaceholder,
-        `["${routerPath}", "${name}"${
+        placeholder("new routes"),
+        `["${routePath}", "${name}"${
           hasView ? ', "layout"' : ""
-        }],\n    ${injectionPlaceholder}`,
+        }],\n    ${placeholder("new routes")}`,
+      ])
+    }
+
+    if (
+      generator === "view" &&
+      generators.includes("model")
+    ) {
+      replacements.push([
+        placeholder("imports"),
+        `import { ${upperModelName}ModelOutput } from "../models/${modelName}Model"`,
+      ])
+      replacements.push([
+        placeholder("input types"),
+        `${name}: ${upperModelName}ModelOutput`,
       ])
     }
 

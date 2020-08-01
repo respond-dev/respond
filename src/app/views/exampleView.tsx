@@ -1,6 +1,9 @@
 import { ViewOutputType } from "../types/viewTypes"
+// inject imports here
 
-export interface ExampleViewInputType {}
+export interface ExampleViewInputType {
+  // inject input types here
+}
 
 export function exampleView(
   input: ExampleViewInputType,
