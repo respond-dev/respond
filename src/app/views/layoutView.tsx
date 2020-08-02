@@ -22,6 +22,11 @@ export async function layoutView({
           content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height"
         />
         <link rel="icon" href="data:," />
+        <link
+          rel="stylesheet"
+          href="/dist-css/basic.css"
+          type="text/css"
+        ></link>
       </head>
       <body>
         {output}
