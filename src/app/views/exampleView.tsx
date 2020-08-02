@@ -11,7 +11,10 @@ export function exampleView(
 ): ViewOutputType {
   return (
     <div id={id}>
+      <h1>Example</h1>
+      Rendered on{" "}
       {typeof history !== "undefined" ? "client" : "server"}
+      .
     </div>
   )
 }

@@ -26,11 +26,13 @@ export async function layoutView({
           rel="stylesheet"
           href="/dist-css/basic.css"
           type="text/css"
-        ></link>
+        />
       </head>
       <body>
-        {output}
-        {clientScriptView(clientModules)}
+        <main>
+          {output}
+          {clientScriptView(clientModules)}
+        </main>
       </body>
     </html>
   )

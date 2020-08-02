@@ -1,3 +1,20 @@
+export const selfClosingTags = [
+  "AREA",
+  "BASE",
+  "BR",
+  "COL",
+  "EMBED",
+  "HR",
+  "IMG",
+  "INPUT",
+  "LINK",
+  "META",
+  "PARAM",
+  "SOURCE",
+  "TRACK",
+  "WBR",
+]
+
 export function elementSerializer(
   el: Element | Element[]
 ): string {
@@ -15,6 +32,7 @@ export function elementSerializer(
 
   const name = String(el.nodeName).toLowerCase()
   const hits: Record<string, boolean> = {}
+  const selfClosing = selfClosingTags.includes(el.nodeName)
 
   let str = "<" + name
   let c: string
@@ -49,7 +67,11 @@ export function elementSerializer(
     str += ' value="' + el["value"] + '"'
   }
 
-  str += ">"
+  if (selfClosing) {
+    str += " />"
+  } else {
+    str += ">"
+  }
 
   for (let i = 0; i < el.childNodes.length; i++) {
     c = elementSerializer(el.childNodes[i] as Element)
@@ -58,7 +80,11 @@ export function elementSerializer(
     }
   }
 
-  return str + "</" + name + ">"
+  if (selfClosing) {
+    return str
+  } else {
+    return str + "</" + name + ">"
+  }
 }
 
 export default elementSerializer
