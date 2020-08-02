@@ -59,7 +59,6 @@ export async function generateTask(): Promise<void> {
       name: "routePath",
       default: "/",
       when: ({ generators }) =>
-        generators.includes("router") ||
         generators.includes("route"),
     },
     {
