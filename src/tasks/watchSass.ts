@@ -6,7 +6,7 @@ export async function watchSass(): Promise<void> {
     args: [
       "node-sass",
       "-w",
-      "src/styles",
+      "src",
       "-r",
       "-o",
       "dist-css",

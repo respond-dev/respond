@@ -24,7 +24,7 @@ export async function layoutView({
         <link rel="icon" href="data:," />
         <link
           rel="stylesheet"
-          href="/dist-css/basic.css"
+          href="/dist-css/framework/styles/basic.css"
           type="text/css"
         />
       </head>

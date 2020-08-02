@@ -4,7 +4,7 @@
   "description": "JavaScript web framework optimized for delivery 🚚",
   "bin": {},
   "scripts": {
-    "build": "rm -rf dist-*; tsc -b -v; node-sass src/styles -o dist-css",
+    "build": "rm -rf dist-*; tsc -b -v; node-sass src -r -o dist-css",
     "generate": "./taskRunner generate",
     "postinstall": "npm run build",
     "start": "./taskRunner startDev",
