@@ -32,7 +32,7 @@ npm install
 npm run generate
 ```
 
-Press `<enter>` at each prompt to accept the defaults, and take a look at your generated files:
+Press `<enter>` at each prompt to accept the defaults, and take a look at your updated files:
 
 &emsp;📁 app/controllers/homeController.ts<br/>&emsp;📁 app/routers/defaultRouter.ts<br/>&emsp;📁 app/views/homeView.ts
 
