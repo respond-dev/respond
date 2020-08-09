@@ -1,7 +1,7 @@
 import ptySpawner from "../lib/ptySpawner"
 import { join } from "path"
 
-export async function watchSass(): Promise<void> {
+export async function watchSassTask(): Promise<void> {
   await ptySpawner("npx", {
     args: [
       "node-sass",
@@ -16,4 +16,4 @@ export async function watchSass(): Promise<void> {
   })
 }
 
-export default watchSass
+export default watchSassTask

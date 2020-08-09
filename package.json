@@ -5,12 +5,12 @@
   "bin": {},
   "scripts": {
     "build": "rm -rf dist-*; tsc -b -v; node-sass src -r -o dist-css",
+    "dev": "./taskRunner startDevHttp watchCjs watchEsm watchSass",
     "generate": "./taskRunner generate",
     "postinstall": "npm run build",
     "start": "./taskRunner startDev",
     "test": "mocha",
-    "update": "ncu -u",
-    "watch": "./taskRunner watchCjs watchEsm watchSass"
+    "update": "ncu -u"
   },
   "repository": {
     "type": "git",

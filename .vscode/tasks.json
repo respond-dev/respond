@@ -5,8 +5,8 @@
   "tasks": [
     {
       "type": "npm",
-      "script": "watch",
-      "label": "npm run watch",
+      "script": "dev",
+      "label": "npm run dev",
       "auto": true
     }
   ]

@@ -26,23 +26,25 @@ cd [project-name]
 npm install
 ```
 
+## Start dev task
+
+```bash
+npm run dev
+```
+
+ℹ️ Install [AutoLaunch](https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch) for VS Code to start automatically.
+
 ## Generate a homepage
 
 ```bash
 npm run generate
 ```
 
-Press `<enter>` at each prompt to accept the defaults. Now take a look at your updated files:
+Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
 
 &emsp;📁 app/controllers/homeController.ts<br/>&emsp;📁 app/routers/defaultRouter.ts<br/>&emsp;📁 app/views/homeView.ts
 
-## Start server
-
-```bash
-npm start
-```
-
-Visit <http://localhost:3000> to view your new universally rendered homepage!
+Visit <http://localhost:3000> to view your new page.
 
 ## Universal request pipeline
 
