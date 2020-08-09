@@ -12,7 +12,7 @@ TypeScript web framework optimized for delivery 🚚
 
 ## Old wisdom
 
-- Structured request pipeline (initializers, middleware, etc 🏗️)
+- Structured request pipeline (initializers, middleware, controllers, views, etc 🏗️)
 - Simple remote function calls 🛰️
 - Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
 - Code generators 📝
@@ -33,6 +33,10 @@ npm run generate
 ```
 
 Press `<enter>` at each prompt to accept the defaults.
+
+Check out your generated & updated files:
+
+&emsp;📁 app/controllers/homeController.ts<br/>&emsp;📁 app/routers/defaultRouter.ts<br/>&emsp;📁 app/views/homeView.ts
 
 ## Start server
 
