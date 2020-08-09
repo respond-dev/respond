@@ -44,14 +44,16 @@ Visit <http://localhost:3000> to view your new universally rendered homepage!
 
 ## Universal request pipeline
 
-There are five successive phases of the universal request pipeline. Each phase corresponds to a directory of source files:
+There are five successive phases of the universal request pipeline. The input and output types for each phase are centrally located ([📁 framework/types](src/framework/types)).
 
-1. **constructors** — Builds input for initializers, only runs once ([📁 app](src/app/constructors), [📁 framework](src/framework/constructors))
-2. **initializers** — Builds input for middleware, only runs when route changes ([📁 app](src/app/initializers), [📁framework](src/framework/initializers))
-3. **middleware** — Builds input for routers, runs on every request ([📁 app](src/app/middleware), [📁 framework](src/framework/middleware))
-4. **routers** — Returns an element or string, runs on every request ([📁 app](src/app/routers))
-5. **settlers** — Settles the final output, runs on every request ([📁 app](src/app/settlers), [📁 framework](src/framework/settlers))
+Each pipeline phase corresponds to a directories of source files:
 
-In each directory, the default function of each source file is executed in parallel. The collective output of those functions combine to build the input for the next phase of the pipeline.
+1. **constructors** — Builds input for initializers, only runs once ([📁 app/constructors](src/app/constructors), [📁 framework/constructors](src/framework/constructors))
+2. **initializers** — Builds input for middleware, only runs when route changes ([📁 app/initializers](src/app/initializers), [📁 framework/initializers](src/framework/initializers))
+3. **middleware** — Builds input for routers, runs on every request ([📁 app/middleware](src/app/middleware), [📁 framework/middleware](src/framework/middleware))
+4. **routers** — Returns an element or string, runs on every request ([📁 app/routers](src/app/routers))
+5. **settlers** — Settles the final output, runs on every request ([📁 app/settlers](src/app/settlers), [📁 framework/settlers](src/framework/settlers))
 
-If a source file begins with `client` or `server`, it will only execute on that environment. Otherwise, it is up to the function to conditionally enable or disable itself.
+Each source file of each directory has a default export function. Each function executes in parallel during each phase of the pipeline, building the input for the next phase of the pipeline.
+
+If a source file begins with `client` or `server`, it will only execute on that environment.
