@@ -11,7 +11,9 @@ export function exampleView(
 ): ViewOutputType {
   return (
     <div id={id}>
-      <h1>Example</h1>
+      <h1>
+        <a href="/example">Example</a>
+      </h1>
       Rendered on{" "}
       {typeof history !== "undefined" ? "client" : "server"}
       .

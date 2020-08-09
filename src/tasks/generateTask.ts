@@ -99,6 +99,7 @@ export async function generateTask(): Promise<void> {
     )
 
     const replacements: [string | RegExp, string][] = [
+      [/\"\/example\"/g, `"${routePath}"`],
       [/example/g, isModel ? modelName : name],
       [/Example/g, isModel ? upperModelName : upperName],
     ]
