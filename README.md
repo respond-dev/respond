@@ -48,11 +48,11 @@ There are five successive phases of the universal request pipeline. The input an
 
 Each pipeline phase corresponds to directories of source files:
 
-1. **constructors** — Builds input for initializers, only runs once<br/>[📁 app/constructors](src/app/constructors)<br/>[📁 framework/constructors](src/framework/constructors)
-2. **initializers** — Builds input for middleware, only runs when route changes<br/>[📁 app/initializers](src/app/initializers)<br/>[📁 framework/initializers](src/framework/initializers)
-3. **middleware** — Builds input for routers, runs on every request<br/>[📁 app/middleware](src/app/middleware)<br/>[📁 framework/middleware](src/framework/middleware)
-4. **routers** — Returns an element or string, runs on every request<br/>[📁 app/routers](src/app/routers)
-5. **settlers** — Settles the final output, runs on every request<br/>[📁 app/settlers](src/app/settlers)<br/>[📁 framework/settlers](src/framework/settlers)
+1. **constructors** — Builds input for initializers, only runs once<br/>&emsp;[📁 app/constructors](src/app/constructors)<br/>&emsp;[📁 framework/constructors](src/framework/constructors)
+2. **initializers** — Builds input for middleware, only runs when route changes<br/>&emsp;[📁 app/initializers](src/app/initializers)<br/>&emsp;[📁 framework/initializers](src/framework/initializers)
+3. **middleware** — Builds input for routers, runs on every request<br/>&emsp;[📁 app/middleware](src/app/middleware)<br/>&emsp;[📁 framework/middleware](src/framework/middleware)
+4. **routers** — Returns an element or string, runs on every request<br/>&emsp;[📁 app/routers](src/app/routers)
+5. **settlers** — Settles the final output, runs on every request<br/>&emsp;[📁 app/settlers](src/app/settlers)<br/>&emsp;[📁 framework/settlers](src/framework/settlers)
 
 Each source file of each directory has a default export function. Each function executes in parallel during each phase of the pipeline, building the input for the next phase of the pipeline.
 
