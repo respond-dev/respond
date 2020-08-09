@@ -32,7 +32,7 @@ npm install
 npm run dev
 ```
 
-> ℹ️ Install [AutoLaunch](https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch) for VS Code to start automatically.
+> ℹ️ If you install [AutoLaunch](https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch) for VS Code, the `dev` tasks starts automatically.
 
 ## Generate a homepage
 
