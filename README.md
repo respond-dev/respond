@@ -32,7 +32,7 @@ npm install
 npm run dev
 ```
 
-ℹ️ Install [AutoLaunch](https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch) for VS Code to start automatically.
+> ℹ️ Install [AutoLaunch](https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch) for VS Code to start automatically.
 
 ## Generate a homepage
 
@@ -48,9 +48,7 @@ Visit <http://localhost:3000> to view your new page.
 
 ## Universal request pipeline
 
-There are five successive phases of the universal request pipeline. The input and output types for each phase are centrally located in [📁 framework/types](src/framework/types).
-
-Each pipeline phase corresponds to directories of source files:
+There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
 1. **constructors** — Builds input for initializers, only runs once<br/>&emsp;[📁 app/constructors](src/app/constructors)<br/>&emsp;[📁 framework/constructors](src/framework/constructors)
 2. **initializers** — Builds input for middleware, only runs when route changes<br/>&emsp;[📁 app/initializers](src/app/initializers)<br/>&emsp;[📁 framework/initializers](src/framework/initializers)
@@ -59,5 +57,7 @@ Each pipeline phase corresponds to directories of source files:
 5. **settlers** — Settles the final output, runs on every request<br/>&emsp;[📁 app/settlers](src/app/settlers)<br/>&emsp;[📁 framework/settlers](src/framework/settlers)
 
 Each source file of each directory has a default export function. Each function executes in parallel during each phase of the pipeline, building the input for the next phase of the pipeline.
+
+The input and output types for each phase are centrally located in [📁 framework/types](src/framework/types).
 
 If a source file begins with `client` or `server`, it will only execute on that environment.
