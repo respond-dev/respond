@@ -13,8 +13,8 @@ TypeScript web framework optimized for delivery 🚚
 ## Old wisdom
 
 - Structured request pipeline (initializers, middleware, controllers, views, etc 🏗️)
-- Simple remote function calls 🛰️
 - Simple DOM operations (🚫 virtual dom, ✅ `createElement`)
+- Simple remote function calls 🛰️
 - Code generators 📝
 - Very few production NPM dependencies 📉📦
 
@@ -42,7 +42,7 @@ npm run generate
 
 Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
 
-&emsp;📁 app/controllers/homeController.ts<br/>&emsp;📁 app/routers/defaultRouter.ts<br/>&emsp;📁 app/views/homeView.ts
+&emsp;📁 app/controllers/homeController.ts<br/>&emsp;📁 app/models/homeModel.ts<br/>&emsp;📁 app/routers/defaultRouter.ts<br/>&emsp;📁 app/styles/homeStyle.scss<br/>&emsp;📁 app/views/homeView.ts
 
 Visit <http://localhost:3000> to view your new page.
 
