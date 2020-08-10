@@ -6,32 +6,35 @@ export function controllerReplacements({
   generators,
   replacements,
 }: ReplacementInputType): void {
-  const imports = [promiseAllImport()]
+  const frameworkImports = [promiseAllImport()]
+  const appImports = []
   const callAttributes = []
   const calls = []
 
   let viewCall = jsonViewCall()
 
   if (generators.includes("model")) {
-    imports.push(modelImport(modelName))
+    appImports.push(modelImport(modelName))
     callAttributes.push(`${name}Data`)
     calls.push(modelCall(name, modelName))
     viewCall = modelViewCall(name)
   }
 
   if (generators.includes("style")) {
-    imports.push(styleInjectorImport())
+    frameworkImports.push(styleInjectorImport())
     calls.push(styleCall(name))
   }
 
   if (generators.includes("view")) {
-    imports.push(viewImport(name))
+    appImports.push(viewImport(name))
     viewCall = viewCall || emptyViewCall(name)
   }
 
   replacements.push([
     viewImport(name),
-    imports.sort().join("\n"),
+    [...frameworkImports.sort(), ...appImports.sort()].join(
+      "\n"
+    ),
   ])
 
   if (calls.length) {

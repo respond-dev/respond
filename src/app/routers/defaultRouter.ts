@@ -8,7 +8,7 @@ export async function defaultRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
   const output = await routeSelector(input, [
-    [/\/remote\/[^\.]+.json/, "remoteCaller"],
+    [/\/remote\/[^.]+.json/, "remoteCaller"],
   ])
 
   return { output }
