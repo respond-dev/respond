@@ -5,7 +5,7 @@
   "bin": {},
   "scripts": {
     "build": "rm -rf dist-*; tsc -b -v; node-sass src -r -o dist-css",
-    "dev": "./taskRunner startDevHttp watchCjs watchEsm watchSass",
+    "dev": "./taskRunner watchCjs watchDevHttp watchEsm watchSass watchUnlink",
     "generate": "./taskRunner generate",
     "postinstall": "npm run build",
     "start": "./taskRunner startDev",

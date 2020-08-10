@@ -3,7 +3,7 @@ import http from "http"
 import chokidar from "chokidar"
 import debounce from "./lib/debounce"
 
-export async function startDevHttpTask(): Promise<void> {
+export async function watchDevHttpTask(): Promise<void> {
   const port = process.env.PORT
     ? parseInt(process.env.PORT)
     : 3000
@@ -23,7 +23,7 @@ export async function startDevHttpTask(): Promise<void> {
     .watch(
       [
         join(__dirname, "../"),
-        join(__dirname, "../package-lock.json"),
+        join(__dirname, "../../package-lock.json"),
       ],
       { ignoreInitial: true }
     )
@@ -59,4 +59,4 @@ export function debouncedRestart(
   })
 }
 
-export default startDevHttpTask
+export default watchDevHttpTask
