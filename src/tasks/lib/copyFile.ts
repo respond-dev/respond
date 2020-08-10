@@ -1,9 +1,10 @@
 import { readFile, writeFile } from "fs"
+import { ReplacementOutputType } from "../types/replacementTypes"
 
 export async function copyFile(
   src: string,
   dest: string,
-  replacements?: [string | RegExp, string][]
+  replacements?: ReplacementOutputType
 ): Promise<void> {
   await new Promise<string[]>((resolve, reject) => {
     readFile(src, "utf8", (err, data) => {
@@ -12,8 +13,14 @@ export async function copyFile(
       }
 
       if (replacements) {
-        for (const [search, replace] of replacements) {
-          data = data.replace(search, replace)
+        for (const [
+          search,
+          replace,
+          condition,
+        ] of replacements) {
+          if (!condition || condition(data)) {
+            data = data.replace(search, replace)
+          }
         }
       }
 

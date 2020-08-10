@@ -1,6 +1,6 @@
 import { join, relative } from "path"
-import { deepDirectoryLister } from "../../lib/directoryLister"
-import promiseAll from "../../lib/promiseAll"
+import { deepDirectoryLister } from "../../framework/lib/directoryLister"
+import promiseAll from "../../framework/lib/promiseAll"
 
 export const clientRegExp = /^((?!(^|\/)(server|example|test)).)*$/
 export const serverRegExp = /^((?!(^|\/)(client|example|test)).)*$/

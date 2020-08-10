@@ -1,7 +1,7 @@
 import { IncomingMessage } from "http"
 import net from "net"
 import URL from "url"
-import expect from "../../lib/expect"
+import expect from "../../framework/lib/expect"
 import serverPostFormMiddleware from "../middleware/serverPostFormMiddleware"
 
 class FakeIncomingMessage extends IncomingMessage {

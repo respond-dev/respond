@@ -1,4 +1,4 @@
-import promiseAllDefault from "../../lib/promiseAllDefault"
+import promiseAllDefault from "../../framework/lib/promiseAllDefault"
 import { ConstructorInputType } from "../types/constructorTypes"
 
 export async function elementBuilderConstructor({

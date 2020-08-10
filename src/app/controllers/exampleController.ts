@@ -1,9 +1,5 @@
-import {
-  ControllerInputType,
-  ControllerOutputType,
-} from "../types/controllerTypes"
-
-// inject imports here
+import { ControllerInputType } from "../types/controllerTypes"
+import { ControllerOutputType } from "../types/controllerTypes"
 import exampleView from "../views/exampleView"
 
 export async function exampleController(

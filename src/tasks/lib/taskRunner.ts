@@ -1,5 +1,5 @@
 import { basename, join } from "path"
-import directoryLister from "../../lib/directoryLister"
+import directoryLister from "../../framework/lib/directoryLister"
 
 export async function taskRunner(
   args: string[]

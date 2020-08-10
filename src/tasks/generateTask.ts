@@ -1,6 +1,10 @@
 import { join } from "path"
 import inquirer from "inquirer"
 import copyFile from "./lib/copyFile"
+import { ReplacementOutputType } from "./types/replacementTypes"
+import controllerReplacements from "./lib/controllerReplacements"
+import routeReplacements from "./lib/routeReplacements"
+import viewReplacements from "./lib/viewReplacements"
 
 const pathMap = {
   constructor: "constructors/exampleConstructor.ts",
@@ -12,12 +16,9 @@ const pathMap = {
   router: "routers/exampleRouter.ts",
   route: "routers/defaultRouter.ts",
   settler: "settlers/exampleSettler.ts",
+  style: "styles/exampleStyle.scss",
   task: "tasks/exampleTask.ts",
   view: "views/exampleView.tsx",
-}
-
-export function placeholder(str: string): string {
-  return `// inject ${str} here`
 }
 
 export async function generateTask(): Promise<void> {
@@ -30,11 +31,18 @@ export async function generateTask(): Promise<void> {
     {
       type: "checkbox",
       name: "generators",
-      default: ["controller", "model", "route", "view"],
+      default: [
+        "controller",
+        "model",
+        "route",
+        "style",
+        "view",
+      ],
       choices: [
         "controller",
         "model",
         "route",
+        "style",
         "view",
         new inquirer.Separator(),
         "constructor",
@@ -71,7 +79,6 @@ export async function generateTask(): Promise<void> {
     },
   ])
 
-  const hasView = generators.includes("view")
   const upperName =
     name.charAt(0).toUpperCase() + name.slice(1)
 
@@ -98,52 +105,31 @@ export async function generateTask(): Promise<void> {
       isModel ? modelName : name
     )
 
-    const replacements: [string | RegExp, string][] = [
+    const replacements: ReplacementOutputType = [
       [/\"\/example\"/g, `"${routePath}"`],
       [/example/g, isModel ? modelName : name],
       [/Example/g, isModel ? upperModelName : upperName],
     ]
 
-    if (
-      generator === "controller" &&
-      generators.includes("model")
-    ) {
-      replacements.push([
-        placeholder("imports"),
-        `import ${modelName}Model from "../models/${modelName}Model"`,
-      ])
-      replacements.push([
-        /* js */ `return ${name}View({})`,
-        /* js */ `
-          const ${name} = await ${modelName}Model({})
-          return ${name}View({ ${name} })
-        `
-          .replace(/\s{2,}/gm, "\n  ")
-          .trim(),
-      ])
+    const replacementInput = {
+      name,
+      generators,
+      modelName,
+      upperModelName,
+      replacements,
+      routePath,
+    }
+
+    if (generator === "controller") {
+      controllerReplacements(replacementInput)
     }
 
     if (generator === "route") {
-      replacements.push([
-        placeholder("new routes"),
-        `["${routePath}", "${name}"${
-          hasView ? ', "layout"' : ""
-        }],\n    ${placeholder("new routes")}`,
-      ])
+      routeReplacements(replacementInput)
     }
 
-    if (
-      generator === "view" &&
-      generators.includes("model")
-    ) {
-      replacements.push([
-        placeholder("imports"),
-        `import { ${upperModelName}ModelOutput } from "../models/${modelName}Model"`,
-      ])
-      replacements.push([
-        placeholder("input types"),
-        `${name}: ${upperModelName}ModelOutput`,
-      ])
+    if (generator === "view") {
+      viewReplacements(replacementInput)
     }
 
     await copyFile(srcPath, destPath, replacements)

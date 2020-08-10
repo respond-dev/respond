@@ -23,7 +23,7 @@ export async function remoteCaller<
   const id = path.match(/[^/]+$/)[0]
 
   if (browser) {
-    const url = `/rpc/${id}.json`
+    const url = `/remote/${id}.json`
     const body = input.length
       ? JSON.stringify(input)
       : undefined

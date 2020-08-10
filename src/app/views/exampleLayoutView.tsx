@@ -1,5 +1,5 @@
 import modulesLister from "../../framework/lib/modulesLister"
-import modulesToEsm from "../../lib/modulesToEsm"
+import modulesToEsm from "../../framework/lib/modulesToEsm"
 import {
   LayoutInputType,
   LayoutOutputType,

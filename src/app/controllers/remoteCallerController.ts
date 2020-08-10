@@ -4,7 +4,7 @@ import {
   ControllerOutputType,
 } from "../types/controllerTypes"
 
-export const remoteCallerRoute = /\/rpc\/([^\.]+).json/
+export const remoteCallerRoute = /\/remote\/([^\.]+).json/
 
 export async function remoteCallerController(
   input: ControllerInputType

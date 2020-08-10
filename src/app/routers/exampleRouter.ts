@@ -7,9 +7,7 @@ import {
 export async function exampleRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  const output = await routeSelector(input, [
-    // inject new routes here
-  ])
+  const output = await routeSelector(input, [])
 
   return { output }
 }

@@ -18,7 +18,8 @@ export async function promiseAll<
   T extends PromiseAllMapType
 >(map: T): Promise<PromiseAllOutputType<T>> {
   const keys = Object.keys(map)
-  const out = await Promise.all(Object.values(map))
+  const values = Object.values(map)
+  const out = await Promise.all(values)
   const obj: any = {}
 
   for (const key of keys) {
