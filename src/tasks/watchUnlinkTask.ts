@@ -13,10 +13,6 @@ export async function watchUnlinkTask(): Promise<void> {
       const relPath = relative(srcDir, path)
       const ext = extname(path)
 
-      if (ext === ".scss") {
-        return
-      }
-
       if (ext) {
         const noExtRelPath = relPath.replace(
           new RegExp(`${ext}$`),
