@@ -42,7 +42,7 @@ npm run generate
 
 Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
 
-&emsp;📁 app/controllers/homeController.ts<br/>&emsp;📁 app/models/homeModel.ts<br/>&emsp;📁 app/routers/defaultRouter.ts<br/>&emsp;📁 app/styles/homeStyle.scss<br/>&emsp;📁 app/views/homeView.ts
+&emsp;📁 [app/controllers](app/controllers)/homeController.ts<br/>&emsp;📁 [app/models](app/models)/homeModel.ts<br/>&emsp;📁 [app/routers](app/routers)/defaultRouter.ts<br/>&emsp;📁 [app/styles](app/styles)/homeStyle.scss<br/>&emsp;📁 [app/views](app/views)/homeView.ts
 
 Visit <http://localhost:3000> to view your new page.
 
