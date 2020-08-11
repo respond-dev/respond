@@ -2,8 +2,23 @@ import { extname, join, relative } from "path"
 import chokidar from "chokidar"
 import fs from "fs-extra"
 
+export const rootDir = join(__dirname, "../../")
+
+export const unlinkExtConfig = {
+  ".scss": {
+    dirs: [join(rootDir, "dist-css")],
+    exts: [".css"],
+  },
+  ".ts": {
+    dirs: [
+      join(rootDir, "dist-cjs"),
+      join(rootDir, "dist-esm"),
+    ],
+    exts: [".js", ".js.map", ".d.ts"],
+  },
+}
+
 export async function watchUnlinkTask(): Promise<void> {
-  const rootDir = join(__dirname, "../../")
   const srcDir = join(rootDir, "src")
 
   chokidar
@@ -12,31 +27,16 @@ export async function watchUnlinkTask(): Promise<void> {
       const relPath = relative(srcDir, path)
       const ext = extname(path)
 
-      if (ext) {
+      if (unlinkExtConfig[ext]) {
         const promises = []
+        const { dirs, exts } = unlinkExtConfig[ext]
         const noExtRelPath = relPath.replace(
           new RegExp(`${ext}$`),
           ""
         )
 
-        let distDirs: string[]
-        let rmExts: string[]
-
-        if (ext === ".scss") {
-          distDirs = [join(rootDir, "dist-css")]
-          rmExts = [".css"]
-        }
-
-        if (ext === ".ts") {
-          distDirs = [
-            join(rootDir, "dist-cjs"),
-            join(rootDir, "dist-esm"),
-          ]
-          rmExts = [".js", ".js.map", ".d.ts"]
-        }
-
-        for (const distDir of distDirs) {
-          for (const rmExt of rmExts) {
+        for (const distDir of dirs) {
+          for (const rmExt of exts) {
             promises.push(
               fs.remove(join(distDir, noExtRelPath + rmExt))
             )
@@ -49,9 +49,8 @@ export async function watchUnlinkTask(): Promise<void> {
     .on("unlinkDir", async (path) => {
       const relPath = relative(srcDir, path)
       const distDirs = [
-        join(rootDir, "dist-cjs"),
-        join(rootDir, "dist-css"),
-        join(rootDir, "dist-esm"),
+        ...unlinkExtConfig[".scss"].dirs,
+        ...unlinkExtConfig[".ts"].dirs,
       ]
 
       await Promise.all(
