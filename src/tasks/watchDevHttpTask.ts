@@ -46,7 +46,7 @@ export async function restartHttpServer(
   })
 
   return new Promise((resolve) =>
-    server.close(async (err) => {
+    server.close(async () => {
       const { startHttpServer } = await import(
         "./lib/startHttpServer"
       )
