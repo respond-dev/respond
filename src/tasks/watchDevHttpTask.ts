@@ -1,7 +1,7 @@
 import { extname, join } from "path"
 import http from "http"
 import chokidar from "chokidar"
-import debounce from "./lib/debounce"
+import functionDebouncer from "./lib/functionDebouncer"
 
 export async function watchDevHttpTask(): Promise<void> {
   const port = process.env.PORT
@@ -38,7 +38,7 @@ export function debouncedRestart(
   server: http.Server,
   port: number
 ): () => any {
-  return debounce(async () => {
+  return functionDebouncer(async () => {
     // eslint-disable-next-line no-console
     console.log("🚦 Restarting server...")
 

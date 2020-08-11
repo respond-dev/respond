@@ -1,5 +1,4 @@
 import { ReplacementInputType } from "../types/replacementTypes"
-import placeholder from "./placeholder"
 
 export function viewReplacements({
   name,
@@ -10,14 +9,29 @@ export function viewReplacements({
 }: ReplacementInputType): void {
   if (generators.includes("model")) {
     replacements.push([
-      placeholder("imports"),
-      `import { ${upperModelName}ModelOutput } from "../models/${modelName}Model"`,
+      viewImport(),
+      [
+        viewImport(),
+        `import { ${upperModelName}ModelOutput } from "../models/${modelName}Model"`,
+      ].join("\n"),
     ])
     replacements.push([
-      placeholder("input types"),
-      `${name}Data: ${upperModelName}ModelOutput`,
+      viewInputType(upperModelName) + "}",
+      `${viewInputType(
+        upperModelName
+      )}\n  ${name}Data: ${upperModelName}ModelOutput\n}`,
     ])
   }
+}
+
+export function viewImport(): string {
+  return 'import { ViewOutputType } from "../types/viewTypes"'
+}
+
+export function viewInputType(
+  upperModelName: string
+): string {
+  return `export interface ${upperModelName}ViewInputType {`
 }
 
 export default viewReplacements

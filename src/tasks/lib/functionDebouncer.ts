@@ -1,4 +1,4 @@
-export function debounce(
+export function functionDebouncer(
   func: (...args: any[]) => any,
   wait = 300
 ): (...args: any[]) => void {
@@ -15,4 +15,4 @@ export function debounce(
   }
 }
 
-export default debounce
+export default functionDebouncer
