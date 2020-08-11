@@ -1,6 +1,6 @@
 import http from "http"
 import assetRequester from "../../framework/lib/assetRequester"
-import libHttpServer from "../../framework/lib/httpServer"
+import httpServer from "../../framework/lib/httpServer"
 import modulesLister from "../../framework/lib/modulesLister"
 import requester from "../../framework/lib/requester"
 import { SettlerOutputType } from "../../framework/types/settlerTypes"
@@ -11,7 +11,7 @@ export async function startHttpServer(
 ): Promise<http.Server> {
   const modules = await modulesLister()
 
-  return libHttpServer(
+  return httpServer(
     port,
     devMode,
     async (incoming, response) => {

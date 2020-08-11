@@ -3,6 +3,8 @@ import http from "http"
 import chokidar from "chokidar"
 import functionDebouncer from "./lib/functionDebouncer"
 
+let server: http.Server
+
 export async function watchDevHttpTask(): Promise<void> {
   const port = process.env.PORT
     ? parseInt(process.env.PORT)
@@ -12,13 +14,10 @@ export async function watchDevHttpTask(): Promise<void> {
     "./lib/startHttpServer"
   )
 
-  const server: http.Server = await startHttpServer(
-    port,
-    true
-  )
+  server = await startHttpServer(port, true)
 
   const restart = functionDebouncer(() =>
-    restartHttpServer(server, port)
+    restartHttpServer(port)
   )
 
   chokidar
@@ -37,7 +36,6 @@ export async function watchDevHttpTask(): Promise<void> {
 }
 
 export async function restartHttpServer(
-  server: http.Server,
   port: number
 ): Promise<void> {
   // eslint-disable-next-line no-console
@@ -48,7 +46,7 @@ export async function restartHttpServer(
   })
 
   return new Promise((resolve) =>
-    server.close(async () => {
+    server.close(async (err) => {
       const { startHttpServer } = await import(
         "./lib/startHttpServer"
       )

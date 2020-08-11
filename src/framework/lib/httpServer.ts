@@ -30,64 +30,66 @@ export function shutdownHandler(server: http.Server) {
   }
 }
 
-export function httpServer(
+export async function httpServer(
   port: number,
   devMode: boolean,
   request: (
     req: IncomingMessage,
     res: ServerResponse
   ) => Promise<any>
-): http.Server {
-  const server = http
-    .createServer(
-      async (
-        req: IncomingMessage,
-        res: ServerResponse
-      ): Promise<void> => {
-        const now = performance.now()
+): Promise<http.Server> {
+  return new Promise((resolve, reject) => {
+    const server = http
+      .createServer(
+        async (
+          req: IncomingMessage,
+          res: ServerResponse
+        ): Promise<void> => {
+          const now = performance.now()
 
-        if (shutdown) {
-          res.statusCode = 503
-          res.end()
-        } else {
-          try {
-            await request(req, res)
+          if (shutdown) {
+            res.statusCode = 503
+            res.end()
+          } else {
+            try {
+              await request(req, res)
 
-            const time = performance.now() - now
+              const time = performance.now() - now
 
-            logger({
-              status: res.statusCode,
-              type: res.getHeader("Content-Type"),
-              url: req.url,
-              ms: Math.round(time * 1000) / 1000,
-            })
-          } catch (e) {
-            logger({
-              message: e.message,
-              stack: e.stack,
-            })
+              logger({
+                status: res.statusCode,
+                type: res.getHeader("Content-Type"),
+                url: req.url,
+                ms: Math.round(time * 1000) / 1000,
+              })
+            } catch (e) {
+              logger({
+                message: e.message,
+                stack: e.stack,
+              })
+              reject(e)
+            }
           }
         }
-      }
-    )
-    .listen(port, () =>
-      logger({ listen: `http://localhost:${port}` })
-    )
+      )
+      .listen(port, () => {
+        logger({ listen: `http://localhost:${port}` })
+        resolve(server)
+      })
 
-  if (!devMode) {
-    process.once("SIGINT", shutdownHandler(server))
-    process.once("SIGTERM", shutdownHandler(server))
-    process.once(
-      "uncaughtException",
-      shutdownHandler(server)
-    )
-    process.once(
-      "unhandledRejection",
-      shutdownHandler(server)
-    )
-  }
-
-  return server
+    if (!devMode) {
+      process.once("SIGINT", shutdownHandler(server))
+      process.once("SIGTERM", shutdownHandler(server))
+      process.once(
+        "uncaughtException",
+        shutdownHandler(server)
+      )
+      process.once(
+        "unhandledRejection",
+        shutdownHandler(server)
+      )
+    }
+  })
 }
 
 export default httpServer
