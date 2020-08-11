@@ -47,6 +47,7 @@
     "node-sass": "4.14.1",
     "npm-check-updates": "7.0.2",
     "prettier": "2.0.5",
+    "tmp-promise": "^3.0.2",
     "ts-node": "8.10.2",
     "typescript": "3.9.7"
   },
