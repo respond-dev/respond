@@ -50,8 +50,9 @@ export function controllerReplacements({
   ])
 
   if (calls.length) {
-    let attrStr = ""
     const callsStr = calls.sort().join(",\n          ")
+
+    let attrStr = ""
 
     if (callAttributes.length) {
       attrStr = `const { ${callAttributes.join(", ")} } = `

@@ -1,17 +1,24 @@
 export function functionDebouncer(
   func: (...args: any[]) => any,
   wait = 300
-): (...args: any[]) => void {
+): (...args: any[]) => Promise<void> {
   let timeout: NodeJS.Timeout
 
-  return (...args) => {
-    const later = () => {
+  return async (...args) => {
+    const later = async () => {
       timeout = null
-      func(...args)
+      await func(...args)
     }
 
     clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
+
+    return new Promise(
+      (resolve) =>
+        (timeout = setTimeout(async () => {
+          await later()
+          resolve()
+        }, wait))
+    )
   }
 }
 

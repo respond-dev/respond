@@ -17,7 +17,9 @@ export async function watchDevHttpTask(): Promise<void> {
     true
   )
 
-  const restart = debouncedRestart(server, port)
+  const restart = functionDebouncer(() =>
+    restartHttpServer(server, port)
+  )
 
   chokidar
     .watch(
@@ -27,25 +29,25 @@ export async function watchDevHttpTask(): Promise<void> {
       ],
       { ignoreInitial: true }
     )
-    .on("all", (e, path) => {
+    .on("all", async (e, path) => {
       if (extname(path) === ".js") {
-        restart()
+        await restart()
       }
     })
 }
 
-export function debouncedRestart(
+export async function restartHttpServer(
   server: http.Server,
   port: number
-): () => any {
-  return functionDebouncer(async () => {
-    // eslint-disable-next-line no-console
-    console.log("🚦 Restarting server...")
+): Promise<void> {
+  // eslint-disable-next-line no-console
+  console.log("🚦 Restarting server...")
 
-    Object.keys(require.cache).forEach((key) => {
-      delete require.cache[key]
-    })
+  Object.keys(require.cache).forEach((key) => {
+    delete require.cache[key]
+  })
 
+  return new Promise((resolve) =>
     server.close(async () => {
       const { startHttpServer } = await import(
         "./lib/startHttpServer"
@@ -55,8 +57,10 @@ export function debouncedRestart(
 
       // eslint-disable-next-line no-console
       console.log("🐸 Ready!")
+
+      resolve()
     })
-  })
+  )
 }
 
 export default watchDevHttpTask
