@@ -1,7 +1,5 @@
-import {
-  InitializerInputType,
-  InitializerOutputType,
-} from "./initializerTypes"
+import { InitializerInputType } from "./initializerTypes"
+import { InitializerOutputType } from "./initializerTypes"
 
 export type MiddlewareInputType = InitializerInputType &
   InitializerOutputType

@@ -1,9 +1,7 @@
 import URL from "url"
+import { InitializerInputType } from "../types/initializerTypes"
+import { InitializerOutputType } from "../types/initializerTypes"
 import { headerCleaner } from "../lib/headerCleaner"
-import {
-  InitializerInputType,
-  InitializerOutputType,
-} from "../types/initializerTypes"
 
 export async function serverLambdaInitializer({
   apiGatewayProxyEvent: req,

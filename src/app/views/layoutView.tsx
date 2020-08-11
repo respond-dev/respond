@@ -1,9 +1,7 @@
+import { LayoutInputType } from "../types/layoutTypes"
+import { LayoutOutputType } from "../types/layoutTypes"
 import modulesLister from "../../framework/lib/modulesLister"
 import modulesToEsm from "../../framework/lib/modulesToEsm"
-import {
-  LayoutInputType,
-  LayoutOutputType,
-} from "../types/layoutTypes"
 import clientScriptView from "../views/clientScriptView"
 
 export async function layoutView({

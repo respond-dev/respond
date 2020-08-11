@@ -1,8 +1,6 @@
+import { SettlerInputType } from "../types/settlerTypes"
+import { SettlerOutputType } from "../types/settlerTypes"
 import { ModulesType } from "../lib/modulesLister"
-import {
-  SettlerInputType,
-  SettlerOutputType,
-} from "../types/settlerTypes"
 import elementReplacer from "./elementReplacer"
 import importRunner from "./importRunner"
 

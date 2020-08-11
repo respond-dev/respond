@@ -1,8 +1,6 @@
+import { MiddlewareInputType } from "../types/middlewareTypes"
+import { MiddlewareOutputType } from "../types/middlewareTypes"
 import streamStringifier from "../lib/streamStringifier"
-import {
-  MiddlewareInputType,
-  MiddlewareOutputType,
-} from "../types/middlewareTypes"
 
 export async function serverPostJsonMiddleware({
   apiGatewayProxyEvent,

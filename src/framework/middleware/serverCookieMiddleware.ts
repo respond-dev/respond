@@ -1,8 +1,6 @@
+import { MiddlewareInputType } from "../types/middlewareTypes"
+import { MiddlewareOutputType } from "../types/middlewareTypes"
 import cookie from "cookie"
-import {
-  MiddlewareInputType,
-  MiddlewareOutputType,
-} from "../types/middlewareTypes"
 
 export function serverCookieMiddleware({
   headers,

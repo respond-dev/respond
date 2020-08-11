@@ -1,7 +1,10 @@
-import {
-  RouterInputType,
-  RoutesType,
-} from "../types/routerTypes"
+import { RouterInputType } from "../types/routerTypes"
+
+export type RoutesType = [
+  string | RegExp, // matcher
+  string, // controller
+  string? // layout
+][]
 
 export async function routeSelector(
   input: RouterInputType,

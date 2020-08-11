@@ -1,13 +1,5 @@
-import {
-  MiddlewareInputType,
-  MiddlewareOutputType,
-} from "./middlewareTypes"
-
-export type RoutesType = [
-  string | RegExp, // matcher
-  string, // controller
-  string? // layout
-][]
+import { MiddlewareInputType } from "./middlewareTypes"
+import { MiddlewareOutputType } from "./middlewareTypes"
 
 export type RouterInputType = MiddlewareInputType &
   MiddlewareOutputType

@@ -1,8 +1,6 @@
 import { ReadStream } from "fs"
-import {
-  MiddlewareInputType,
-  MiddlewareOutputType,
-} from "./middlewareTypes"
+import { MiddlewareInputType } from "./middlewareTypes"
+import { MiddlewareOutputType } from "./middlewareTypes"
 
 export type SettlerInputType = MiddlewareInputType &
   MiddlewareOutputType

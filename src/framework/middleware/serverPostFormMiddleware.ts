@@ -1,8 +1,6 @@
+import { MiddlewareInputType } from "../types/middlewareTypes"
+import { MiddlewareOutputType } from "../types/middlewareTypes"
 import { busboyBuilder } from "../lib/busboyBuilder"
-import {
-  MiddlewareInputType,
-  MiddlewareOutputType,
-} from "../types/middlewareTypes"
 
 export async function serverPostFormMiddleware({
   apiGatewayProxyEvent,

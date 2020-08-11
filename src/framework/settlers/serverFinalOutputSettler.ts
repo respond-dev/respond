@@ -1,8 +1,6 @@
+import { SettlerInputType } from "../types/settlerTypes"
+import { SettlerOutputType } from "../types/settlerTypes"
 import elementSerializer from "../lib/elementSerializer"
-import {
-  SettlerInputType,
-  SettlerOutputType,
-} from "../types/settlerTypes"
 
 export function finalOutputSettler({
   output,

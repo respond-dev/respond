@@ -1,8 +1,6 @@
 import { UrlWithStringQuery } from "url"
-import {
-  ConstructorInputType,
-  ConstructorOutputType,
-} from "./constructorTypes"
+import { ConstructorInputType } from "./constructorTypes"
+import { ConstructorOutputType } from "./constructorTypes"
 
 export type InitializerInputType = ConstructorInputType &
   ConstructorOutputType

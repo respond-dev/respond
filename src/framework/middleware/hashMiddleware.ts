@@ -1,7 +1,5 @@
-import {
-  MiddlewareInputType,
-  MiddlewareOutputType,
-} from "../types/middlewareTypes"
+import { MiddlewareInputType } from "../types/middlewareTypes"
+import { MiddlewareOutputType } from "../types/middlewareTypes"
 
 export function hashMiddleware({
   url,
