@@ -24,6 +24,7 @@ export async function watchUnlinkTask(): Promise<void> {
             "-c",
             `rm ${join(anyDistDir, noExtRelPath + ".*")}`,
           ],
+          stdout: true,
         })
       }
     })
@@ -32,6 +33,7 @@ export async function watchUnlinkTask(): Promise<void> {
 
       await ptySpawner("sh", {
         args: ["-c", `rm -rf ${join(anyDistDir, relPath)}`],
+        stdout: true,
       })
     })
 }
