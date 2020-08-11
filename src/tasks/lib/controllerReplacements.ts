@@ -11,13 +11,20 @@ export function controllerReplacements({
   const callAttributes = []
   const calls = []
 
-  let viewCall = jsonViewCall()
+  let viewCall: string
+
+  if (
+    generators.includes("model") &&
+    generators.includes("view")
+  ) {
+    viewCall = modelViewCall(name)
+  }
 
   if (generators.includes("model")) {
     appImports.push(modelImport(modelName))
     callAttributes.push(`${name}Data`)
     calls.push(modelCall(name, modelName))
-    viewCall = modelViewCall(name)
+    viewCall = viewCall || modelJsonViewCall(name)
   }
 
   if (generators.includes("style")) {
@@ -30,6 +37,11 @@ export function controllerReplacements({
     viewCall = viewCall || emptyViewCall(name)
   }
 
+  if (!viewCall) {
+    frameworkImports.shift()
+    viewCall = jsonViewCall()
+  }
+
   replacements.push([
     viewImport(name),
     [...frameworkImports.sort(), ...appImports.sort()].join(
@@ -38,11 +50,18 @@ export function controllerReplacements({
   ])
 
   if (calls.length) {
+    let attrStr = ""
+    const callsStr = calls.sort().join(",\n          ")
+
+    if (callAttributes.length) {
+      attrStr = `const { ${callAttributes.join(", ")} } = `
+    }
+
     replacements.push([
       emptyViewCall(name),
       /* js */ `
-        const { ${name}Data } = await promiseAll({
-          ${calls.sort().join(",\n          ")},
+        ${attrStr}await promiseAll({
+          ${callsStr},
         })
         ${viewCall}
       `
@@ -87,6 +106,10 @@ export function emptyViewCall(name: string): string {
 
 export function jsonViewCall(): string {
   return "return JSON.stringify({})"
+}
+
+export function modelJsonViewCall(name: string): string {
+  return `return JSON.stringify(${name}Data)`
 }
 
 export function modelViewCall(name: string): string {
