@@ -113,6 +113,7 @@ export async function generateTask(): Promise<void> {
 
     const replacementInput = {
       name,
+      upperName,
       generators,
       modelName,
       upperModelName,

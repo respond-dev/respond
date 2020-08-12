@@ -2,6 +2,7 @@ import { ReplacementInputType } from "../types/replacementTypes"
 
 export function viewReplacements({
   name,
+  upperName,
   generators,
   modelName,
   upperModelName,
@@ -15,10 +16,11 @@ export function viewReplacements({
         `import { ${upperModelName}ModelOutput } from "../models/${modelName}Model"`,
       ].join("\n"),
     ])
+
     replacements.push([
-      viewInputType(upperModelName) + "}",
+      viewInputType(upperName) + "}",
       `${viewInputType(
-        upperModelName
+        upperName
       )}\n  ${name}Data: ${upperModelName}ModelOutput\n}`,
     ])
   }

@@ -4,6 +4,7 @@ export type ReplacementConditionType = (
 
 export interface ReplacementInputType {
   name: string
+  upperName: string
   generators: string[]
   modelName: string
   upperModelName: string
