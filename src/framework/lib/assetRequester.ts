@@ -9,13 +9,14 @@ import {
 
 import { SettlerOutputType } from "../types/settlerTypes"
 
-export const EXT_REGEX = /(.+)(\.[^\.]+)$/
+export const extRegex = /(.+)(\.[^\.]+)$/
+export const preSpaceRegex = /([^\w]|^)/
 
 export async function assetRequester(
   urlPath: string,
   base64 = false
 ): Promise<SettlerOutputType> {
-  const match = urlPath.match(EXT_REGEX)
+  const match = urlPath.match(extRegex)
 
   if (!match || !match[2]) {
     return
@@ -26,7 +27,7 @@ export async function assetRequester(
 
   if (ext === ".map") {
     map = ext
-    ;[, name, ext] = name.match(EXT_REGEX)
+    ;[, name, ext] = name.match(extRegex)
   }
 
   if (ext === ".mjs") {
@@ -72,7 +73,7 @@ export async function assetRequester(
 
     if (ext === ".js") {
       body = replaceImports(body)
-      body = replaceServerFunctions(path, body)
+      body = replaceServerFunctions(body)
     }
 
     if (ext === ".css") {
@@ -104,7 +105,7 @@ export function replaceImports(body: string): string {
     /([^\w]|^)(import|export)[\s(][^\("'=;\/]*["'][^'",]*["']/gim,
     (str) => {
       if (str.match(/server[A-Z][a-zA-Z]+["']$/)) {
-        return ""
+        return str.match(preSpaceRegex)[0]
       } else {
         return (
           str
@@ -127,7 +128,6 @@ export function replaceImports(body: string): string {
 }
 
 export function replaceServerFunctions(
-  path: string,
   body: string
 ): string {
   return body.replace(
