@@ -1,6 +1,6 @@
 import { extname, join, relative } from "path"
 import chokidar from "chokidar"
-import ptySpawner from "../framework/lib/ptySpawner"
+import ptySpawner from "../lib/ptySpawner"
 
 export async function watchSassTask(): Promise<void> {
   const rootDir = join(__dirname, "../../")
@@ -24,7 +24,7 @@ export async function watchSassTask(): Promise<void> {
               relPath.replace(ext, "") + ".css"
             ),
           ],
-          cwd: join(__dirname, "../../"),
+          cwd: join(__dirname, "../../../"),
           stdout: true,
         })
       }

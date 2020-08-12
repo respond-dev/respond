@@ -1,9 +1,9 @@
 import http from "http"
-import assetRequester from "../../framework/lib/assetRequester"
-import httpServer from "../../framework/lib/httpServer"
-import modulesLister from "../../framework/lib/modulesLister"
-import requester from "../../framework/lib/requester"
-import { SettlerOutputType } from "../../framework/types/settlerTypes"
+import assetRequester from "../../lib/assetRequester"
+import httpServer from "../../lib/httpServer"
+import modulesLister from "../../lib/modulesLister"
+import requester from "../../lib/requester"
+import { SettlerOutputType } from "../../types/settlerTypes"
 
 export async function startHttpServer(
   port: number,
