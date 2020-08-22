@@ -86,7 +86,7 @@ export async function generateTask(): Promise<void> {
     const relPath = pathMap[generator]
     const srcPath = join(
       __dirname,
-      "../../src/app",
+      "../../../src/app",
       relPath
     )
 
