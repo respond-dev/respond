@@ -32,7 +32,11 @@ export function scriptTag(modules: ModulesType): string {
       ])}
     ])
       .then(function ([{ requester }]) {
-        return requester(${modulesJson}, { client: window })
+        const modules = ${modulesJson};
+        window.onpopstate = function() {
+          requester(modules, { client: window }).then(function(arg) { console.log(arg) })
+        }
+        return requester(modules, { client: window })
       })
   `.replace(/\n\s{4}/gm, "\n")
 }

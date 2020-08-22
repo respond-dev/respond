@@ -23,8 +23,8 @@ export async function watchDevHttpTask(): Promise<void> {
   chokidar
     .watch(
       [
-        join(__dirname, "../"),
-        join(__dirname, "../../package-lock.json"),
+        join(__dirname, "../../"),
+        join(__dirname, "../../../package-lock.json"),
       ],
       { ignoreInitial: true }
     )

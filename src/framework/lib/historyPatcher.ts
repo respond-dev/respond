@@ -7,7 +7,7 @@ export function historyPatcher(
   ): void => {
     fn.call(window.history, state, ...args)
 
-    if (typeof window.onpopstate == "function") {
+    if (typeof window.onpopstate === "function") {
       window.onpopstate({
         state: state,
       } as PopStateEvent)
