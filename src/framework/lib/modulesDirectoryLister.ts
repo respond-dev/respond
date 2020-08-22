@@ -13,20 +13,20 @@ export async function modulesDirectoryLister(
     ? clientRegExp
     : serverRegExp
 
-  const { app, pipeline } = await promiseAll({
+  const { app, framework } = await promiseAll({
     app: deepDirectoryLister(
       join(__dirname, "../../app", dirName),
       modulesRegExp,
       ".js"
     ),
-    pipeline: deepDirectoryLister(
+    framework: deepDirectoryLister(
       join(__dirname, "../../framework", dirName),
       modulesRegExp,
       ".js"
     ),
   })
 
-  return [...pipeline.filePaths, ...app.filePaths].map(
+  return [...framework.filePaths, ...app.filePaths].map(
     (path) =>
       "/" + relative(join(__dirname, "../../../"), path)
   )
