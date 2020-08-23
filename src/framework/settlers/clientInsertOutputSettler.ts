@@ -2,9 +2,10 @@ import { SettlerInputType } from "../types/settlerTypes"
 import { SettlerOutputType } from "../types/settlerTypes"
 
 export function clientInsertOutputSettler({
+  constructed,
   output,
 }: SettlerInputType): SettlerOutputType {
-  if (!output) {
+  if (constructed || !output) {
     return
   }
 

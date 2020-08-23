@@ -7,4 +7,6 @@ export interface ConstructorInputType {
   httpIncomingMessage?: IncomingMessage
 }
 
-export interface ConstructorOutputType {}
+export interface ConstructorOutputType {
+  constructed?: boolean
+}
