@@ -2,7 +2,7 @@ import { SettlerInputType } from "../types/settlerTypes"
 import { SettlerOutputType } from "../types/settlerTypes"
 import elementSerializer from "../lib/elementSerializer"
 
-export function finalOutputSettler({
+export function serverFinalOutputSettler({
   output,
 }: SettlerInputType): SettlerOutputType {
   if (!output) {
@@ -24,4 +24,4 @@ export function finalOutputSettler({
   }
 }
 
-export default finalOutputSettler
+export default serverFinalOutputSettler

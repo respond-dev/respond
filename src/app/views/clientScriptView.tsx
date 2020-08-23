@@ -34,7 +34,7 @@ export function scriptTag(modules: ModulesType): string {
       .then(function ([{ requester }]) {
         const modules = ${modulesJson};
         window.onpopstate = function() {
-          requester(modules, { client: window }).then(function(arg) { console.log(arg) })
+          requester(modules, { client: window })
         }
         return requester(modules, { client: window })
       })
