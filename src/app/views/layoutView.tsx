@@ -4,10 +4,11 @@ import modulesLister from "../../framework/lib/modulesLister"
 import modulesToEsm from "../../framework/lib/modulesToEsm"
 import clientScriptView from "../views/clientScriptView"
 
-export async function layoutView({
-  output,
-}: LayoutInputType): Promise<LayoutOutputType> {
-  const clientModules = modulesToEsm({
+export async function layoutView(
+  input: LayoutInputType
+): Promise<LayoutOutputType> {
+  const { doc, output } = input
+  const modules = modulesToEsm({
     ...(await modulesLister(true)),
   })
 
@@ -25,11 +26,12 @@ export async function layoutView({
           href="/dist-css/framework/styles/basic.css"
           type="text/css"
         />
+        {doc.head.childNodes}
       </head>
       <body>
         <main>
           {output}
-          {clientScriptView(clientModules)}
+          {clientScriptView({ ...input, modules })}
         </main>
       </body>
     </html>

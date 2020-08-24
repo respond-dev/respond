@@ -1,11 +1,11 @@
-export async function stylesheet(
+import { ControllerInputType } from "../../app/types/controllerTypes"
+
+export async function styleInjector(
+  input: ControllerInputType,
   path: string
 ): Promise<void> {
-  if (typeof history === "undefined") {
-    return
-  }
-
-  const link = document.createElement("link")
+  const { doc } = input
+  const link = doc.createElement("link")
 
   link.setAttribute("rel", "stylesheet")
   link.setAttribute("type", "text/css")
@@ -16,9 +16,11 @@ export async function stylesheet(
 
   link.setAttribute("href", "/dist-css/" + path + ".css")
 
-  document.head.appendChild(link)
+  doc.head.appendChild(link)
 
-  return promise
+  if (typeof history !== "undefined") {
+    return promise
+  }
 }
 
-export default stylesheet
+export default styleInjector

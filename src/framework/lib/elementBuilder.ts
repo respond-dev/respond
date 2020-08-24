@@ -15,9 +15,10 @@ export const syntheticEvents = {}
 export function elementBuilder(
   tagName: HTMLElement | string
 ): Element {
+  const doc = this as Document
   const node =
     typeof tagName === "string"
-      ? document.createElement(tagName)
+      ? doc.createElement(tagName)
       : tagName
 
   for (let i = 1; i < arguments.length; ++i) {
@@ -53,7 +54,7 @@ export function elementBuilder(
             key.charCodeAt(2) > 64 &&
             !syntheticEvents[key]
           ) {
-            document.addEventListener(
+            doc.addEventListener(
               key.slice(2).toLowerCase(),
               function (e): any {
                 let tgt: any = e.target
@@ -77,13 +78,13 @@ export function elementBuilder(
             node.appendChild(
               arg[k].nodeType
                 ? arg[k]
-                : document.createTextNode(arg[k])
+                : doc.createTextNode(arg[k])
             )
           }
         }
       } else {
         node.appendChild(
-          arg.nodeType ? arg : document.createTextNode(arg)
+          arg.nodeType ? arg : doc.createTextNode(arg)
         )
       }
     }

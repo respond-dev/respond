@@ -4,10 +4,11 @@ import modulesLister from "../../framework/lib/modulesLister"
 import modulesToEsm from "../../framework/lib/modulesToEsm"
 import clientScriptView from "../views/clientScriptView"
 
-export async function exampleLayoutView({
-  output,
-}: LayoutInputType): Promise<LayoutOutputType> {
-  const clientModules = modulesToEsm({
+export async function exampleLayoutView(
+  input: LayoutInputType
+): Promise<LayoutOutputType> {
+  const { output } = input
+  const modules = modulesToEsm({
     ...(await modulesLister(true)),
   })
 
@@ -23,7 +24,7 @@ export async function exampleLayoutView({
       </head>
       <body>
         {output}
-        {clientScriptView(clientModules)}
+        {clientScriptView({ ...input, modules })}
       </body>
     </html>
   )

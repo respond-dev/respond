@@ -1,10 +1,16 @@
 import { ModulesType } from "../../framework/lib/modulesLister"
+import { LayoutInputType } from "../types/layoutTypes"
 import { ViewOutputType } from "../types/viewTypes"
 
+export interface ClientScriptViewInput {
+  modules: ModulesType
+}
+
 export function clientScriptView(
-  modules: ModulesType,
+  input: ClientScriptViewInput & LayoutInputType,
   id = "clientScript"
 ): Promise<ViewOutputType> {
+  const { modules } = input
   return (
     <script
       id={id}
@@ -34,9 +40,9 @@ export function scriptTag(modules: ModulesType): string {
       .then(function ([{ requester }]) {
         const modules = ${modulesJson};
         window.onpopstate = function() {
-          requester(modules, { client: window })
+          requester(modules, { client: true })
         }
-        return requester(modules, { client: window })
+        return requester(modules, { client: true })
       })
   `.replace(/\n\s{4}/gm, "\n")
 }

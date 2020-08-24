@@ -1,9 +1,10 @@
+import { ViewInputType } from "../types/viewTypes"
 import { ViewOutputType } from "../types/viewTypes"
 
 export interface ExampleViewInputType {}
 
 export function exampleView(
-  input: ExampleViewInputType,
+  input: ViewInputType & ExampleViewInputType,
   id = "example"
 ): ViewOutputType {
   return (

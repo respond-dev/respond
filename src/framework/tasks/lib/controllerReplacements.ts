@@ -102,7 +102,7 @@ export function styleCall(name: string): string {
 }
 
 export function emptyViewCall(name: string): string {
-  return `return ${name}View({})`
+  return `return ${name}View(input)`
 }
 
 export function jsonViewCall(): string {
@@ -114,7 +114,7 @@ export function modelJsonViewCall(name: string): string {
 }
 
 export function modelViewCall(name: string): string {
-  return `return ${name}View({ ${name}Data })`
+  return `return ${name}View({ ...input, ${name}Data })`
 }
 
 export default controllerReplacements
