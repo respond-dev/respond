@@ -35,6 +35,16 @@ export async function requester(
       input
     )
 
+    if (phase === "middleware") {
+      for (const object of objects) {
+        for (const key in object) {
+          if (key.match(/final[A-Z]/)) {
+            outputFound = true
+          }
+        }
+      }
+    }
+
     for (const el of outputs) {
       outputFound = true
 
