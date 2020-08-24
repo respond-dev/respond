@@ -1,5 +1,5 @@
-import { ControllerInputType } from "../types/controllerTypes"
-import { ControllerOutputType } from "../types/controllerTypes"
+import { ControllerInputType } from "../../framework/types/controllerTypes"
+import { ControllerOutputType } from "../../framework/types/controllerTypes"
 import exampleView from "../views/exampleView"
 
 export async function exampleController(

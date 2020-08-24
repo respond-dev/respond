@@ -1,4 +1,4 @@
-import { ControllerInputType } from "../../app/types/controllerTypes"
+import { ControllerInputType } from "../types/controllerTypes"
 
 export async function styleInjector(
   input: ControllerInputType,

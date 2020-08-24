@@ -1,6 +1,6 @@
 import { ModulesType } from "../../framework/lib/modulesLister"
-import { LayoutInputType } from "../types/layoutTypes"
-import { ViewOutputType } from "../types/viewTypes"
+import { LayoutInputType } from "../../framework/types/layoutTypes"
+import { ViewOutputType } from "../../framework/types/viewTypes"
 
 export interface ClientScriptViewInput {
   modules: ModulesType

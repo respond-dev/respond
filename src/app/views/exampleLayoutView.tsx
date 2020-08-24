@@ -1,5 +1,5 @@
-import { LayoutInputType } from "../types/layoutTypes"
-import { LayoutOutputType } from "../types/layoutTypes"
+import { LayoutInputType } from "../../framework/types/layoutTypes"
+import { LayoutOutputType } from "../../framework/types/layoutTypes"
 import modulesLister from "../../framework/lib/modulesLister"
 import modulesToEsm from "../../framework/lib/modulesToEsm"
 import clientScriptView from "../views/clientScriptView"

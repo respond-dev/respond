@@ -1,5 +1,5 @@
-import { ViewInputType } from "../types/viewTypes"
-import { ViewOutputType } from "../types/viewTypes"
+import { ViewInputType } from "../../framework/types/viewTypes"
+import { ViewOutputType } from "../../framework/types/viewTypes"
 
 export interface ExampleViewInputType {}
 

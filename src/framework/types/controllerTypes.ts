@@ -1,4 +1,4 @@
-import { RouterInputType } from "../../framework/types/routerTypes"
+import { RouterInputType } from "./routerTypes"
 
 export type ControllerInputType = RouterInputType
 
