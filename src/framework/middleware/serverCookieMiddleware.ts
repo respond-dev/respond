@@ -1,13 +1,13 @@
 import { MiddlewareInputType } from "../types/middlewareTypes"
 import { MiddlewareOutputType } from "../types/middlewareTypes"
-import { assetRegex } from "../lib/assetRequester"
+import assetMatcher from "../lib/assetMatcher"
 import cookie from "cookie"
 
 export function serverCookieMiddleware({
   headers,
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
-  if (url.pathname.match(assetRegex)) {
+  if (assetMatcher(url.pathname)) {
     return
   }
 

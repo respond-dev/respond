@@ -1,22 +1,20 @@
+import { access } from "fs"
+import { constants } from "fs"
+import { createReadStream } from "fs"
+import { readFile } from "fs"
+import { ReadStream } from "fs"
 import { join } from "path"
-import {
-  access,
-  constants,
-  createReadStream,
-  readFile,
-  ReadStream,
-} from "fs"
-
+import assetMatcher from "../lib/assetMatcher"
+import { assetRegex } from "../lib/assetMatcher"
 import { SettlerOutputType } from "../types/settlerTypes"
 
-export const assetRegex = /(.+)(\.(css|js|map|mjs|ts|ttf))$/
 export const preSpaceRegex = /([^\w]|^)/
 
 export async function assetRequester(
   urlPath: string,
   base64 = false
 ): Promise<SettlerOutputType> {
-  const match = urlPath.match(assetRegex)
+  const match = assetMatcher(urlPath)
 
   if (!match || !match[2]) {
     return

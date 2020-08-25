@@ -1,7 +1,6 @@
 import { MiddlewareInputType } from "../types/middlewareTypes"
 import { MiddlewareOutputType } from "../types/middlewareTypes"
-import { assetRegex } from "../lib/assetRequester"
-import domBuilder from "../lib/domBuilder"
+import assetMatcher from "../lib/assetMatcher"
 import elementBuilder from "../lib/elementBuilder"
 
 export async function elementBuilderConstructor({
@@ -10,13 +9,14 @@ export async function elementBuilderConstructor({
 }: MiddlewareInputType): Promise<MiddlewareOutputType> {
   let doc: Document
 
-  if (url.pathname.match(assetRegex)) {
+  if (assetMatcher(url.pathname)) {
     return
   }
 
   if (client) {
     doc = document
   } else {
+    const { domBuilder } = await import("../lib/domBuilder")
     doc = (domBuilder() as unknown) as Document
   }
 

@@ -1,6 +1,6 @@
 import { MiddlewareInputType } from "../types/middlewareTypes"
 import { MiddlewareOutputType } from "../types/middlewareTypes"
-import { assetRegex } from "../lib/assetRequester"
+import assetMatcher from "../lib/assetMatcher"
 import querystring from "querystring"
 
 export function serverQueryMiddleware({
@@ -8,7 +8,7 @@ export function serverQueryMiddleware({
 }: MiddlewareInputType): MiddlewareOutputType {
   if (
     !url.href.includes("?") ||
-    url.pathname.match(assetRegex)
+    assetMatcher(url.pathname)
   ) {
     return
   }

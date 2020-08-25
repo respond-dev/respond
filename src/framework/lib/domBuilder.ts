@@ -297,44 +297,37 @@ export class DomDocument extends DomElement {
   }
 }
 
-export function domBuilder(): () => DomDocument {
-  /** Create a minimally viable DOM DomDocument
-   *	@retur{Document} document
-   */
-  function createDocument() {
-    const document = new DomDocument()
+export function domBuilder(): DomDocument {
+  const document = new DomDocument()
 
-    Object.assign(
+  Object.assign(
+    document,
+    (document.defaultView = {
       document,
-      (document.defaultView = {
-        document,
-        Document: DomDocument,
-        Node: DomNode,
-        Text: DomText,
-        Element: DomElement,
-        SVGElement: DomElement,
-        Event: DomEvent,
-      })
-    )
+      Document: DomDocument,
+      Node: DomNode,
+      Text: DomText,
+      Element: DomElement,
+      SVGElement: DomElement,
+      Event: DomEvent,
+    })
+  )
 
-    document.appendChild(
-      (document.documentElement = document.createElement(
-        "html"
-      ))
-    )
+  document.appendChild(
+    (document.documentElement = document.createElement(
+      "html"
+    ))
+  )
 
-    document.documentElement.appendChild(
-      (document.head = document.createElement("head"))
-    )
+  document.documentElement.appendChild(
+    (document.head = document.createElement("head"))
+  )
 
-    document.documentElement.appendChild(
-      (document.body = document.createElement("body"))
-    )
+  document.documentElement.appendChild(
+    (document.body = document.createElement("body"))
+  )
 
-    return document
-  }
-
-  return createDocument
+  return document
 }
 
-export default domBuilder()
+export default domBuilder
