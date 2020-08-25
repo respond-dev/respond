@@ -9,14 +9,14 @@ import {
 
 import { SettlerOutputType } from "../types/settlerTypes"
 
-export const extRegex = /(.+)(\.[^\.]+)$/
+export const assetRegex = /(.+)(\.(css|js|map|mjs|ts|ttf))$/
 export const preSpaceRegex = /([^\w]|^)/
 
 export async function assetRequester(
   urlPath: string,
   base64 = false
 ): Promise<SettlerOutputType> {
-  const match = urlPath.match(extRegex)
+  const match = urlPath.match(assetRegex)
 
   if (!match || !match[2]) {
     return
@@ -27,7 +27,7 @@ export async function assetRequester(
 
   if (ext === ".map") {
     map = ext
-    ;[, name, ext] = name.match(extRegex)
+    ;[, name, ext] = name.match(assetRegex)
   }
 
   if (ext === ".mjs") {

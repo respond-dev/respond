@@ -1,6 +1,5 @@
 import { APIGatewayProxyEvent } from "aws-lambda"
 import { IncomingMessage } from "http"
-import elementBuilder from "../lib/elementBuilder"
 
 export interface ConstructorInputType {
   client?: boolean
@@ -10,7 +9,4 @@ export interface ConstructorInputType {
 
 export interface ConstructorOutputType {
   constructed?: boolean
-  doc?: Document
-  elementBuilder?: typeof elementBuilder
-  win?: Window
 }
