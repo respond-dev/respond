@@ -2,8 +2,9 @@ import { MiddlewareInputType } from "../types/middlewareTypes"
 import { MiddlewareOutputType } from "../types/middlewareTypes"
 import assetMatcher from "../lib/assetMatcher"
 import elementBuilder from "../lib/elementBuilder"
+import styleInjector from "../lib/styleInjector"
 
-export async function elementBuilderConstructor({
+export async function domConstructor({
   client,
   url,
 }: MiddlewareInputType): Promise<MiddlewareOutputType> {
@@ -21,9 +22,10 @@ export async function elementBuilderConstructor({
   }
 
   return {
-    elementBuilder: elementBuilder.bind(doc),
+    css: styleInjector.bind(doc),
+    el: elementBuilder.bind(doc),
     doc,
   }
 }
 
-export default elementBuilderConstructor
+export default domConstructor

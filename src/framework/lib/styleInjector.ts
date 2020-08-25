@@ -1,10 +1,9 @@
 import { ControllerInputType } from "../types/controllerTypes"
 
 export async function styleInjector(
-  input: ControllerInputType,
   path: string
 ): Promise<void> {
-  const { doc } = input
+  const doc = this as Document
   const link = doc.createElement("link")
 
   link.setAttribute("rel", "stylesheet")

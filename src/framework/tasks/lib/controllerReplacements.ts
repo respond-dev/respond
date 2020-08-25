@@ -98,7 +98,7 @@ export function modelCall(
 }
 
 export function styleCall(name: string): string {
-  return `${name}Style: styleInjector("app/styles/${name}Style")`
+  return `${name}Style: input.css("app/styles/${name}Style")`
 }
 
 export function emptyViewCall(name: string): string {

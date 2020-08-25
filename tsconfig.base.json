@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "importHelpers": true,
     "jsx": "react",
-    "jsxFactory": "input.elementBuilder",
+    "jsxFactory": "input.el",
     "lib": ["dom", "es2015"],
     "moduleResolution": "node",
     "sourceMap": true,

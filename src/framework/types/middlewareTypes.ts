@@ -1,14 +1,16 @@
 import { InitializerInputType } from "./initializerTypes"
 import { InitializerOutputType } from "./initializerTypes"
 import elementBuilder from "../lib/elementBuilder"
+import styleInjector from "../lib/styleInjector"
 
 export type MiddlewareInputType = InitializerInputType &
   InitializerOutputType
 
 export interface MiddlewareOutputType {
   cookies?: Record<string, string>
+  css?: typeof styleInjector
   doc?: Document
-  elementBuilder?: typeof elementBuilder
+  el?: typeof elementBuilder
   form?: {
     files?: Record<
       string,
