@@ -1,3 +1,4 @@
+import { ConstructorInputType } from "../types/constructorTypes"
 import { SettlerInputType } from "../types/settlerTypes"
 import { SettlerOutputType } from "../types/settlerTypes"
 import { ModulesType } from "../lib/modulesLister"
@@ -15,25 +16,57 @@ export const requesterPhases = [
 export type RequesterOutputType = SettlerInputType &
   SettlerOutputType
 
-export let constructorsCalled = false
+export let clientHref: string
+export let clientConstructorsCalled: boolean
+export let clientInitializerObjects: any[]
+export let clientInitializerOutputs: (string | Element)[]
 
 export async function requester(
   modules: ModulesType,
-  input: unknown
+  input: ConstructorInputType
 ): Promise<RequesterOutputType> {
+  const { client } = input
+
   let outputFound = false
 
   for (const phase of requesterPhases) {
-    if (constructorsCalled && phase === "constructors") {
-      continue
+    if (client && phase === "constructors") {
+      if (clientConstructorsCalled) {
+        continue
+      }
+
+      clientConstructorsCalled = true
     }
 
-    constructorsCalled = true
+    const isClientInitializer =
+      client && phase === "initializers"
 
-    const [objects, outputs] = await importRunner(
-      modules[phase],
-      input
-    )
+    const routeChanged =
+      isClientInitializer &&
+      clientHref !== window.location.href
+
+    let objects: any[]
+    let outputs: (string | Element)[]
+
+    if (!isClientInitializer || routeChanged) {
+      ;[objects, outputs] = await importRunner(
+        modules[phase],
+        input
+      )
+
+      if (routeChanged) {
+        clientHref = window.location.href
+        ;[
+          clientInitializerObjects,
+          clientInitializerOutputs,
+        ] = [objects, outputs]
+      }
+    } else if (phase === "initializers") {
+      ;[objects, outputs] = [
+        clientInitializerObjects,
+        clientInitializerOutputs,
+      ]
+    }
 
     if (phase === "middleware") {
       for (const object of objects) {
