@@ -42,7 +42,7 @@ export function scriptTag(modules: ModulesType): string {
         window.onpopstate = function() {
           requester(modules, { client: true })
         }
-        return requester(modules, { client: true })
+        return window.onpopstate()
       })
   `.replace(/\n\s{4}/gm, "\n")
 }
