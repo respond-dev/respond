@@ -1,5 +1,5 @@
-import { InitializerInputType } from "../../framework/types/initializerTypes"
-import { InitializerOutputType } from "../../framework/types/initializerTypes"
+import { InitializerInputType } from "../../lib/respond/types/initializerTypes"
+import { InitializerOutputType } from "../../lib/respond/types/initializerTypes"
 
 export async function exampleInitializer(
   input: InitializerInputType

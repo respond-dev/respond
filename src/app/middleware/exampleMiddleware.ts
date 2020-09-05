@@ -1,5 +1,5 @@
-import { MiddlewareInputType } from "../../framework/types/middlewareTypes"
-import { MiddlewareOutputType } from "../../framework/types/middlewareTypes"
+import { MiddlewareInputType } from "../../lib/respond/types/middlewareTypes"
+import { MiddlewareOutputType } from "../../lib/respond/types/middlewareTypes"
 
 export async function exampleMiddleware(
   input: MiddlewareInputType

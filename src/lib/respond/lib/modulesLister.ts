@@ -1,5 +1,5 @@
 import modulesDirectoryLister from "./modulesDirectoryLister"
-import promiseAll from "../../framework/lib/promiseAll"
+import promiseAll from "./promiseAll"
 
 export interface ModulesType {
   constructors?: string[]

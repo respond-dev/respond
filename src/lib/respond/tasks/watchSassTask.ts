@@ -3,7 +3,7 @@ import chokidar from "chokidar"
 import ptySpawner from "../lib/ptySpawner"
 
 export async function watchSassTask(): Promise<void> {
-  const rootDir = join(__dirname, "../../../")
+  const rootDir = join(__dirname, "../../../../")
   const srcDir = join(rootDir, "src")
 
   chokidar
@@ -24,7 +24,7 @@ export async function watchSassTask(): Promise<void> {
               relPath.replace(ext, "") + ".css"
             ),
           ],
-          cwd: join(__dirname, "../../../"),
+          cwd: join(__dirname, "../../../../"),
           stdout: true,
         })
       }

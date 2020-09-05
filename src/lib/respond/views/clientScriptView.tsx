@@ -1,6 +1,6 @@
-import { ModulesType } from "../../framework/lib/modulesLister"
-import { LayoutInputType } from "../../framework/types/layoutTypes"
-import { ViewOutputType } from "../../framework/types/viewTypes"
+import { ModulesType } from "../lib/modulesLister"
+import { LayoutInputType } from "../types/layoutTypes"
+import { ViewOutputType } from "../types/viewTypes"
 
 export interface ClientScriptViewInput {
   modules: ModulesType
@@ -35,8 +35,8 @@ export function scriptTag(modules: ModulesType): string {
     }
     
     Promise.all([
-      import("/dist-esm/framework/lib/requester.mjs"),
-      import("/dist-esm/framework/lib/remoteCaller.mjs"),
+      import("/dist-esm/lib/respond/lib/requester.mjs"),
+      import("/dist-esm/lib/respond/lib/remoteCaller.mjs"),
       importPaths(modules.constructors),
       importPaths(modules.initializers),
       importPaths(modules.middleware),

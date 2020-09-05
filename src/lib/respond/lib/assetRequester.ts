@@ -34,7 +34,7 @@ export async function assetRequester(
 
   const path = join(
     __dirname,
-    `../../../${name}${ext}${map}`
+    `../../../../${name}${ext}${map}`
   )
 
   const exists = await new Promise((resolve) => {

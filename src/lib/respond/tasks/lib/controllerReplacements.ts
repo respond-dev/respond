@@ -75,7 +75,7 @@ export function controllerReplacements({
 }
 
 export function promiseAllImport(): string {
-  return 'import promiseAll from "../../framework/lib/promiseAll"'
+  return 'import promiseAll from "../../lib/respond/lib/promiseAll"'
 }
 
 export function modelImport(modelName: string): string {
@@ -83,7 +83,7 @@ export function modelImport(modelName: string): string {
 }
 
 export function styleInjectorImport(): string {
-  return 'import styleInjector from "../../framework/lib/styleInjector"'
+  return 'import styleInjector from "../../lib/respond/lib/styleInjector"'
 }
 
 export function viewImport(name: string): string {

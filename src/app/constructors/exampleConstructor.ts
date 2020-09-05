@@ -1,5 +1,5 @@
-import { ConstructorInputType } from "../../framework/types/constructorTypes"
-import { ConstructorOutputType } from "../../framework/types/constructorTypes"
+import { ConstructorInputType } from "../../lib/respond/types/constructorTypes"
+import { ConstructorOutputType } from "../../lib/respond/types/constructorTypes"
 
 export async function exampleConstructor(
   input: ConstructorInputType

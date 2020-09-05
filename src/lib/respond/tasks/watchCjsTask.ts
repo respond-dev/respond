@@ -1,10 +1,10 @@
-import ptySpawner from "../../framework/lib/ptySpawner"
+import ptySpawner from "../lib/ptySpawner"
 import { join } from "path"
 
 export async function watchCjsTask(): Promise<void> {
   await ptySpawner("npx", {
     args: ["tsc", "-p", "src/tsconfig.cjs.json", "-w"],
-    cwd: join(__dirname, "../../../"),
+    cwd: join(__dirname, "../../../../"),
     stdout: true,
   })
 }

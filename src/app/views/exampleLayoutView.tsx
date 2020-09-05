@@ -1,8 +1,8 @@
-import { LayoutInputType } from "../../framework/types/layoutTypes"
-import { LayoutOutputType } from "../../framework/types/layoutTypes"
-import modulesLister from "../../framework/lib/modulesLister"
-import modulesToEsm from "../../framework/lib/modulesToEsm"
-import clientScriptView from "../../framework/views/clientScriptView"
+import { LayoutInputType } from "../../lib/respond/types/layoutTypes"
+import { LayoutOutputType } from "../../lib/respond/types/layoutTypes"
+import modulesLister from "../../lib/respond/lib/modulesLister"
+import modulesToEsm from "../../lib/respond/lib/modulesToEsm"
+import clientScriptView from "../../lib/respond/views/clientScriptView"
 
 export async function exampleLayoutView(
   input: LayoutInputType

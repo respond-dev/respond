@@ -1,6 +1,6 @@
 import { join } from "path"
-import { ControllerInputType } from "../../framework/types/controllerTypes"
-import { ControllerOutputType } from "../../framework/types/controllerTypes"
+import { ControllerInputType } from "../../lib/respond/types/controllerTypes"
+import { ControllerOutputType } from "../../lib/respond/types/controllerTypes"
 
 export const remoteCallerRoute = /\/remote\/([^\.]+).json/
 

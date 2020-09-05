@@ -1,6 +1,6 @@
 import { join, relative } from "path"
-import { deepDirectoryLister } from "../../framework/lib/directoryLister"
-import promiseAll from "../../framework/lib/promiseAll"
+import { deepDirectoryLister } from "./directoryLister"
+import promiseAll from "./promiseAll"
 
 export const clientRegExp = /^((?!(^|\/)(server|example|test)).)*$/
 export const serverRegExp = /^((?!(^|\/)(client|example|test)).)*$/
@@ -15,12 +15,12 @@ export async function modulesDirectoryLister(
 
   const { app, framework } = await promiseAll({
     app: deepDirectoryLister(
-      join(__dirname, "../../app", dirName),
+      join(__dirname, "../../../app", dirName),
       modulesRegExp,
       ".js"
     ),
     framework: deepDirectoryLister(
-      join(__dirname, "../../framework", dirName),
+      join(__dirname, "../../../lib/respond", dirName),
       modulesRegExp,
       ".js"
     ),
@@ -28,7 +28,7 @@ export async function modulesDirectoryLister(
 
   return [...framework.filePaths, ...app.filePaths].map(
     (path) =>
-      "/" + relative(join(__dirname, "../../../"), path)
+      "/" + relative(join(__dirname, "../../../../"), path)
   )
 }
 

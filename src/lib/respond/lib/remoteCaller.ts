@@ -51,7 +51,9 @@ export async function remoteCaller<
 
     return response as PromiseResult<ReturnType<T>>
   } else {
-    return (await import("../../" + path)).default(...input)
+    return (await import("../../../" + path)).default(
+      ...input
+    )
   }
 }
 

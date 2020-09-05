@@ -7,12 +7,12 @@ export async function taskRunner(
 ): Promise<any[]> {
   const tasks = await promiseAll({
     framework: directoryLister(
-      join(__dirname, "../../tasks"),
+      join(__dirname, "../"),
       undefined,
       ".js"
     ),
     src: directoryLister(
-      join(__dirname, "../../../tasks"),
+      join(__dirname, "../../../../tasks"),
       undefined,
       ".js"
     ),

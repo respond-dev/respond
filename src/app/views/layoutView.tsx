@@ -1,8 +1,8 @@
-import { LayoutInputType } from "../../framework/types/layoutTypes"
-import { LayoutOutputType } from "../../framework/types/layoutTypes"
-import modulesLister from "../../framework/lib/modulesLister"
-import modulesToEsm from "../../framework/lib/modulesToEsm"
-import clientScriptView from "../../framework/views/clientScriptView"
+import { LayoutInputType } from "../../lib/respond/types/layoutTypes"
+import { LayoutOutputType } from "../../lib/respond/types/layoutTypes"
+import modulesLister from "../../lib/respond/lib/modulesLister"
+import modulesToEsm from "../../lib/respond/lib/modulesToEsm"
+import clientScriptView from "../../lib/respond/views/clientScriptView"
 
 export async function layoutView(
   input: LayoutInputType
@@ -23,7 +23,7 @@ export async function layoutView(
         <link rel="icon" href="data:," />
         <link
           rel="stylesheet"
-          href="/dist-css/framework/styles/basic.css"
+          href="/dist-css/lib/respond/styles/basic.css"
           type="text/css"
         />
         {doc.head.childNodes}
