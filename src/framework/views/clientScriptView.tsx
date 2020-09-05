@@ -26,29 +26,28 @@ export function scriptTag(modules: ModulesType): string {
   const modulesJson = JSON.stringify(modules)
 
   return /* js */ `
-    Promise.all([
-      ${importCalls([
-        "/dist-esm/framework/lib/requester.mjs",
-        "/dist-esm/framework/lib/remoteCaller.mjs",
-        ...modules.constructors,
-        ...modules.initializers,
-        ...modules.middleware,
-        ...modules.routers,
-        ...modules.settlers,
-      ])}
-    ])
-      .then(function ([{ requester }]) {
-        const modules = ${modulesJson};
-        window.onpopstate = function() {
-          requester(modules, { client: true })
-        }
-        return window.onpopstate()
-      })
-  `.replace(/\n\s{4}/gm, "\n")
-}
+    const modules = ${modulesJson};
 
-export function importCalls(paths: string[]): string {
-  return paths.map((path) => `import("${path}")`).join(", ")
+    function importPaths(paths) {
+      return Promise.all(paths.map(function(path) {
+        return import(path)
+      }))
+    }
+    
+    Promise.all([
+      import("/dist-esm/framework/lib/requester.mjs"),
+      import("/dist-esm/framework/lib/remoteCaller.mjs"),
+      importPaths(modules.constructors),
+      importPaths(modules.initializers),
+      importPaths(modules.middleware),
+      importPaths(modules.routers),
+      importPaths(modules.settlers),
+    ])
+    .then(function ([{ requester }]) {
+      (window.onpopstate = function() {
+        requester(modules, { client: true })
+      })()
+    })`.replace(/^[ ]{4}/gm, "")
 }
 
 export default clientScriptView

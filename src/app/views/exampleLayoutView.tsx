@@ -2,7 +2,7 @@ import { LayoutInputType } from "../../framework/types/layoutTypes"
 import { LayoutOutputType } from "../../framework/types/layoutTypes"
 import modulesLister from "../../framework/lib/modulesLister"
 import modulesToEsm from "../../framework/lib/modulesToEsm"
-import clientScriptView from "../views/clientScriptView"
+import clientScriptView from "../../framework/views/clientScriptView"
 
 export async function exampleLayoutView(
   input: LayoutInputType
@@ -18,7 +18,13 @@ export async function exampleLayoutView(
         <meta charset="utf-8" />
         <meta
           name="viewport"
-          content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height"
+          content={[
+            "user-scalable=0",
+            "initial-scale=1",
+            "minimum-scale=1",
+            "width=device-width",
+            "height=device-height",
+          ].join(",")}
         />
         <link rel="icon" href="data:," />
       </head>
