@@ -11,7 +11,7 @@ export type RoutesType = RouteType[]
 
 export async function routeSelector(
   input: RouterInputType,
-  routes: RoutesType
+  ...routes: RoutesType
 ): Promise<any[]> {
   const imports = await Promise.all(
     routes

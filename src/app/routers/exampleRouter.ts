@@ -6,9 +6,10 @@ import { RouterOutputType } from "../../lib/respond/types/routerTypes"
 export async function exampleRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  const output = await routeSelector(input, [
-    remoteModelRoute("app/models"),
-  ])
+  const output = await routeSelector(
+    input,
+    remoteModelRoute("app/models")
+  )
 
   return { output }
 }
