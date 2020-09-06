@@ -35,8 +35,10 @@ export async function layoutView(
         {doc.head.childNodes}
       </head>
       <body>
-        {output}
-        {clientScriptView({ ...input, modules })}
+        <main>
+          {output}
+          {clientScriptView({ ...input, modules })}
+        </main>
       </body>
     </html>
   )
