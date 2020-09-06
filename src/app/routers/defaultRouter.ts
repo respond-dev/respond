@@ -1,6 +1,6 @@
-import { RouterInputType } from "../../framework/types/routerTypes"
-import { RouterOutputType } from "../../framework/types/routerTypes"
-import routeSelector from "../../framework/lib/routeSelector"
+import { RouterInputType } from "../../lib/respond/types/routerTypes"
+import { RouterOutputType } from "../../lib/respond/types/routerTypes"
+import routeSelector from "../../lib/respond/lib/routeSelector"
 
 export async function defaultRouter(
   input: RouterInputType

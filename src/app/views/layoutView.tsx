@@ -18,7 +18,13 @@ export async function layoutView(
         <meta charset="utf-8" />
         <meta
           name="viewport"
-          content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height"
+          content={[
+            "user-scalable=0",
+            "initial-scale=1",
+            "minimum-scale=1",
+            "width=device-width",
+            "height=device-height",
+          ].join(",")}
         />
         <link rel="icon" href="data:," />
         <link
@@ -29,10 +35,8 @@ export async function layoutView(
         {doc.head.childNodes}
       </head>
       <body>
-        <main>
-          {output}
-          {clientScriptView({ ...input, modules })}
-        </main>
+        {output}
+        {clientScriptView({ ...input, modules })}
       </body>
     </html>
   )
