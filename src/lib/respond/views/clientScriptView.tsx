@@ -36,7 +36,7 @@ export function scriptTag(modules: ModulesType): string {
     
     Promise.all([
       import("/dist-esm/lib/respond/lib/requester.mjs"),
-      import("/dist-esm/lib/respond/lib/remoteCaller.mjs"),
+      import("/dist-esm/lib/respond/lib/remoteModelRequester.mjs"),
       importPaths(modules.constructors),
       importPaths(modules.initializers),
       importPaths(modules.middleware),

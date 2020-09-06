@@ -1,12 +1,13 @@
+import remoteModelRoute from "../../lib/respond/lib/remoteModelRoute"
+import routeSelector from "../../lib/respond/lib/routeSelector"
 import { RouterInputType } from "../../lib/respond/types/routerTypes"
 import { RouterOutputType } from "../../lib/respond/types/routerTypes"
-import routeSelector from "../../lib/respond/lib/routeSelector"
 
 export async function defaultRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
   const output = await routeSelector(input, [
-    [/\/remote\/[^.]+.json/, "remoteCaller"],
+    remoteModelRoute("app/models"),
   ])
 
   return { output }

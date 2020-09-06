@@ -1,11 +1,14 @@
+import remoteModelRoute from "../../lib/respond/lib/remoteModelRoute"
+import routeSelector from "../../lib/respond/lib/routeSelector"
 import { RouterInputType } from "../../lib/respond/types/routerTypes"
 import { RouterOutputType } from "../../lib/respond/types/routerTypes"
-import routeSelector from "../../lib/respond/lib/routeSelector"
 
 export async function exampleRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  const output = await routeSelector(input, [])
+  const output = await routeSelector(input, [
+    remoteModelRoute("app/models"),
+  ])
 
   return { output }
 }

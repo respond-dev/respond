@@ -1,10 +1,13 @@
 import { RouterInputType } from "../types/routerTypes"
 
-export type RoutesType = [
-  string | RegExp, // matcher
-  string, // controller
-  string? // layout
-][]
+export interface RouteType {
+  matcher: string | RegExp
+  controller: string
+  layoutView?: string
+  extraInput?: Record<string, any>
+}
+
+export type RoutesType = RouteType[]
 
 export async function routeSelector(
   input: RouterInputType,
@@ -12,32 +15,44 @@ export async function routeSelector(
 ): Promise<any[]> {
   const imports = await Promise.all(
     routes
-      .filter(([matcher]) => {
+      .filter(({ matcher }) => {
         if (typeof matcher === "string") {
           return input.url.pathname === matcher
         } else {
           return input.url.pathname.match(matcher)
         }
       })
-      .map(([, name, layout]) => {
-        const path = `../../../app/controllers/${name}Controller`
-        const layoutPath = `../../../app/views/${layout}View`
+      .map(({ controller, layoutView, extraInput }) => {
+        const path = `../../../${controller}Controller`
+        const layoutPath = `../../../${layoutView}View`
 
-        if (!input.client && layout) {
+        if (!input.client && layoutView) {
           return Promise.all([
             import(path + ""),
             import(layoutPath + ""),
+            extraInput,
           ])
         } else {
-          return Promise.all([import(path + "")])
+          return Promise.all([
+            import(path + ""),
+            null,
+            extraInput,
+          ])
         }
       })
   )
 
   return await Promise.all(
     imports.map(
-      async ([{ default: component }, layoutImport]) => {
-        const output = await component(input)
+      async ([
+        { default: component },
+        layoutImport,
+        extraInput,
+      ]) => {
+        const output = await component({
+          ...input,
+          ...extraInput,
+        })
 
         if (layoutImport) {
           return layoutImport.default({ ...input, output })

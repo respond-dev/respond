@@ -134,7 +134,9 @@ export function replaceServerFunctions(
       const [, space, name] = str.match(
         /([^\w]|^)(server[A-Z][a-zA-Z]+)\(/
       )
-      return space + `window.remoteCaller("${name}", `
+      return (
+        space + `window.remoteModelRequester("${name}", `
+      )
     }
   )
 }
