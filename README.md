@@ -54,11 +54,11 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-&emsp;[📁**constructors**](src/constructors) — Builds input for initializers, only runs once<br/>
-&emsp;[📁**initializers**](src/initializers) — Builds input for middleware, only runs when route changes<br/>
-&emsp;[📁**middleware**](src/middleware) — Builds input for routers, runs on every request<br/>
-&emsp;[📁**routers**](src/routers) — Returns an element or string, runs on every request<br/>
-&emsp;[📁**settlers**](src/settlers) — Settles the final output, runs on every request
+&emsp;[📁 **constructors**](src/constructors) — Builds input for initializers, only runs once<br/>
+&emsp;[📁 **initializers**](src/initializers) — Builds input for middleware, only runs when route changes<br/>
+&emsp;[📁 **middleware**](src/middleware) — Builds input for routers, runs on every request<br/>
+&emsp;[📁 **routers**](src/routers) — Returns an element or string, runs on every request<br/>
+&emsp;[📁 **settlers**](src/settlers) — Settles the final output, runs on every request
 
 Each source file of each directory has a default export function. Each function executes in parallel during each phase of the pipeline, building the input for the next phase of the pipeline.
 
