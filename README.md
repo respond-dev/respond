@@ -44,7 +44,7 @@ Press `<enter>` at each prompt to accept the defaults. You'll notice some update
 
 &emsp;[📁 **controllers**](src/controllers)/homeController.ts<br/>
 &emsp;[📁 **models**](src/models)/homeModel.ts<br/>
-&emsp;[📁 **routers**](src/routers)/defaultRouter.ts<br/>
+&emsp;[📁 **routers**](src/routers)/router.ts<br/>
 &emsp;[📁 **styles**](src/styles)/homeStyle.scss<br/>
 &emsp;[📁 **views**](src/views)/homeView.ts
 
