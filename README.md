@@ -42,7 +42,7 @@ npm run generate
 
 Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
 
-&emsp;[📁 app/controllers](src/app/controllers)/homeController.ts<br/>&emsp;[📁 app/models](src/app/models)/homeModel.ts<br/>&emsp;[📁 app/routers](src/app/routers)/defaultRouter.ts<br/>&emsp;[📁 app/styles](src/app/styles)/homeStyle.scss<br/>&emsp;[📁 app/views](src/app/views)/homeView.ts
+&emsp;[📁 controllers](src/controllers)/homeController.ts<br/>&emsp;[📁 models](src/models)/homeModel.ts<br/>&emsp;[📁 routers](src/routers)/defaultRouter.ts<br/>&emsp;[📁 styles](src/styles)/homeStyle.scss<br/>&emsp;[📁 views](src/views)/homeView.ts
 
 Visit <http://localhost:3000> to view your new page.
 
@@ -50,14 +50,14 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-1. **constructors** — Builds input for initializers, only runs once<br/>&emsp;[📁 app/constructors](src/app/constructors)<br/>&emsp;[📁 lib/respond/constructors](src/lib/respond/constructors)
-2. **initializers** — Builds input for middleware, only runs when route changes<br/>&emsp;[📁 app/initializers](src/app/initializers)<br/>&emsp;[📁 lib/respond/initializers](src/lib/respond/initializers)
-3. **middleware** — Builds input for routers, runs on every request<br/>&emsp;[📁 app/middleware](src/app/middleware)<br/>&emsp;[📁 lib/respond/middleware](src/lib/respond/middleware)
-4. **routers** — Returns an element or string, runs on every request<br/>&emsp;[📁 app/routers](src/app/routers)
-5. **settlers** — Settles the final output, runs on every request<br/>&emsp;[📁 app/settlers](src/app/settlers)<br/>&emsp;[📁 lib/respond/settlers](src/lib/respond/settlers)
+1. **constructors** — Builds input for initializers, only runs once<br/>&emsp;[📁 constructors](src/constructors)
+2. **initializers** — Builds input for middleware, only runs when route changes<br/>&emsp;[📁 initializers](src/initializers)
+3. **middleware** — Builds input for routers, runs on every request<br/>&emsp;[📁 middleware](src/middleware)
+4. **routers** — Returns an element or string, runs on every request<br/>&emsp;[📁 routers](src/routers)
+5. **settlers** — Settles the final output, runs on every request<br/>&emsp;[📁 settlers](src/settlers)
 
 Each source file of each directory has a default export function. Each function executes in parallel during each phase of the pipeline, building the input for the next phase of the pipeline.
 
-The input and output types for each phase are centrally located in [📁 lib/respond/types](src/lib/respond/types).
+The input and output types for each phase are centrally located in [📁 types/respond](src/types/respond).
 
 If a source file begins with `client` or `server`, it will only execute on that environment.
