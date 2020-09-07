@@ -1,16 +1,16 @@
 import { ViewInputType } from "../../lib/respond/types/viewTypes"
 import { ViewOutputType } from "../../lib/respond/types/viewTypes"
 
-export interface ExampleViewInputType {}
+export interface RespondViewInputType {}
 
-export function exampleView(
-  input: ViewInputType & ExampleViewInputType,
-  id = "example"
+export function respondView(
+  input: ViewInputType & RespondViewInputType,
+  id = "respond"
 ): ViewOutputType {
   return (
     <div id={id}>
       <h1>
-        <a href="/example">Example</a>
+        <a href="/respond">Respond</a>
       </h1>
       Rendered on{" "}
       {typeof history !== "undefined" ? "client" : "server"}
@@ -19,4 +19,4 @@ export function exampleView(
   )
 }
 
-export default exampleView
+export default respondView

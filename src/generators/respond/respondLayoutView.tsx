@@ -4,7 +4,7 @@ import modulesLister from "../../lib/respond/lib/modulesLister"
 import modulesToEsm from "../../lib/respond/lib/modulesToEsm"
 import clientScriptView from "../../lib/respond/views/clientScriptView"
 
-export async function exampleLayoutView(
+export async function respondLayoutView(
   input: LayoutInputType
 ): Promise<LayoutOutputType> {
   const { output } = input
@@ -36,4 +36,4 @@ export async function exampleLayoutView(
   )
 }
 
-export default exampleLayoutView
+export default respondLayoutView

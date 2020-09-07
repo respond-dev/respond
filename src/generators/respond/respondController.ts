@@ -1,11 +1,11 @@
 import { ControllerInputType } from "../../lib/respond/types/controllerTypes"
 import { ControllerOutputType } from "../../lib/respond/types/controllerTypes"
-import exampleView from "../views/exampleView"
+import respondView from "../views/respondView"
 
-export async function exampleController(
+export async function respondController(
   input: ControllerInputType
 ): Promise<ControllerOutputType> {
-  return exampleView(input)
+  return respondView(input)
 }
 
-export default exampleController
+export default respondController
