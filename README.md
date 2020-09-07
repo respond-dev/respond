@@ -62,6 +62,6 @@ There are five successive phases of the universal request pipeline. Each pipelin
 
 Each source file of each directory has a default export function. Each function executes in parallel during each phase of the pipeline, building the input for the next phase of the pipeline.
 
-The input and output types for each phase are centrally located in [📁 types/respond](src/types/respond).
+The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
 
 If a source file begins with `client` or `server`, it will only execute on that environment.
