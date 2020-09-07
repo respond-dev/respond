@@ -42,7 +42,7 @@ npm run generate
 
 Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
 
-&emsp;[📁 controllers](src/controllers)/homeController.ts<br/>&emsp;[📁 models](src/models)/homeModel.ts<br/>&emsp;[📁 routers](src/routers)/defaultRouter.ts<br/>&emsp;[📁 styles](src/styles)/homeStyle.scss<br/>&emsp;[📁 views](src/views)/homeView.ts
+&emsp;[📁 **controllers**](src/controllers)/homeController.ts<br/>&emsp;[📁 **models**](src/models)/homeModel.ts<br/>&emsp;[📁 **routers**](src/routers)/defaultRouter.ts<br/>&emsp;[📁 **styles**](src/styles)/homeStyle.scss<br/>&emsp;[📁 **views**](src/views)/homeView.ts
 
 Visit <http://localhost:3000> to view your new page.
 
@@ -50,11 +50,11 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-1. [**constructors**](src/constructors) — Builds input for initializers, only runs once
-2. [**initializers**](src/initializers) — Builds input for middleware, only runs when route changes
-3. [**middleware**](src/middleware) — Builds input for routers, runs on every request
-4. [**routers**](src/routers) — Returns an element or string, runs on every request
-5. [**settlers**](src/settlers) — Settles the final output, runs on every request
+&emsp;[📁**constructors**](src/constructors) — Builds input for initializers, only runs once
+&emsp;[📁**initializers**](src/initializers) — Builds input for middleware, only runs when route changes
+&emsp;[📁**middleware**](src/middleware) — Builds input for routers, runs on every request
+&emsp;[📁**routers**](src/routers) — Returns an element or string, runs on every request
+&emsp;[📁**settlers**](src/settlers) — Settles the final output, runs on every request
 
 Each source file of each directory has a default export function. Each function executes in parallel during each phase of the pipeline, building the input for the next phase of the pipeline.
 
