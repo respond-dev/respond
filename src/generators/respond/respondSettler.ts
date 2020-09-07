@@ -1,5 +1,5 @@
-import { SettlerInputType } from "../../lib/respond/types/settlerTypes"
-import { SettlerOutputType } from "../../lib/respond/types/settlerTypes"
+import { SettlerInputType } from "../../types/respond/settlerTypes"
+import { SettlerOutputType } from "../../types/respond/settlerTypes"
 
 export async function respondSettler(
   input: SettlerInputType

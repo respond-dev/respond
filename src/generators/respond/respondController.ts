@@ -1,6 +1,6 @@
-import { ControllerInputType } from "../../lib/respond/types/controllerTypes"
-import { ControllerOutputType } from "../../lib/respond/types/controllerTypes"
-import respondView from "../views/respondView"
+import { ControllerInputType } from "../../types/respond/controllerTypes"
+import { ControllerOutputType } from "../../types/respond/controllerTypes"
+import respondView from "./respondView"
 
 export async function respondController(
   input: ControllerInputType

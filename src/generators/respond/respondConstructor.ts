@@ -1,5 +1,5 @@
-import { ConstructorInputType } from "../../lib/respond/types/constructorTypes"
-import { ConstructorOutputType } from "../../lib/respond/types/constructorTypes"
+import { ConstructorInputType } from "../../types/respond/constructorTypes"
+import { ConstructorOutputType } from "../../types/respond/constructorTypes"
 
 export async function respondConstructor(
   input: ConstructorInputType

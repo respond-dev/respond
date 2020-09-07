@@ -1,5 +1,5 @@
-import { ViewInputType } from "../../lib/respond/types/viewTypes"
-import { ViewOutputType } from "../../lib/respond/types/viewTypes"
+import { ViewInputType } from "../../types/respond/viewTypes"
+import { ViewOutputType } from "../../types/respond/viewTypes"
 
 export interface RespondViewInputType {}
 

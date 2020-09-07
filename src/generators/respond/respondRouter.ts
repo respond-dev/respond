@@ -1,7 +1,7 @@
-import remoteModelRoute from "../../lib/respond/lib/remoteModelRoute"
-import routeSelector from "../../lib/respond/lib/routeSelector"
-import { RouterInputType } from "../../lib/respond/types/routerTypes"
-import { RouterOutputType } from "../../lib/respond/types/routerTypes"
+import remoteModelRoute from "../../lib/respond/remoteModelRoute"
+import routeSelector from "../../lib/respond/routeSelector"
+import { RouterInputType } from "../../types/respond/routerTypes"
+import { RouterOutputType } from "../../types/respond/routerTypes"
 
 export async function respondRouter(
   input: RouterInputType
