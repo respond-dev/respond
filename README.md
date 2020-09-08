@@ -68,7 +68,7 @@ Server side requests begin with a HTTP handler callback (Node, Lambda, or otherw
 
 Client side requests begin with a page load, a link click, or a `window.history.pushState` call. The `constructors` phase executes only on initial page load, at the very beginning of the SPA session. The `initializers` phase executes only when the route changes. The rest of the phases (`middleware`, `routers`, `settlers`) execute for all requests, and receive cached input in the case that an earlier phase did not execute. Filenames that begin with `server` are ignored on the client side.
 
-Source files without `client` or `server` at the beginning are considered universal.
+Request pipeline filenames that do not begin with `client` or `server` are considered universal.
 
 | Request phase                             | Server execution | Client execution                        |
 | :---------------------------------------- | :--------------- | :-------------------------------------- |
