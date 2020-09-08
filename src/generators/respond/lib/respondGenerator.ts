@@ -84,7 +84,7 @@ export async function generateTask(): Promise<void> {
 
   for (const generator of generators) {
     const relPath = pathMap[generator]
-    const srcPath = join(__dirname, "../", relPath)
+    const srcPath = join(__dirname, "../../", relPath)
 
     const isModel = generator === "model"
 
