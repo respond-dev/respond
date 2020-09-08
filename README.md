@@ -54,14 +54,26 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-&emsp;① [📁 **constructors**](src/constructors) — Builds input for initializers, only runs once<br/>
-&emsp;② [📁 **initializers**](src/initializers) — Builds input for middleware, only runs when route changes<br/>
-&emsp;③ [📁 **middleware**](src/middleware) — Builds input for routers, runs on every request<br/>
-&emsp;④ [📁 **routers**](src/routers) — Returns an element or string, runs on every request<br/>
-&emsp;⑤ [📁 **settlers**](src/settlers) — Settles the final output, runs on every request
+&emsp;① [📁 **constructors**](src/constructors) — Builds input for initializers<br/>
+&emsp;② [📁 **initializers**](src/initializers) — Builds input for middleware<br/>
+&emsp;③ [📁 **middleware**](src/middleware) — Builds input for routers<br/>
+&emsp;④ [📁 **routers**](src/routers) — Returns an element or string<br/>
+&emsp;⑤ [📁 **settlers**](src/settlers) — Settles the final output
 
-On each request, the functions of the `constructors` phase execute in parallel, and their output combines to produce the input for the `initializers` phase (and so on).
+> ℹ️ The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
 
-The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
+## Differentiating between server and client
 
-If a source file begins with `client` or `server`, it will only execute on that environment.
+Server side requests execute every phase of the pipeline, ignoring source files whose name begins with `client`.
+
+On the client, the `constructors` phase only ever executes once on page load, and the `initializers` phase is only called when the route changes. The rest of the phases always execute, whether for a page load, a link click, or a `window.history.pushState` call. Source files that begin with `server` are ignored on the client side.
+
+Source files without `client` or `server` at the beginning are considered universal.
+
+| Phase                                   | Server execution | Client execution                        |
+| --------------------------------------- | ---------------- | --------------------------------------- |
+| [📁 **constructors**](src/constructors) | Every request    | On page load (beginning of SPA session) |
+| [📁 **initializers**](src/initializers) | Every request    | On route change                         |
+| [📁 **middleware**](src/middleware)     | Every request    | Every request                           |
+| [📁 **routers**](src/routers)           | Every request    | Every request                           |
+| [📁 **settlers**](src/settlers)         | Every request    | Every request                           |
