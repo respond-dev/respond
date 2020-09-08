@@ -60,7 +60,7 @@ There are five successive phases of the universal request pipeline. Each pipelin
 &emsp;④ [📁 **routers**](src/routers) — Returns an element or string, runs on every request<br/>
 &emsp;⑤ [📁 **settlers**](src/settlers) — Settles the final output, runs on every request
 
-On each request, the functions of the `constructors` phase execute in parallel, producing the input for execution of `initializers`, and so on.
+On each request, the functions of the `constructors` phase execute in parallel, and the output combines to produce the input for the `initializers` phase (and so on).
 
 The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
 
