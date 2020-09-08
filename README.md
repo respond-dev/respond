@@ -70,10 +70,10 @@ Client side requests begin with a page load, a link click, or a `window.history.
 
 Source files without `client` or `server` at the beginning are considered universal.
 
-| Request phase                           | Server execution | Client execution                        |
-| :-------------------------------------- | :--------------- | :-------------------------------------- |
-| [📁 **constructors**](src/constructors) | Every request    | On page load (beginning of SPA session) |
-| [📁 **initializers**](src/initializers) | Every request    | On route change                         |
-| [📁 **middleware**](src/middleware)     | Every request    | Every request                           |
-| [📁 **routers**](src/routers)           | Every request    | Every request                           |
-| [📁 **settlers**](src/settlers)         | Every request    | Every request                           |
+| Request phase                             | Server execution | Client execution                        |
+| :---------------------------------------- | :--------------- | :-------------------------------------- |
+| ① [📁 **constructors**](src/constructors) | Every request    | On page load (beginning of SPA session) |
+| ② [📁 **initializers**](src/initializers) | Every request    | On route change                         |
+| ③ [📁 **middleware**](src/middleware)     | Every request    | Every request                           |
+| ④ [📁 **routers**](src/routers)           | Every request    | Every request                           |
+| ⑤ [📁 **settlers**](src/settlers)         | Every request    | Every request                           |
