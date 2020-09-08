@@ -7,18 +7,18 @@ import viewReplacements from "./viewReplacements"
 import { ReplacementOutputType } from "../types/replacementTypes"
 
 const pathMap = {
-  constructor: "respondConstructor.ts",
-  controller: "respondController.ts",
-  initializer: "respondInitializer.ts",
-  layout: "respondLayoutView.tsx",
-  middleware: "respondMiddleware.ts",
-  model: "respondModel.ts",
-  router: "respondRouter.ts",
-  route: "defaultRouter.ts",
-  settler: "respondSettler.ts",
-  style: "respondStyle.scss",
-  task: "respondTask.ts",
-  view: "respondView.tsx",
+  constructor: "constructors/respondConstructor.ts",
+  controller: "controllers/respondController.ts",
+  initializer: "initializers/respondInitializer.ts",
+  layout: "views/respondLayoutView.tsx",
+  middleware: "middleware/respondMiddleware.ts",
+  model: "models/respondModel.ts",
+  router: "routers/respondRouter.ts",
+  route: "routers/router.ts",
+  settler: "settlers/respondSettler.ts",
+  style: "styles/respondStyle.scss",
+  task: "tasks/respondTask.ts",
+  view: "views/respondView.tsx",
 }
 
 export async function generateTask(): Promise<void> {
