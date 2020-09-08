@@ -1,6 +1,6 @@
 import expect from "../../lib/respond/expect"
 
-describe("example", () => {
+describe("exampleSpec", () => {
   it("expects", async () => {
     expect(true).toBeTruthy()
   })

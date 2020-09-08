@@ -1,5 +1,7 @@
+import { ModulesType } from "./modulesLister"
+
 export function modulesToEsm(
-  modules: Record<string, string[]>
+  modules: ModulesType
 ): Record<string, string[]> {
   const esm = {}
 

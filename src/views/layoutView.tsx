@@ -8,9 +8,7 @@ export async function layoutView(
   input: LayoutInputType
 ): Promise<LayoutOutputType> {
   const { doc, output } = input
-  const modules = modulesToEsm({
-    ...(await modulesLister(true)),
-  })
+  const modules = modulesToEsm(await modulesLister(true))
 
   return (
     <html>

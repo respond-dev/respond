@@ -8,15 +8,12 @@ export function routeReplacements({
 }: ReplacementInputType): void {
   const hasView = generators.includes("view")
 
-  const remoteModelRouteCall =
-    'remoteModelRoute("app/models"),,'
-
   replacements.push([
-    remoteModelRouteCall,
-    `${remoteModelRouteCall}\n    ["${routePath}", "${name}"${
-      hasView ? ', "layout"' : ""
-    }],`,
-    (body) => !body.includes(`["${routePath}"`),
+    "remoteModelRoute",
+    `remoteModelRoute,\n    { matcher: "${routePath}", controller: "${name}"${
+      hasView ? ', layoutView: "layout"' : ""
+    } },`,
+    (body) => !body.includes(`{ matcher: "${routePath}"`),
   ])
 }
 

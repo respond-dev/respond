@@ -27,7 +27,7 @@ export function viewReplacements({
 }
 
 export function viewImport(): string {
-  return 'import { ViewOutputType } from "../../types/respond/viewTypes"'
+  return 'import { ViewOutputType } from "../types/respond/viewTypes"'
 }
 
 export function viewInputType(

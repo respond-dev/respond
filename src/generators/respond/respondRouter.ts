@@ -8,10 +8,12 @@ export async function respondRouter(
 ): Promise<RouterOutputType> {
   const output = await routeSelector(
     input,
-    remoteModelRoute("app/models")
+    remoteModelRoute
   )
 
-  return { output }
+  if (output) {
+    return { output }
+  }
 }
 
 export default respondRouter
