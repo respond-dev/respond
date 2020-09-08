@@ -71,7 +71,7 @@ On the client, the `constructors` phase only ever executes once on page load, an
 Source files without `client` or `server` at the beginning are considered universal.
 
 | Phase                                   | Server execution | Client execution                        |
-| --------------------------------------- | ---------------- | --------------------------------------- |
+| :-------------------------------------- | :--------------- | :-------------------------------------- |
 | [📁 **constructors**](src/constructors) | Every request    | On page load (beginning of SPA session) |
 | [📁 **initializers**](src/initializers) | Every request    | On route change                         |
 | [📁 **middleware**](src/middleware)     | Every request    | Every request                           |
