@@ -64,9 +64,9 @@ There are five successive phases of the universal request pipeline. Each pipelin
 
 ## Server and client differences
 
-Server side requests begin with a HTTP handler callback (Node, Lambda, or otherwise). Every phase of the pipeline executes each server side request. Source files whose names begins with `client` are ignored on the server side.
+Server side requests begin with a HTTP handler callback (Node, Lambda, or otherwise). All phases of the request pipeline execute for server side requests. Filenames that begin with `client` are ignored on the server side.
 
-Client side requests begin with a page load, a link click, or a `window.history.pushState` call. The `constructors` phase executes only on initial page load, at the very beginning of the SPA session. The `initializers` phase executes only when the route changes. The rest of the phases (`middleware`, `routers`, `settlers`) execute for all requests, and receive cached input in the case that an earlier phase did not execute. Source files whose names begin with `server` are ignored on the client side.
+Client side requests begin with a page load, a link click, or a `window.history.pushState` call. The `constructors` phase executes only on initial page load, at the very beginning of the SPA session. The `initializers` phase executes only when the route changes. The rest of the phases (`middleware`, `routers`, `settlers`) execute for all requests, and receive cached input in the case that an earlier phase did not execute. Filenames that begin with `server` are ignored on the client side.
 
 Source files without `client` or `server` at the beginning are considered universal.
 
