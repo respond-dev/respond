@@ -43,7 +43,7 @@ export function controllerReplacements({
   }
 
   replacements.push([
-    viewImport(name),
+    generatorViewImport(name),
     [...frameworkImports.sort(), ...appImports.sort()].join(
       "\n"
     ),
@@ -86,6 +86,10 @@ export function styleInjectorImport(): string {
   return 'import styleInjector from "../lib/respond/styleInjector"'
 }
 
+export function generatorViewImport(name: string): string {
+  return `import ${name}View from "./${name}View"`
+}
+
 export function viewImport(name: string): string {
   return `import ${name}View from "../views/${name}View"`
 }
@@ -98,7 +102,7 @@ export function modelCall(
 }
 
 export function styleCall(name: string): string {
-  return `${name}Style: input.css("styles/${name}Style")`
+  return `${name}Style: styleInjector("styles/${name}Style")`
 }
 
 export function emptyViewCall(name: string): string {

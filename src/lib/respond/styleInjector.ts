@@ -1,5 +1,3 @@
-import { ControllerInputType } from "../../types/respond/controllerTypes"
-
 export async function styleInjector(
   path: string
 ): Promise<void> {

@@ -82,11 +82,23 @@ export async function generateTask(): Promise<void> {
   const upperName =
     name.charAt(0).toUpperCase() + name.slice(1)
 
+  const srcDirPath = join(__dirname, "../../../../src")
+  const routerPath = join(srcDirPath, "routers/router.ts")
+  const generatorsPath = join(
+    srcDirPath,
+    "generators/respond"
+  )
+
   for (const generator of generators) {
     const relPath = pathMap[generator]
-    const srcPath = join(__dirname, "../../", relPath)
+    const basename = relPath.split("/")[1]
 
     const isModel = generator === "model"
+    const isRoute = generator === "route"
+
+    const srcPath = isRoute
+      ? routerPath
+      : join(generatorsPath, basename)
 
     const modelName =
       modelType === "universal"
@@ -96,14 +108,22 @@ export async function generateTask(): Promise<void> {
     const upperModelName =
       modelName.charAt(0).toUpperCase() + modelName.slice(1)
 
-    const destPath = srcPath.replace(
-      /respond/,
-      isModel ? modelName : name
+    const destPath = join(
+      srcDirPath,
+      relPath.replace(/respond/, isModel ? modelName : name)
     )
 
     const replacements: ReplacementOutputType = [
+      [/\.\.\/\.\.\//g, "../"],
       [/\"\/respond\"/g, `"${routePath}"`],
       [/respond/g, isModel ? modelName : name],
+      [
+        new RegExp(
+          "/" + (isModel ? modelName : name) + "/",
+          "g"
+        ),
+        "/respond/",
+      ],
       [/Respond/g, isModel ? upperModelName : upperName],
     ]
 
