@@ -11,7 +11,7 @@ export async function importRunner(
     paths.map(
       async (path): Promise<void> => {
         const importPath = isBrowser
-          ? path
+          ? "/dist-esm" + path
           : __dirname + "/../.." + path
 
         const { default: fn } = await import(importPath)

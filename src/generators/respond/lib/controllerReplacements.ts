@@ -28,7 +28,6 @@ export function controllerReplacements({
   }
 
   if (generators.includes("style")) {
-    frameworkImports.push(styleInjectorImport())
     calls.push(styleCall(name))
   }
 
@@ -102,7 +101,7 @@ export function modelCall(
 }
 
 export function styleCall(name: string): string {
-  return `${name}Style: styleInjector("styles/${name}Style")`
+  return `${name}Style: input.css("styles/${name}Style")`
 }
 
 export function emptyViewCall(name: string): string {

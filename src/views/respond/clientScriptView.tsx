@@ -30,20 +30,22 @@ export function scriptTag(modules: ModulesType): string {
 
     function importPaths(paths) {
       return Promise.all(paths.map(function(path) {
-        return import(path)
+        return import("/dist-esm/" + path)
       }))
     }
     
     Promise.all([
-      import("/dist-esm/lib/respond/lib/requester.mjs"),
-      import("/dist-esm/lib/respond/lib/remoteModelRequester.mjs"),
+      importPaths([
+        "/lib/respond/requester.mjs",
+        "/lib/respond/remoteModelRequester.mjs"
+      ]),
       importPaths(modules.constructors),
       importPaths(modules.initializers),
       importPaths(modules.middleware),
       importPaths(modules.routers),
       importPaths(modules.settlers),
     ])
-    .then(function ([{ requester }]) {
+    .then(function ([[{ requester }]]) {
       (window.onpopstate = function() {
         requester(modules, { client: true })
       })()
