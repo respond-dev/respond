@@ -62,15 +62,15 @@ There are five successive phases of the universal request pipeline. Each pipelin
 
 > ℹ️ The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
 
-## Differentiating between server and client
+## Server and client differences
 
-Server side requests execute every phase of the pipeline, ignoring source files whose name begins with `client`.
+Server side requests begin with a HTTP handler callback (Node, Lambda, or otherwise). Every phase of the pipeline is executed on each server side request, ignoring source files whose name begins with `client`.
 
-On the client, the `constructors` phase only ever executes once on page load, and the `initializers` phase is only called when the route changes. The rest of the phases always execute, whether for a page load, a link click, or a `window.history.pushState` call. Source files that begin with `server` are ignored on the client side.
+Client side requests begin with a page load, a link click, or a `window.history.pushState` call. The `constructors` phase executes only on initial page load, at the very beginning of the SPA session. The `initializers` phase executes only when the route changes. The rest of the phases (`middleware`, `routers`, `settlers`) execute for all requests, and receive cached input in the case that an earlier phase did not execute. Source files that begin with `server` are ignored on the client side.
 
 Source files without `client` or `server` at the beginning are considered universal.
 
-| Phase                                   | Server execution | Client execution                        |
+| Request phase                           | Server execution | Client execution                        |
 | :-------------------------------------- | :--------------- | :-------------------------------------- |
 | [📁 **constructors**](src/constructors) | Every request    | On page load (beginning of SPA session) |
 | [📁 **initializers**](src/initializers) | Every request    | On route change                         |
