@@ -40,7 +40,7 @@ npm run dev
 npm run generate
 ```
 
-Press `<enter>` at each prompt to accept the defaults. You'll notice some new files:
+Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
 
 | Location                              | Filename            | Purpose                                       |
 | :------------------------------------ | :------------------ | :-------------------------------------------- |
@@ -56,13 +56,13 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-| Location                                  | Purpose                       |
-| :---------------------------------------- | :---------------------------- |
-| ① [📁 **constructors**](src/constructors) | Builds input for initializers |
-| ② [📁 **initializers**](src/initializers) | Builds input for middleware   |
-| ③ [📁 **middleware**](src/middleware)     | Builds input for routers      |
-| ④ [📁 **routers**](src/routers)           | Returns an element or string  |
-| ⑤ [📁 **settlers**](src/settlers)         | Settles the final output      |
+| Location                                  | Purpose                             |
+| :---------------------------------------- | :---------------------------------- |
+| ① [📁 **constructors**](src/constructors) | Builds input for initializers       |
+| ② [📁 **initializers**](src/initializers) | Builds input for middleware         |
+| ③ [📁 **middleware**](src/middleware)     | Builds input for routers            |
+| ④ [📁 **routers**](src/routers)           | Returns an element or string (JSON) |
+| ⑤ [📁 **settlers**](src/settlers)         | Settles the final output            |
 
 > ℹ️ The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
 
