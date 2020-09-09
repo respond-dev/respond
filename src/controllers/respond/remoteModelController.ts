@@ -6,13 +6,17 @@ import { ControllerOutputType } from "../../types/respond/controllerTypes"
 export async function remoteModelController(
   input: ControllerInputType & { modelsPath: string }
 ): Promise<ControllerOutputType> {
-  const [, modelName] = input.url.path.match(
+  const [, dirPath, modelName] = input.url.path.match(
     remoteModelRouteRegex
   )
 
+  if (!modelName) {
+    return JSON.stringify(null)
+  }
+
   const instance = (
     await import(
-      join("../../", input.modelsPath, modelName)
+      join("../../", input.modelsPath, dirPath, modelName)
     )
   ).default
 
