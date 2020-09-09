@@ -22,7 +22,7 @@ export function controllerReplacements({
 
   if (generators.includes("model")) {
     appImports.push(modelImport(modelName))
-    callAttributes.push(`${name}Data`)
+    callAttributes.push(`${name}ModelOutput`)
     calls.push(modelCall(name, modelName))
     viewCall = viewCall || modelJsonViewCall(name)
   }
@@ -97,7 +97,7 @@ export function modelCall(
   name: string,
   modelName: string
 ): string {
-  return `${name}Data: ${modelName}Model({})`
+  return `${name}ModelOutput: ${modelName}Model({})`
 }
 
 export function styleCall(name: string): string {
@@ -113,11 +113,11 @@ export function jsonViewCall(): string {
 }
 
 export function modelJsonViewCall(name: string): string {
-  return `return JSON.stringify(${name}Data)`
+  return `return JSON.stringify(${name}ModelOutput)`
 }
 
 export function modelViewCall(name: string): string {
-  return `return ${name}View({ ...input, ${name}Data })`
+  return `return ${name}View({ ...input, ${name}ModelOutput })`
 }
 
 export default controllerReplacements

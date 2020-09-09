@@ -21,7 +21,7 @@ export function viewReplacements({
       viewInputType(upperName) + "}",
       `${viewInputType(
         upperName
-      )}\n  ${name}Data: ${upperModelName}ModelOutput\n}`,
+      )}\n  ${name}ModelOutput: ${upperModelName}ModelOutput\n}`,
     ])
   }
 }
