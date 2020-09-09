@@ -2,7 +2,7 @@ export const remoteModelRouteRegex = /\/remote\/([^\.]+).json/
 
 export const remoteModelRoute = {
   matcher: remoteModelRouteRegex,
-  controller: "lib/respond/controllers/remoteModel",
+  controller: "respond/remoteModel",
   extraInput: { modelsPath: "models" },
 }
 
