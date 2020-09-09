@@ -40,13 +40,15 @@ npm run dev
 npm run generate
 ```
 
-Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
+Press `<enter>` at each prompt to accept the defaults. You'll notice some new files:
 
-&emsp;[📁 **controllers**](src/controllers)/homeController.ts<br/>
-&emsp;[📁 **models**](src/models)/homeModel.ts<br/>
-&emsp;[📁 **routers**](src/routers)/router.ts<br/>
-&emsp;[📁 **styles**](src/styles)/homeStyle.scss<br/>
-&emsp;[📁 **views**](src/views)/homeView.ts
+| Location                              | Filename            | Purpose                    |
+| :------------------------------------ | :------------------ | :------------------------- |
+| [📁 **controllers**](src/controllers) | `homeController.ts` | Call models & return views |
+| [📁 **models**](src/models)           | `homeModel.ts`      | Data store CRUD            |
+| [📁 **routers**](src/routers)         | `router.ts`         | Call controllers           |
+| [📁 **styles**](src/styles)           | `homeStyle.scss`    | Sass style sheet           |
+| [📁 **views**](src/views)             | `homeView.ts`       | Return JSX                 |
 
 Visit <http://localhost:3000> to view your new page.
 
@@ -54,11 +56,13 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-&emsp;① [📁 **constructors**](src/constructors) — Builds input for initializers<br/>
-&emsp;② [📁 **initializers**](src/initializers) — Builds input for middleware<br/>
-&emsp;③ [📁 **middleware**](src/middleware) — Builds input for routers<br/>
-&emsp;④ [📁 **routers**](src/routers) — Returns an element or string<br/>
-&emsp;⑤ [📁 **settlers**](src/settlers) — Settles the final output
+| Location                                  | Purpose                       |
+| :---------------------------------------- | :---------------------------- |
+| ① [📁 **constructors**](src/constructors) | Builds input for initializers |
+| ② [📁 **initializers**](src/initializers) | Builds input for middleware   |
+| ③ [📁 **middleware**](src/middleware)     | Builds input for routers      |
+| ④ [📁 **routers**](src/routers)           | Returns an element or string  |
+| ⑤ [📁 **settlers**](src/settlers)         | Settles the final output      |
 
 > ℹ️ The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
 
