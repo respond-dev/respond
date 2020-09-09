@@ -56,7 +56,7 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-| Location                                  | Purpose                             |
+| Request phase                             | Purpose                             |
 | :---------------------------------------- | :---------------------------------- |
 | ① [📁 **constructors**](src/constructors) | Builds input for initializers       |
 | ② [📁 **initializers**](src/initializers) | Builds input for middleware         |
