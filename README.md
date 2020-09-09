@@ -45,7 +45,7 @@ Press `<enter>` at each prompt to accept the defaults. You'll notice some new fi
 | Location                              | Filename            | Purpose                                       |
 | :------------------------------------ | :------------------ | :-------------------------------------------- |
 | [📁 **controllers**](src/controllers) | `homeController.ts` | Return elements or JSON from models and views |
-| [📁 **models**](src/models)           | `homeModel.ts`      | Data store CRUD                               |
+| [📁 **models**](src/models)           | `homeModel.ts`      | Data store                                    |
 | [📁 **routers**](src/routers)         | `router.ts`         | Return elements or JSON from controllers      |
 | [📁 **styles**](src/styles)           | `homeStyle.scss`    | Sass style sheet                              |
 | [📁 **views**](src/views)             | `homeView.ts`       | Return elements from JSX                      |
