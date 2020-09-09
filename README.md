@@ -74,10 +74,10 @@ There are five successive phases of the universal request pipeline. Each pipelin
 
 **Universal** request pipeline filenames do not begin with `client` or `server`.
 
-| Request phase                             | Server execution | Client execution                        |
-| :---------------------------------------- | :--------------- | :-------------------------------------- |
-| ① [📁 **constructors**](src/constructors) | Every request    | On page load (beginning of SPA session) |
-| ② [📁 **initializers**](src/initializers) | Every request    | On route change                         |
-| ③ [📁 **middleware**](src/middleware)     | Every request    | Every request                           |
-| ④ [📁 **routers**](src/routers)           | Every request    | Every request                           |
-| ⑤ [📁 **settlers**](src/settlers)         | Every request    | Every request                           |
+| Request phase                             | Server execution | Client execution    |
+| :---------------------------------------- | :--------------- | :------------------ |
+| ① [📁 **constructors**](src/constructors) | Every request    | On page load (once) |
+| ② [📁 **initializers**](src/initializers) | Every request    | On route change     |
+| ③ [📁 **middleware**](src/middleware)     | Every request    | Every request       |
+| ④ [📁 **routers**](src/routers)           | Every request    | Every request       |
+| ⑤ [📁 **settlers**](src/settlers)         | Every request    | Every request       |
