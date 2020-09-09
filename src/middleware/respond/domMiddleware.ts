@@ -4,7 +4,7 @@ import assetMatcher from "../../lib/respond/assetMatcher"
 import elementBuilder from "../../lib/respond/elementBuilder"
 import styleInjector from "../../lib/respond/styleInjector"
 
-export async function domConstructor({
+export async function domMiddleware({
   client,
   url,
 }: MiddlewareInputType): Promise<MiddlewareOutputType> {
@@ -30,4 +30,4 @@ export async function domConstructor({
   }
 }
 
-export default domConstructor
+export default domMiddleware
