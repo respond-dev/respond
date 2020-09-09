@@ -72,7 +72,7 @@ There are five successive phases of the universal request pipeline. Each pipelin
 
 **Client side** requests begin with a page load, a link click, or a `window.history.pushState` call. The `constructors` phase executes only on initial page load (once). The `initializers` phase executes only when the route changes. The rest of the phases (`middleware`, `routers`, `settlers`) execute for all requests, and receive cached input if the request is not a page load or route change. Request pipeline filenames that begin with `server` are ignored on the client side.
 
-Request pipeline filenames that do not begin with `client` or `server` are considered to be **universal**.
+Request pipeline filenames that do not begin with `client` or `server` are considered **universal**.
 
 | Request phase                             | Server execution | Client execution    |
 | :---------------------------------------- | :--------------- | :------------------ |
