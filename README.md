@@ -46,7 +46,7 @@ Press `<enter>` at each prompt to accept the defaults. You'll notice some new fi
 | :------------------------------------ | :------------------ | :------------------------- |
 | [📁 **controllers**](src/controllers) | `homeController.ts` | Call models & return views |
 | [📁 **models**](src/models)           | `homeModel.ts`      | Data store CRUD            |
-| [📁 **routers**](src/routers)         | `router.ts`         | Call controllers           |
+| [📁 **routers**](src/routers)         | `router.ts`         | Call & return controllers  |
 | [📁 **styles**](src/styles)           | `homeStyle.scss`    | Sass style sheet           |
 | [📁 **views**](src/views)             | `homeView.ts`       | Return JSX                 |
 
