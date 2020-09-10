@@ -93,8 +93,11 @@ export async function generateTask(): Promise<void> {
     const relPath = pathMap[generator]
     const basename = relPath.split("/")[1]
 
+    const isController = generator === "controller"
     const isModel = generator === "model"
     const isRoute = generator === "route"
+    const isTask = generator === "task"
+    const isView = generator === "view"
 
     const srcPath = isRoute
       ? routerPath
@@ -137,15 +140,22 @@ export async function generateTask(): Promise<void> {
       routePath,
     }
 
-    if (generator === "controller") {
+    if (isController) {
       controllerReplacements(replacementInput)
     }
 
-    if (generator === "route") {
+    if (isRoute) {
       routeReplacements(replacementInput)
     }
 
-    if (generator === "view") {
+    if (isTask) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `🍏 Run \`./bin/task ${name}\` to try your new task.`
+      )
+    }
+
+    if (isView) {
       viewReplacements(replacementInput)
     }
 

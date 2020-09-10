@@ -5,10 +5,10 @@
   "bin": {},
   "scripts": {
     "build": "rm -rf dist-*; tsc -b -v; node-sass src -r -o dist-css",
-    "dev": "./bin/taskRunner watchCjs watchDevHttp watchEsm watchSass watchUnlink",
-    "generate": "./bin/taskRunner generate",
+    "dev": "./bin/task watchCjs watchDevHttp watchEsm watchSass watchUnlink",
+    "generate": "./bin/task generate",
     "postinstall": "npm run build",
-    "start": "./bin/taskRunner startDev",
+    "start": "./bin/task startDev",
     "test": "mocha",
     "update": "ncu -u"
   },

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import inquirer from "inquirer"
 
-export async function exampleTask(): Promise<void> {
+export async function respondTask(): Promise<void> {
   const { name } = await inquirer.prompt([
     {
       type: "input",
@@ -13,4 +13,4 @@ export async function exampleTask(): Promise<void> {
   console.log("hi", name)
 }
 
-export default exampleTask
+export default respondTask
