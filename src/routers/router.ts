@@ -10,7 +10,17 @@ export async function router(
 ): Promise<RouterOutputType> {
   const output = await routeSelector(
     input,
-    remoteModelRoute
+    remoteModelRoute,
+    {
+      matcher: "/about",
+      controller: "about",
+      layoutView: "layout",
+    },
+    {
+      matcher: "/",
+      controller: "home",
+      layoutView: "layout",
+    }
   )
 
   if (output) {
