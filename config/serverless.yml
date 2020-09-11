@@ -25,7 +25,7 @@ provider:
 
 functions:
   postmaster:
-    handler: dist/cjs/lib/respond/lambdaServer.lambdaServer
+    handler: dist-cjs/lib/respond/lambdaServer.lambdaServer
     events:
       - http:
           path: /

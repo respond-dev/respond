@@ -11,15 +11,21 @@ export function serverFinalOutputSettler({
 
   const finalOutput: string[] = []
 
+  let elementFound = false
+
   for (const out of output as (string | Element)[]) {
     if (typeof out === "string") {
       finalOutput.push(out)
     } else if (out?.nodeType) {
+      elementFound = true
       finalOutput.push(elementSerializer(out))
     }
   }
 
   return {
+    finalMimeType: elementFound
+      ? "text/html"
+      : "application/json",
     finalOutput: finalOutput.join("\n"),
   }
 }

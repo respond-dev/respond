@@ -4,7 +4,7 @@ import { APIGatewayProxyResult } from "aws-lambda"
 import modulesLister from "./modulesLister"
 import requester from "./requester"
 
-export async function appLambdaServer(
+export async function lambdaServer(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
   const modules = await modulesLister()
