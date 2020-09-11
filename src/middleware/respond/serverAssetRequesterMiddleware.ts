@@ -3,9 +3,17 @@ import { MiddlewareInputType } from "../../types/respond/middlewareTypes"
 import { SettlerOutputType } from "../../types/respond/settlerTypes"
 
 export async function serverAssetRequesterMiddleware({
+  apiGatewayProxyEvent,
   httpIncomingMessage,
 }: MiddlewareInputType): Promise<SettlerOutputType> {
-  return await assetRequester(httpIncomingMessage.url)
+  if (httpIncomingMessage) {
+    return await assetRequester(httpIncomingMessage.url)
+  } else if (apiGatewayProxyEvent) {
+    return await assetRequester(
+      apiGatewayProxyEvent.path,
+      true
+    )
+  }
 }
 
 export default serverAssetRequesterMiddleware

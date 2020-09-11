@@ -1,0 +1,16 @@
+name: my-app
+bucket: &bucket my-app-${opt:stage, self:provider.stage}-bucket
+envVars: &envVars
+  STAGE: ${opt:stage, self:provider.stage}
+dev:
+  bucket: *bucket
+  envVars:
+    <<: *envVars
+stage:
+  bucket: *bucket
+  envVars:
+    <<: *envVars
+prod:
+  bucket: *bucket
+  envVars:
+    <<: *envVars
