@@ -1,5 +1,5 @@
-name: my-app
-bucket: &bucket my-app-${opt:stage, self:provider.stage}-bucket
+name: respond-app
+bucket: &bucket respond-app-${opt:stage, self:provider.stage}-bucket
 envVars: &envVars
   STAGE: ${opt:stage, self:provider.stage}
 dev:

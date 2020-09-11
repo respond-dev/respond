@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rm -rf dist-*; tsc -b -v; node-sass src -r -o dist-css",
     "dev": "./bin/task watchCjs watchDevHttp watchEsm watchSass watchUnlink",
+    "deploy:lambda": "npx serverless deploy --force --config ./config/serverless.yml",
     "generate": "./bin/task generate",
     "postinstall": "npm run build",
     "start": "./bin/task startDev",
