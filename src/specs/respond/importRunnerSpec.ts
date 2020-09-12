@@ -1,10 +1,10 @@
-import expect from "../../lib/respond/expect"
-import importRunner from "../../lib/respond/importRunner"
+import expect from "pipelines/respond/lib/expect"
+import importRunner from "pipelines/respond/lib/importRunner"
 
 describe("importRunner", () => {
   it("tests acceptance", async () => {
     const testInitializer = await importRunner(
-      ["/initializers/respond/testInitializer"],
+      ["/pipelines/respond/initializers/testInitializer"],
       { test: true }
     )
     expect(testInitializer).toEqual([

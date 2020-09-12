@@ -1,5 +1,5 @@
-import { ViewInputType } from "../../types/respond/viewTypes"
-import { ViewOutputType } from "../../types/respond/viewTypes"
+import { ViewInputType } from "pipelines/respond/types/viewTypes"
+import { ViewOutputType } from "pipelines/respond/types/viewTypes"
 
 export interface RespondViewInputType {}
 

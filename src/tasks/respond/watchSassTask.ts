@@ -1,6 +1,6 @@
 import { extname, join, relative } from "path"
 import chokidar from "chokidar"
-import ptySpawner from "../../lib/respond/ptySpawner"
+import ptySpawner from "pipelines/respond/lib/ptySpawner"
 
 export async function watchSassTask(): Promise<void> {
   const rootDir = join(__dirname, "../../../")

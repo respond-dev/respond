@@ -1,4 +1,4 @@
-import { ReplacementInputType } from "../types/replacementTypes"
+import { ReplacementInputType } from "generators/lib/fileCopier"
 
 export function routeReplacements({
   name,

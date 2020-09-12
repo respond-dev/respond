@@ -1,4 +1,4 @@
-import expect from "../../lib/respond/expect"
+import expect from "pipelines/respond/lib/expect"
 
 describe("exampleSpec", () => {
   it("expects", async () => {

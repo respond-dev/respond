@@ -1,5 +1,5 @@
-import expect from "../../lib/respond/expect"
-import directoryLister from "../../lib/respond/directoryLister"
+import expect from "pipelines/respond/lib/expect"
+import directoryLister from "pipelines/respond/lib/directoryLister"
 
 describe("directoryLister", () => {
   it("lists a directory", async () => {

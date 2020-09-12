@@ -1,5 +1,5 @@
-import { InitializerInputType } from "../../types/respond/initializerTypes"
-import { InitializerOutputType } from "../../types/respond/initializerTypes"
+import { InitializerInputType } from "pipelines/respond/types/initializerTypes"
+import { InitializerOutputType } from "pipelines/respond/types/initializerTypes"
 
 export async function respondInitializer(
   input: InitializerInputType

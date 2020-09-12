@@ -1,6 +1,6 @@
-import { ModulesType } from "../../lib/respond/modulesLister"
-import { LayoutInputType } from "../../types/respond/layoutTypes"
-import { ViewOutputType } from "../../types/respond/viewTypes"
+import { ModulesType } from "pipelines/respond/lib/modulesLister"
+import { LayoutInputType } from "pipelines/respond/types/layoutTypes"
+import { ViewOutputType } from "pipelines/respond/types/viewTypes"
 
 export interface ClientScriptViewInput {
   modules: ModulesType

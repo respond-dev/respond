@@ -1,10 +1,10 @@
 import { join } from "path"
 import inquirer from "inquirer"
-import copyFile from "./copyFile"
+import fileCopier from "generators/lib/fileCopier"
+import { ReplacementOutputType } from "generators/lib/fileCopier"
 import controllerReplacements from "./controllerReplacements"
 import routeReplacements from "./routeReplacements"
 import viewReplacements from "./viewReplacements"
-import { ReplacementOutputType } from "../types/replacementTypes"
 
 const pathMap = {
   constructor: "constructors/respondConstructor.ts",
@@ -159,7 +159,7 @@ export async function generateTask(): Promise<void> {
       viewReplacements(replacementInput)
     }
 
-    await copyFile(srcPath, destPath, replacements)
+    await fileCopier(srcPath, destPath, replacements)
   }
 }
 

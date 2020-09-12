@@ -4,10 +4,10 @@
   "files": [],
   "references": [
     {
-      "path": "./src/tsconfig.cjs.json"
+      "path": "./tsconfig.cjs.json"
     },
     {
-      "path": "./src/tsconfig.esm.json"
+      "path": "./tsconfig.esm.json"
     }
   ]
 }

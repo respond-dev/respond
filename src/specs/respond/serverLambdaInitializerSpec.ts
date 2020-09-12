@@ -1,7 +1,7 @@
 import URL from "url"
 import { APIGatewayProxyEvent } from "aws-lambda"
-import expect from "../../lib/respond/expect"
-import serverLambdaInitializer from "../../initializers/respond/serverLambdaInitializer"
+import expect from "pipelines/respond/lib/expect"
+import serverLambdaInitializer from "pipelines/respond/initializers/serverLambdaInitializer"
 
 class FakeGatewayProxyEvent {
   constructor(
