@@ -5,7 +5,7 @@ export async function taskRunner(
   args: string[]
 ): Promise<any[]> {
   const tasks = await deepDirectoryLister(
-    "tasks/",
+    join(__dirname, "tasks/"),
     /Task\.js$/
   )
 

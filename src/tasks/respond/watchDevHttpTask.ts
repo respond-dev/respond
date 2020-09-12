@@ -1,4 +1,4 @@
-import { extname } from "path"
+import { extname, join } from "path"
 import http from "http"
 import chokidar from "chokidar"
 import functionDebouncer from "./lib/functionDebouncer"
@@ -21,9 +21,15 @@ export async function watchDevHttpTask(): Promise<void> {
   )
 
   chokidar
-    .watch(["tasks/../", "tasks/../package-lock.json"], {
-      ignoreInitial: true,
-    })
+    .watch(
+      [
+        join(__dirname, "tasks/../"),
+        join(__dirname, "tasks/../package-lock.json"),
+      ],
+      {
+        ignoreInitial: true,
+      }
+    )
     .on("all", async (e, path) => {
       if (extname(path) === ".js") {
         await restart()

@@ -2,7 +2,7 @@ import { extname, join, relative } from "path"
 import chokidar from "chokidar"
 import fs from "fs-extra"
 
-export const rootDir = "tasks/../../"
+export const rootDir = join(__dirname, "tasks/../../")
 
 export const unlinkExtConfig = {
   ".scss": {
