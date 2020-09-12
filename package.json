@@ -5,7 +5,7 @@
   "bin": {},
   "scripts": {
     "build": "rm -rf dist-*; tsc --project tsconfig.cjs.json; tsc --project tsconfig.esm.json; ./bin/fixPaths; node-sass src -r -o dist-css",
-    "dev": "./bin/task watchCjs watchDevHttp watchEsm watchSass watchUnlink",
+    "dev": "./bin/task watchCjs watchEsm watchSass watchUnlink",
     "deploy:lambda": "npx serverless deploy --force --config ./config/serverless.yml",
     "generate": "./bin/task generate",
     "postinstall": "npm run build",

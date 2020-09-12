@@ -1,10 +1,9 @@
 import ptySpawner from "pipelines/respond/lib/ptySpawner"
-import { join } from "path"
 
 export async function watchCjsTask(): Promise<void> {
   await ptySpawner("npx", {
-    args: ["tsc", "-p", "src/tsconfig.cjs.json", "-w"],
-    cwd: join(__dirname, "../../../"),
+    args: ["tsc", "-p", "tsconfig.cjs.json", "-w"],
+    cwd: "tasks/../../",
     stdout: true,
   })
 }

@@ -3,8 +3,8 @@ import chokidar from "chokidar"
 import ptySpawner from "pipelines/respond/lib/ptySpawner"
 
 export async function watchSassTask(): Promise<void> {
-  const rootDir = join(__dirname, "../../../")
-  const srcDir = join(rootDir, "src")
+  const rootDir = "tasks/../../"
+  const srcDir = "tasks/../"
 
   chokidar
     .watch([join(srcDir, "**/*.scss")], {
@@ -24,7 +24,7 @@ export async function watchSassTask(): Promise<void> {
               relPath.replace(ext, "") + ".css"
             ),
           ],
-          cwd: join(__dirname, "../../../"),
+          cwd: rootDir,
           stdout: true,
         })
       }

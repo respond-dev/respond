@@ -1,8 +1,10 @@
+// ⚠️ You have to use relative paths in this file!
+//
 import { basename, dirname, join, relative } from "path"
 import fileCopier from "../../generators/lib/fileCopier"
-import { ReplacementOutputElementType } from "../../generators/lib/fileCopier"
 import { directoryLister } from "../../pipelines/respond/lib/directoryLister"
 import { deepDirectoryLister } from "../../pipelines/respond/lib/directoryLister"
+import { ReplacementOutputElementType } from "../../generators/lib/fileCopier"
 
 export async function pathFixer(): Promise<void> {
   const distCjsPath = join(__dirname, "../../")

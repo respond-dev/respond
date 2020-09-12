@@ -1,7 +1,5 @@
 {
-  "compileOnSave": true,
   "extends": "./tsconfig.base.json",
-  "files": [],
   "references": [
     {
       "path": "./tsconfig.cjs.json"
