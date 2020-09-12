@@ -2,35 +2,6 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "baseUrl": "./src",
-    "paths": {
-      "controllers/*": [
-        "controllers/*"
-      ],
-      "generators/*": [
-        "generators/*"
-      ],
-      "models/*": [
-        "models/*"
-      ],
-      "pipelines": [
-        "pipelines/*"
-      ],
-      "routers": [
-        "routers/*"
-      ],
-      "specs": [
-        "specs/*"
-      ],
-      "styles": [
-        "styles/*"
-      ],
-      "tasks": [
-        "tasks/*"
-      ],
-      "views": [
-        "views/*"
-      ]
-    },
     "declaration": true,
     "esModuleInterop": true,
     "importHelpers": true,
@@ -38,13 +9,8 @@
     "jsxFactory": "input.el",
     "lib": ["dom", "es2015"],
     "moduleResolution": "node",
+    "rootDir": "./src",
     "sourceMap": true,
     "types": ["node", "mocha"]
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

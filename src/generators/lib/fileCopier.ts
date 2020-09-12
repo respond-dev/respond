@@ -14,11 +14,13 @@ export interface ReplacementInputType {
   routePath: string
 }
 
-export type ReplacementOutputType = [
+export type ReplacementOutputElementType = [
   string | RegExp,
   string,
   ReplacementConditionType?
-][]
+]
+
+export type ReplacementOutputType = ReplacementOutputElementType[]
 
 export async function fileCopier(
   src: string,
