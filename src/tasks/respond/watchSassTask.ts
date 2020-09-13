@@ -20,7 +20,7 @@ export async function watchSassTask(): Promise<void> {
             "node-sass",
             join("src", relPath),
             join(
-              "dist-css",
+              "dist/css",
               relPath.replace(ext, "") + ".css"
             ),
           ],

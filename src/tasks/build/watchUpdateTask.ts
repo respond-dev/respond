@@ -1,10 +1,12 @@
 import { join } from "path"
 import chokidar from "chokidar"
-import { singlePathFixer } from "../lib/pathFixer"
+import { distJsSingleUpdater } from "./lib/distJsUpdater"
 
 export const rootDir = join(__dirname, "tasks/../../")
-export const distCjsDir = join(rootDir, "dist-cjs")
-export const distEsmDir = join(rootDir, "dist-esm")
+export const distCjsTsDir = join(rootDir, "dist/cjs-ts")
+export const distEsmTsDir = join(rootDir, "dist/esm-ts")
+export const distCjsDir = join(rootDir, "dist/cjs")
+export const distEsmDir = join(rootDir, "dist/esm")
 
 export async function watchUpdateTask(): Promise<void> {
   chokidar
@@ -13,11 +15,17 @@ export async function watchUpdateTask(): Promise<void> {
     })
     .on("change", async (path) => {
       if (path.match(/\.js$/)) {
-        await singlePathFixer(
+        const isCjs = path.startsWith(distCjsDir)
+        const distDir = isCjs ? distCjsDir : distEsmDir
+        const distTsDir = isCjs
+          ? distCjsTsDir
+          : distEsmTsDir
+
+        await distJsSingleUpdater(
+          isCjs ? "cjs" : "esm",
           path,
-          path.startsWith(distCjsDir)
-            ? distCjsDir
-            : distEsmDir
+          distDir,
+          distTsDir
         )
       }
     })

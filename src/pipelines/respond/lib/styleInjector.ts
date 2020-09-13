@@ -11,7 +11,7 @@ export async function styleInjector(
     (resolve) => (link.onload = () => resolve())
   )
 
-  link.setAttribute("href", "/dist-css/" + path + ".css")
+  link.setAttribute("href", "/dist/css/" + path + ".css")
 
   doc.head.appendChild(link)
 

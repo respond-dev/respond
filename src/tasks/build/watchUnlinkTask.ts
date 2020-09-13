@@ -6,13 +6,15 @@ export const rootDir = join(__dirname, "tasks/../../")
 
 export const unlinkExtConfig = {
   ".scss": {
-    dirs: [join(rootDir, "dist-css")],
+    dirs: [join(rootDir, "dist/css")],
     exts: [".css"],
   },
   ".ts": {
     dirs: [
-      join(rootDir, "dist-cjs"),
-      join(rootDir, "dist-esm"),
+      join(rootDir, "dist/cjs-ts"),
+      join(rootDir, "dist/esm-ts"),
+      join(rootDir, "dist/cjs"),
+      join(rootDir, "dist/esm"),
     ],
     exts: [".js", ".js.map", ".d.ts"],
   },

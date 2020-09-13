@@ -27,7 +27,7 @@ export async function layoutView(
         <link rel="icon" href="data:," />
         <link
           rel="stylesheet"
-          href="/dist-css/styles/respond/layoutStyle.css"
+          href="/dist/css/styles/respond/layoutStyle.css"
           type="text/css"
         />
         {doc.head.childNodes}

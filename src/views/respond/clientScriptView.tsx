@@ -30,7 +30,7 @@ export function scriptTag(modules: ModulesType): string {
 
     function importPaths(paths) {
       return Promise.all(paths.map(function(path) {
-        return import("/dist-esm/" + path)
+        return import("/dist/esm/" + path)
       }))
     }
     

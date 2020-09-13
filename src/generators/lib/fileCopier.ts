@@ -1,4 +1,6 @@
 import { readFile, writeFile } from "fs"
+import { ensureDir } from "fs-extra"
+import { dirname } from "path"
 
 export type ReplacementConditionType = (
   body: string
@@ -16,7 +18,7 @@ export interface ReplacementInputType {
 
 export type ReplacementOutputElementType = [
   string | RegExp,
-  string,
+  string | ((substring: string, ...args: any[]) => string),
   ReplacementConditionType?
 ]
 
@@ -28,7 +30,7 @@ export async function fileCopier(
   replacements?: ReplacementOutputType
 ): Promise<void> {
   await new Promise<string[]>((resolve, reject) => {
-    readFile(src, "utf8", (err, data) => {
+    readFile(src, "utf8", async (err, data) => {
       if (err) {
         return reject(err)
       }
@@ -40,10 +42,16 @@ export async function fileCopier(
           condition,
         ] of replacements) {
           if (!condition || condition(data)) {
-            data = data.replace(search, replace)
+            if (typeof replace === "string") {
+              data = data.replace(search, replace)
+            } else {
+              data = data.replace(search, replace)
+            }
           }
         }
       }
+
+      await ensureDir(dirname(dest))
 
       writeFile(dest, data, "utf8", (err) => {
         if (err) {

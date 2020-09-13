@@ -8,7 +8,7 @@ export function modulesToEsm(
   for (const phase in modules) {
     esm[phase] = modules[phase].map((path: string) =>
       path
-        .replace(/\/dist-cjs\//, "/dist-esm/")
+        .replace(/\/dist\/cjs\//, "/dist/esm/")
         .replace(/\.js$/, ".mjs")
     )
   }
