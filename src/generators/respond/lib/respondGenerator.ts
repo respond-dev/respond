@@ -82,7 +82,7 @@ export async function generateTask(): Promise<void> {
   const upperName =
     name.charAt(0).toUpperCase() + name.slice(1)
 
-  const srcDirPath = join(__dirname, "generators/../")
+  const srcDirPath = join(__dirname, "src/")
   const routerPath = join(srcDirPath, "routers/router.ts")
   const generatorsPath = join(
     srcDirPath,
