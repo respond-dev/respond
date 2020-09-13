@@ -1,3 +1,5 @@
+// ⚠️ Use relative paths in this file!
+//
 import { ReplacementOutputElementType } from "../../../generators/lib/fileCopier"
 
 export const remoteModelReplacements: ReplacementOutputElementType = [

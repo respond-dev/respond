@@ -1,3 +1,5 @@
+// ⚠️ Use relative paths in this file!
+//
 import { dirname, join, relative } from "path"
 import { ReplacementOutputElementType } from "../../../generators/lib/fileCopier"
 import srcDirNames from "./srcDirNames"

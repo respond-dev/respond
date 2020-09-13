@@ -1,4 +1,4 @@
-// ⚠️ You have to use relative paths in this file!
+// ⚠️ Use relative paths in this file!
 //
 import { join, relative } from "path"
 import fileCopier from "../../../generators/lib/fileCopier"

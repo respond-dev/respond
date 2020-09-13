@@ -1,3 +1,5 @@
+// ⚠️ Use relative paths in this file!
+//
 import { basename, join } from "path"
 import { directoryLister } from "../../../pipelines/respond/lib/directoryLister"
 
