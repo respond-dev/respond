@@ -1,6 +1,6 @@
 import { MiddlewareInputType } from "pipelines/respond/types/middlewareTypes"
 import { MiddlewareOutputType } from "pipelines/respond/types/middlewareTypes"
-import assetMatcher from "pipelines/respond/lib/assetMatcher"
+import extMatcher from "pipelines/respond/lib/extMatcher"
 import elementBuilder from "pipelines/respond/lib/elementBuilder"
 import styleInjector from "pipelines/respond/lib/styleInjector"
 
@@ -10,7 +10,7 @@ export async function domMiddleware({
 }: MiddlewareInputType): Promise<MiddlewareOutputType> {
   let doc: Document
 
-  if (assetMatcher(url.pathname)) {
+  if (extMatcher(url.pathname)) {
     return
   }
 

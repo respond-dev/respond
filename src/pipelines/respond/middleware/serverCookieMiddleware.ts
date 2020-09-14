@@ -1,13 +1,13 @@
 import { MiddlewareInputType } from "pipelines/respond/types/middlewareTypes"
 import { MiddlewareOutputType } from "pipelines/respond/types/middlewareTypes"
-import assetMatcher from "pipelines/respond/lib/assetMatcher"
+import extMatcher from "pipelines/respond/lib/extMatcher"
 import cookie from "cookie"
 
 export function serverCookieMiddleware({
   headers,
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
-  if (assetMatcher(url.pathname)) {
+  if (extMatcher(url.pathname)) {
     return
   }
 

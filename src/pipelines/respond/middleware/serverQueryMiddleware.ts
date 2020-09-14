@@ -1,15 +1,12 @@
 import { MiddlewareInputType } from "pipelines/respond/types/middlewareTypes"
 import { MiddlewareOutputType } from "pipelines/respond/types/middlewareTypes"
-import assetMatcher from "pipelines/respond/lib/assetMatcher"
+import extMatcher from "pipelines/respond/lib/extMatcher"
 import querystring from "querystring"
 
 export function serverQueryMiddleware({
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
-  if (
-    !url.href.includes("?") ||
-    assetMatcher(url.pathname)
-  ) {
+  if (extMatcher(url.href) || !url.href.includes("?")) {
     return
   }
 
