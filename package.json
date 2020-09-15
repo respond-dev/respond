@@ -59,7 +59,8 @@
     "mime": "2.4.6",
     "source-map-support": "0.5.19",
     "tmp-promise": "3.0.2",
-    "tslib": "2.0.1"
+    "tslib": "2.0.1",
+    "yaml": "1.10.0"
   },
   "lint-staged": {
     "*.{css,scss,json,md}": [
@@ -70,5 +71,10 @@
       "eslint --ignore-path .gitignore --fix",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test"
+    }
   }
 }
