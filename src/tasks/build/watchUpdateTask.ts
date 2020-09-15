@@ -10,7 +10,7 @@ export const distEsmDir = join(rootDir, "dist/esm")
 
 export async function watchUpdateTask(): Promise<void> {
   chokidar
-    .watch([distCjsDir, distEsmDir], {
+    .watch([distCjsTsDir, distEsmTsDir], {
       ignoreInitial: true,
     })
     .on("change", async (path) => {
