@@ -1,4 +1,4 @@
-import expect from "pipelines/respond/lib/expect"
+import expect from "lib/specs/expect"
 import directoryLister from "pipelines/respond/lib/directoryLister"
 
 describe("directoryLister", () => {

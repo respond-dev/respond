@@ -1,7 +1,7 @@
 import { IncomingMessage, IncomingHttpHeaders } from "http"
 import net from "net"
 import URL from "url"
-import expect from "pipelines/respond/lib/expect"
+import expect from "lib/specs/expect"
 import serverHttpInitializer from "pipelines/respond/initializers/serverHttpInitializer"
 
 class FakeIncomingMessage extends IncomingMessage {

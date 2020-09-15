@@ -43,7 +43,7 @@ export async function serverAssetMiddleware({
     urlPath = urlPath.replace(/\.mjs$/, ".js")
   }
 
-  const path = join(__dirname, "/src", urlPath)
+  const path = join(__dirname, "src/", urlPath)
 
   if (await pathExists(path)) {
     let body: string
