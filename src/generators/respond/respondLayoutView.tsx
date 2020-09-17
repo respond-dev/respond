@@ -1,6 +1,6 @@
 import pipelinePaths from "pipelines/lib/pipelinePaths"
-import { LayoutInputType } from "pipelines/respond/types/layoutTypes"
-import { LayoutOutputType } from "pipelines/respond/types/layoutTypes"
+import { LayoutInputType } from "types/respond/layoutTypes"
+import { LayoutOutputType } from "types/respond/layoutTypes"
 import clientScriptView from "views/respond/clientScriptView"
 
 export async function respondLayoutView(

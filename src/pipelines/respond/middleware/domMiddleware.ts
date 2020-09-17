@@ -1,5 +1,5 @@
-import { MiddlewareInputType } from "pipelines/respond/types/middlewareTypes"
-import { MiddlewareOutputType } from "pipelines/respond/types/middlewareTypes"
+import { MiddlewareInputType } from "types/respond/middlewareTypes"
+import { MiddlewareOutputType } from "types/respond/middlewareTypes"
 import extMatcher from "pipelines/respond/lib/extMatcher"
 import elementBuilder from "pipelines/respond/lib/elementBuilder"
 import styleInjector from "pipelines/respond/lib/styleInjector"

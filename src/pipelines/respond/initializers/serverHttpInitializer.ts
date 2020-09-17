@@ -1,6 +1,6 @@
 import URL from "url"
-import { InitializerInputType } from "pipelines/respond/types/initializerTypes"
-import { InitializerOutputType } from "pipelines/respond/types/initializerTypes"
+import { InitializerInputType } from "types/respond/initializerTypes"
+import { InitializerOutputType } from "types/respond/initializerTypes"
 import { headerCleaner } from "pipelines/respond/lib/headerCleaner"
 
 export async function serverHttpInitializer({

@@ -1,4 +1,4 @@
-import { RouterInputType } from "pipelines/respond/types/routerTypes"
+import { RouterInputType } from "types/respond/routerTypes"
 
 export interface RouteType {
   matcher: string | RegExp

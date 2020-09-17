@@ -1,4 +1,4 @@
-import { ConstructorOutputType } from "pipelines/respond/types/constructorTypes"
+import { ConstructorOutputType } from "types/respond/constructorTypes"
 
 export function constructedConstructor(): ConstructorOutputType {
   return { constructed: true }

@@ -1,5 +1,5 @@
-import { ControllerInputType } from "pipelines/respond/types/controllerTypes"
-import { ControllerOutputType } from "pipelines/respond/types/controllerTypes"
+import { ControllerInputType } from "types/respond/controllerTypes"
+import { ControllerOutputType } from "types/respond/controllerTypes"
 import respondView from "./respondView"
 
 export async function respondController(

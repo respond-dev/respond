@@ -4,8 +4,8 @@ import { ReadStream } from "fs"
 import { pathExists } from "fs-extra"
 import { readFile } from "fs-extra"
 import extMatcher from "pipelines/respond/lib/extMatcher"
-import { MiddlewareInputType } from "pipelines/respond/types/middlewareTypes"
-import { SettlerOutputType } from "pipelines/respond/types/settlerTypes"
+import { MiddlewareInputType } from "types/respond/middlewareTypes"
+import { SettlerOutputType } from "types/respond/settlerTypes"
 import mime from "mime/lite"
 
 const binaryFileExtensions = [

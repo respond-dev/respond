@@ -56,13 +56,13 @@ Visit <http://localhost:3000> to view your new page.
 
 There are five successive phases of the universal request pipeline. Each pipeline phase corresponds to directories of source files:
 
-| Request phase                             | Purpose                             |
-| :---------------------------------------- | :---------------------------------- |
-| ① [📁 **constructors**](src/constructors) | Builds input for initializers       |
-| ② [📁 **initializers**](src/initializers) | Builds input for middleware         |
-| ③ [📁 **middleware**](src/middleware)     | Builds input for routers            |
-| ④ [📁 **routers**](src/routers)           | Returns an element or string (JSON) |
-| ⑤ [📁 **settlers**](src/settlers)         | Settles the final output            |
+| Request phase                                               | Purpose                             |
+| :---------------------------------------------------------- | :---------------------------------- |
+| ① [📁 **constructors**](src/pipelines/respond/constructors) | Builds input for initializers       |
+| ② [📁 **initializers**](src/pipelines/respond/initializers) | Builds input for middleware         |
+| ③ [📁 **middleware**](src/pipelines/respond/middleware)     | Builds input for routers            |
+| ④ [📁 **routers**](src/pipelines/respond/routers)           | Returns an element or string (JSON) |
+| ⑤ [📁 **settlers**](src/pipelines/respond/settlers)         | Settles the final output            |
 
 > ℹ️ The input and output types for each phase are centrally located in [📁 **types/respond**](src/types/respond).
 
@@ -74,10 +74,10 @@ There are five successive phases of the universal request pipeline. Each pipelin
 
 Request pipeline filenames that do not begin with `client` or `server` are considered **universal**.
 
-| Request phase                             | Server execution | Client execution             |
-| :---------------------------------------- | :--------------- | :--------------------------- |
-| ① [📁 **constructors**](src/constructors) | Every request    | On page load (once)          |
-| ② [📁 **initializers**](src/initializers) | Every request    | On page load or route change |
-| ③ [📁 **middleware**](src/middleware)     | Every request    | Every request                |
-| ④ [📁 **routers**](src/routers)           | Every request    | Every request                |
-| ⑤ [📁 **settlers**](src/settlers)         | Every request    | Every request                |
+| Request phase                                               | Server execution | Client execution             |
+| :---------------------------------------------------------- | :--------------- | :--------------------------- |
+| ① [📁 **constructors**](src/pipelines/respond/constructors) | Every request    | On page load (once)          |
+| ② [📁 **initializers**](src/pipelines/respond/initializers) | Every request    | On page load or route change |
+| ③ [📁 **middleware**](src/pipelines/respond/middleware)     | Every request    | Every request                |
+| ④ [📁 **routers**](src/pipelines/respond/routers)           | Every request    | Every request                |
+| ⑤ [📁 **settlers**](src/pipelines/respond/settlers)         | Every request    | Every request                |

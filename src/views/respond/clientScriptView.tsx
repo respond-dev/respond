@@ -1,6 +1,6 @@
 import { PipelinePathsType } from "pipelines/lib/pipelinePaths"
-import { LayoutInputType } from "pipelines/respond/types/layoutTypes"
-import { ViewOutputType } from "pipelines/respond/types/viewTypes"
+import { LayoutInputType } from "types/respond/layoutTypes"
+import { ViewOutputType } from "types/respond/viewTypes"
 
 export interface ClientScriptViewInput {
   paths: PipelinePathsType

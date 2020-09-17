@@ -1,4 +1,4 @@
-import { InitializerOutputType } from "pipelines/respond/types/initializerTypes"
+import { InitializerOutputType } from "types/respond/initializerTypes"
 
 export const PATH_REGEX = /[a-zA-Z](\/{1}[a-zA-Z]?.*)/
 
