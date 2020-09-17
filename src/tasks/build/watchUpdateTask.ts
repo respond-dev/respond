@@ -1,6 +1,6 @@
 import { join } from "path"
 import chokidar from "chokidar"
-import { distJsSingleUpdater } from "./lib/distJsUpdater"
+import { distJsSingleUpdater } from "lib/tasks/build/distJsUpdater"
 
 export const rootDir = join(__dirname, "root/")
 export const distCjsTsDir = join(rootDir, "dist/cjs-ts")

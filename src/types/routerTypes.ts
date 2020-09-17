@@ -1,5 +1,5 @@
-import { MiddlewareInputType } from "./middlewareTypes"
-import { MiddlewareOutputType } from "./middlewareTypes"
+import { MiddlewareInputType } from "./respond/middlewareTypes"
+import { MiddlewareOutputType } from "./respond/middlewareTypes"
 
 export type RouterInputType = MiddlewareInputType &
   MiddlewareOutputType

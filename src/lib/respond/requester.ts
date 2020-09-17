@@ -1,7 +1,7 @@
 import { ConstructorInputType } from "types/respond/constructorTypes"
 import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
-import { PipelineDirectoryPathsType } from "pipelines/lib/pipelineDirectoryPaths"
+import { PipelineDirectoryPathsType } from "lib/pipelines/pipelineDirectoryPaths"
 import elementReplacer from "./elementReplacer"
 import importLoader from "lib/loaders/importLoader"
 

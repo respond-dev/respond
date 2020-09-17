@@ -1,7 +1,7 @@
 import http from "http"
-import httpServer from "pipelines/respond/lib/httpServer"
-import pipelinePaths from "pipelines/lib/pipelinePaths"
-import requester from "pipelines/respond/lib/requester"
+import httpServer from "lib/respond/httpServer"
+import pipelinePaths from "lib/pipelines/pipelinePaths"
+import requester from "lib/respond/requester"
 
 export async function startHttpServer(
   port: number,

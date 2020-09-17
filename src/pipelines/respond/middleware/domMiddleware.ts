@@ -1,8 +1,8 @@
 import { MiddlewareInputType } from "types/respond/middlewareTypes"
 import { MiddlewareOutputType } from "types/respond/middlewareTypes"
-import extMatcher from "pipelines/respond/lib/extMatcher"
-import elementBuilder from "pipelines/respond/lib/elementBuilder"
-import styleInjector from "pipelines/respond/lib/styleInjector"
+import extMatcher from "lib/respond/extMatcher"
+import elementBuilder from "lib/respond/elementBuilder"
+import styleInjector from "lib/respond/styleInjector"
 
 export async function domMiddleware({
   client,
@@ -18,7 +18,7 @@ export async function domMiddleware({
     doc = document
   } else {
     const { domBuilder } = await import(
-      "pipelines/respond/lib/domBuilder"
+      "lib/respond/domBuilder"
     )
     doc = (domBuilder() as unknown) as Document
   }

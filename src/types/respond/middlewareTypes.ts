@@ -1,7 +1,7 @@
 import { InitializerInputType } from "./initializerTypes"
 import { InitializerOutputType } from "./initializerTypes"
-import elementBuilder from "pipelines/respond/lib/elementBuilder"
-import styleInjector from "pipelines/respond/lib/styleInjector"
+import elementBuilder from "lib/respond/elementBuilder"
+import styleInjector from "lib/respond/styleInjector"
 
 export type MiddlewareInputType = InitializerInputType &
   InitializerOutputType

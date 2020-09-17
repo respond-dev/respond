@@ -1,7 +1,7 @@
 import { extname, join } from "path"
 import http from "http"
 import chokidar from "chokidar"
-import functionDebouncer from "./lib/functionDebouncer"
+import functionDebouncer from "lib/tasks/respond/functionDebouncer"
 
 let server: http.Server
 
@@ -11,7 +11,7 @@ export async function watchDevHttpTask(): Promise<void> {
     : 3000
 
   const { startHttpServer } = await import(
-    "./lib/startHttpServer"
+    "lib/tasks/respond/startHttpServer"
   )
 
   server = await startHttpServer(port, true)
@@ -50,7 +50,7 @@ export async function restartHttpServer(
   return new Promise((resolve) =>
     server.close(async () => {
       const { startHttpServer } = await import(
-        "./lib/startHttpServer"
+        "lib/tasks/respond/startHttpServer"
       )
 
       server = await startHttpServer(port, true)

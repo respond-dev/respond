@@ -1,3 +1,3 @@
-import historyPatcher from "pipelines/respond/lib/historyPatcher"
+import historyPatcher from "lib/respond/historyPatcher"
 
 historyPatcher()

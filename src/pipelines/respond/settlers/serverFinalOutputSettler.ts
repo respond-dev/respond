@@ -1,6 +1,6 @@
 import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
-import elementSerializer from "pipelines/respond/lib/elementSerializer"
+import elementSerializer from "lib/respond/elementSerializer"
 
 export function serverFinalOutputSettler({
   output,

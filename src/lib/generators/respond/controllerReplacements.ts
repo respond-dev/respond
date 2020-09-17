@@ -74,7 +74,7 @@ export function controllerReplacements({
 }
 
 export function promiseAllImport(): string {
-  return 'import promiseAll from "pipelines/respond/lib/promiseAll"'
+  return 'import promiseAll from "lib/respond/promiseAll"'
 }
 
 export function modelImport(modelName: string): string {
@@ -82,7 +82,7 @@ export function modelImport(modelName: string): string {
 }
 
 export function styleInjectorImport(): string {
-  return 'import styleInjector from "pipelines/respond/lib/styleInjector"'
+  return 'import styleInjector from "lib/respond/styleInjector"'
 }
 
 export function generatorViewImport(name: string): string {

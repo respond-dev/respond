@@ -1,7 +1,7 @@
 import "source-map-support/register"
 import { APIGatewayProxyEvent } from "aws-lambda"
 import { APIGatewayProxyResult } from "aws-lambda"
-import pipelinePaths from "pipelines/lib/pipelinePaths"
+import pipelinePaths from "lib/pipelines/pipelinePaths"
 import requester from "./requester"
 
 export async function lambdaServer(

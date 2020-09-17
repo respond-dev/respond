@@ -1,2 +1,2 @@
-import respondGenerator from "generators/respond/lib/respondGenerator"
+import respondGenerator from "lib/generators/respond/respondGenerator"
 export default respondGenerator

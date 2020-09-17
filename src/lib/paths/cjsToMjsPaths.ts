@@ -1,4 +1,4 @@
-import { PipelineDirectoryPathsType } from "pipelines/lib/pipelineDirectoryPaths"
+import { PipelineDirectoryPathsType } from "lib/pipelines/pipelineDirectoryPaths"
 
 export function cjsToMjsPaths(
   phasePaths: PipelineDirectoryPathsType

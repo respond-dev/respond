@@ -1,4 +1,4 @@
-import domBuilder from "pipelines/respond/lib/domBuilder"
+import domBuilder from "lib/respond/domBuilder"
 
 export async function serverDomConstructor(): Promise<
   void
