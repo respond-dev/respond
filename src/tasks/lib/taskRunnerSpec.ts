@@ -1,5 +1,5 @@
 import expect from "lib/specs/expect"
-import taskRunner from "tasks/lib/taskRunner"
+import taskRunner from "./taskRunner"
 
 describe("taskRunner", () => {
   it("runs a task", async () => {

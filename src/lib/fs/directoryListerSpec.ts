@@ -1,5 +1,5 @@
 import expect from "lib/specs/expect"
-import directoryLister from "lib/fs/directoryLister"
+import directoryLister from "./directoryLister"
 
 describe("directoryLister", () => {
   it("lists a directory", async () => {

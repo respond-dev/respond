@@ -1,4 +1,4 @@
-import { ReplacementInputType } from "generators/lib/fileCopier"
+import { ReplacementInputType } from "lib/fs/fileCopier"
 
 export function viewReplacements({
   name,

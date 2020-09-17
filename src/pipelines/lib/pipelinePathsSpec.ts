@@ -3,7 +3,7 @@ import pipelinePaths from "./pipelinePaths"
 import { pipelinePhases } from "./pipelinePaths"
 
 describe("pipelinePaths", () => {
-  it("reads phase module paths", async () => {
+  it("reads pipeline module paths by phase", async () => {
     const paths = await pipelinePaths("respond")
 
     expect(pipelinePhases.length).toBeGreaterThan(0)

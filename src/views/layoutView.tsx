@@ -1,5 +1,4 @@
 import pipelinePaths from "pipelines/lib/pipelinePaths"
-import modulesToEsm from "pipelines/lib/modulesToEsm"
 import { LayoutInputType } from "pipelines/respond/types/layoutTypes"
 import { LayoutOutputType } from "pipelines/respond/types/layoutTypes"
 import clientScriptView from "views/respond/clientScriptView"
@@ -8,9 +7,7 @@ export async function layoutView(
   input: LayoutInputType
 ): Promise<LayoutOutputType> {
   const { doc, output } = input
-  const modules = modulesToEsm(
-    await pipelinePaths("respond", true)
-  )
+  const paths = await pipelinePaths("respond", true)
 
   return (
     <html>
@@ -37,7 +34,7 @@ export async function layoutView(
       <body>
         <main>
           {output}
-          {clientScriptView({ ...input, modules })}
+          {clientScriptView({ ...input, paths })}
         </main>
       </body>
     </html>

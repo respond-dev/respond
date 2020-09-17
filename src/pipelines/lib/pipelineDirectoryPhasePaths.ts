@@ -8,19 +8,22 @@ export async function pipelineDirectoryPhasePaths(
   dirPath: string,
   clientMode?: boolean
 ): Promise<string[]> {
-  const modulesRegExp = clientMode
+  const pathRegExp = clientMode
     ? clientRegExp
     : serverRegExp
 
   const { filePaths } = await deepDirectoryLister(
     dirPath,
-    modulesRegExp,
+    pathRegExp,
     ".js"
   )
 
-  return filePaths.map(
-    (path) => "/" + relative(join(__dirname, "src/"), path)
-  )
+  return filePaths
+    .filter((path) => !path.match(/Spec\./))
+    .map(
+      (path) =>
+        "/" + relative(join(__dirname, "src/"), path)
+    )
 }
 
 export default pipelineDirectoryPhasePaths

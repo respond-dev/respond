@@ -1,6 +1,6 @@
 // ⚠️ Use relative paths in this file!
 //
-import { ReplacementOutputElementType } from "../../../generators/lib/fileCopier"
+import { ReplacementOutputElementType } from "../../../lib/fs/fileCopier"
 
 export const preSpaceRegex = /([^\w]|^)/
 

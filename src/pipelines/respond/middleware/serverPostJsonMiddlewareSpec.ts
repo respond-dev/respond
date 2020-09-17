@@ -2,7 +2,7 @@ import { IncomingMessage } from "http"
 import net from "net"
 import URL from "url"
 import expect from "lib/specs/expect"
-import serverPostJsonMiddleware from "pipelines/respond/middleware/serverPostJsonMiddleware"
+import serverPostJsonMiddleware from "./serverPostJsonMiddleware"
 
 class FakeIncomingMessage extends IncomingMessage {
   constructor() {

@@ -3,53 +3,52 @@ import { LayoutInputType } from "pipelines/respond/types/layoutTypes"
 import { ViewOutputType } from "pipelines/respond/types/viewTypes"
 
 export interface ClientScriptViewInput {
-  modules: PipelinePathsType
+  paths: PipelinePathsType
 }
 
 export function clientScriptView(
   input: ClientScriptViewInput & LayoutInputType,
   id = "clientScript"
 ): Promise<ViewOutputType> {
-  const { modules } = input
+  const { paths } = input
   return (
     <script
       id={id}
       type="module"
       crossorigin="use-credentials"
     >
-      {scriptTag(modules)}
+      {scriptTag(paths)}
     </script>
   )
 }
 
 export function scriptTag(
-  modules: PipelinePathsType
+  paths: PipelinePathsType
 ): string {
-  const modulesJson = JSON.stringify(modules)
+  const pathsJson = JSON.stringify(paths)
 
   return /* js */ `
-    const modules = ${modulesJson};
+    function importMjs(path) {
+      return import("/dist/esm/" + path)
+    }
 
     function importPaths(paths) {
-      return Promise.all(paths.map(function(path) {
-        return import("/dist/esm/" + path)
-      }))
+      return Promise.all(
+        Object.keys(paths).map(function(key) {
+          return paths[key].map(importMjs)
+        })
+      )
     }
+
+    const paths = ${pathsJson};
     
     Promise.all([
-      importPaths([
-        "/lib/respond/requester.mjs",
-        "/lib/respond/remoteModelRequester.mjs"
-      ]),
-      importPaths(modules.constructors),
-      importPaths(modules.initializers),
-      importPaths(modules.middleware),
-      importPaths(modules.routers),
-      importPaths(modules.settlers),
+      importMjs("/pipelines/lib/pipeline.mjs"),
+      importPaths(paths)
     ])
-    .then(function ([[{ requester }]]) {
+    .then(function ([{ pipeline }]) {
       (window.onpopstate = function() {
-        requester(modules, { client: true })
+        pipeline("respond", paths, { client: true })
       })()
     })`.replace(/^[ ]{4}/gm, "")
 }
