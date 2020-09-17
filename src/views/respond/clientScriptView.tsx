@@ -1,9 +1,9 @@
-import { ModulesType } from "pipelines/respond/lib/modulesLister"
+import { PipelinePathsType } from "pipelines/lib/pipelinePaths"
 import { LayoutInputType } from "pipelines/respond/types/layoutTypes"
 import { ViewOutputType } from "pipelines/respond/types/viewTypes"
 
 export interface ClientScriptViewInput {
-  modules: ModulesType
+  modules: PipelinePathsType
 }
 
 export function clientScriptView(
@@ -22,7 +22,9 @@ export function clientScriptView(
   )
 }
 
-export function scriptTag(modules: ModulesType): string {
+export function scriptTag(
+  modules: PipelinePathsType
+): string {
   const modulesJson = JSON.stringify(modules)
 
   return /* js */ `

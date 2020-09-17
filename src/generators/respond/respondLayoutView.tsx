@@ -1,5 +1,5 @@
-import modulesLister from "pipelines/respond/lib/modulesLister"
-import modulesToEsm from "pipelines/respond/lib/modulesToEsm"
+import pipelinePaths from "pipelines/lib/pipelinePaths"
+import modulesToEsm from "pipelines/lib/modulesToEsm"
 import { LayoutInputType } from "pipelines/respond/types/layoutTypes"
 import { LayoutOutputType } from "pipelines/respond/types/layoutTypes"
 import clientScriptView from "views/respond/clientScriptView"
@@ -9,7 +9,7 @@ export async function respondLayoutView(
 ): Promise<LayoutOutputType> {
   const { output } = input
   const modules = modulesToEsm({
-    ...(await modulesLister(true)),
+    ...(await pipelinePaths("respond", true)),
   })
 
   return (

@@ -1,13 +1,13 @@
 import "source-map-support/register"
 import { APIGatewayProxyEvent } from "aws-lambda"
 import { APIGatewayProxyResult } from "aws-lambda"
-import modulesLister from "./modulesLister"
+import pipelinePaths from "pipelines/lib/pipelinePaths"
 import requester from "./requester"
 
 export async function lambdaServer(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
-  const modules = await modulesLister()
+  const modules = await pipelinePaths("respond")
 
   const output = await requester(modules, {
     apiGatewayProxyEvent: event,

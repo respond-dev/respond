@@ -1,5 +1,5 @@
 import { basename, join } from "path"
-import { deepDirectoryLister } from "pipelines/respond/lib/directoryLister"
+import { deepDirectoryLister } from "lib/fs/directoryLister"
 
 export async function taskRunner(
   args: string[]

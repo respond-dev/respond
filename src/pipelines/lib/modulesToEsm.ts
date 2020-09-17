@@ -1,7 +1,7 @@
-import { ModulesType } from "./modulesLister"
+import { PipelineDirectoryPathsType } from "./pipelineDirectoryPaths"
 
 export function modulesToEsm(
-  modules: ModulesType
+  modules: PipelineDirectoryPathsType
 ): Record<string, string[]> {
   const esm = {}
 

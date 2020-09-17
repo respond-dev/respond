@@ -1,11 +1,9 @@
-export async function importRunner(
+export async function importLoader(
   paths: string[],
   arg: unknown
-): Promise<[any[], (Element | string)[]]> {
+): Promise<any[]> {
   const isBrowser = typeof history !== "undefined"
-
   const objects = []
-  let outputs = []
 
   await Promise.all(
     paths.map(
@@ -20,20 +18,14 @@ export async function importRunner(
           const obj = await fn(arg)
 
           if (typeof obj === "object" && obj !== null) {
-            const { output } = obj
-
             objects.push(obj)
-
-            if (output) {
-              outputs = outputs.concat(output)
-            }
           }
         }
       }
     )
   )
 
-  return [objects, outputs]
+  return objects
 }
 
-export default importRunner
+export default importLoader

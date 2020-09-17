@@ -1,9 +1,9 @@
 import { ConstructorInputType } from "pipelines/respond/types/constructorTypes"
 import { SettlerInputType } from "pipelines/respond/types/settlerTypes"
 import { SettlerOutputType } from "pipelines/respond/types/settlerTypes"
-import { ModulesType } from "pipelines/respond/lib/modulesLister"
+import { PipelineDirectoryPathsType } from "pipelines/lib/pipelineDirectoryPaths"
 import elementReplacer from "./elementReplacer"
-import importRunner from "./importRunner"
+import importLoader from "lib/loaders/importLoader"
 
 export const requesterPhases = [
   "constructors",
@@ -22,7 +22,7 @@ export let clientInitializerObjects: any[]
 export let clientInitializerOutputs: (string | Element)[]
 
 export async function requester(
-  modules: ModulesType,
+  modules: PipelineDirectoryPathsType,
   input: ConstructorInputType
 ): Promise<RequesterOutputType> {
   const { client } = input
@@ -49,7 +49,7 @@ export async function requester(
     let outputs: (string | Element)[]
 
     if (!isClientInitializer || routeChanged) {
-      ;[objects, outputs] = await importRunner(
+      ;[objects, outputs] = await importLoader(
         modules[phase],
         input
       )

@@ -1,10 +1,10 @@
 import { join } from "path"
 import expect from "lib/specs/expect"
-import importRunner from "pipelines/respond/lib/importRunner"
+import importLoader from "./importLoader"
 
-describe("importRunner", () => {
+describe("importLoader", () => {
   it("tests acceptance", async () => {
-    const testInitializer = await importRunner(
+    const testInitializer = await importLoader(
       [
         join(
           __dirname,
@@ -13,9 +13,6 @@ describe("importRunner", () => {
       ],
       { test: true }
     )
-    expect(testInitializer).toEqual([
-      [{ testResult: true }],
-      [],
-    ])
+    expect(testInitializer).toEqual([{ testResult: true }])
   })
 })

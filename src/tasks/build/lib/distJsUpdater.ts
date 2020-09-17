@@ -2,7 +2,7 @@
 //
 import { join, relative } from "path"
 import fileCopier from "../../../generators/lib/fileCopier"
-import { deepDirectoryLister } from "../../../pipelines/respond/lib/directoryLister"
+import { deepDirectoryLister } from "../../../lib/fs/directoryLister"
 import importReplacements from "./importReplacements"
 import pathReplacements from "./pathReplacements"
 import remoteModelReplacements from "./remoteModelReplacements"

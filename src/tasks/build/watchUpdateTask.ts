@@ -13,22 +13,23 @@ export async function watchUpdateTask(): Promise<void> {
     .watch([distCjsTsDir, distEsmTsDir], {
       ignoreInitial: true,
     })
-    .on("change", async (path) => {
-      if (path.match(/\.js$/)) {
-        const isCjs = path.startsWith(distCjsDir)
-        const distDir = isCjs ? distCjsDir : distEsmDir
-        const distTsDir = isCjs
-          ? distCjsTsDir
-          : distEsmTsDir
+    .on("add", updateDist)
+    .on("change", updateDist)
+}
 
-        await distJsSingleUpdater(
-          isCjs ? "cjs" : "esm",
-          path,
-          distDir,
-          distTsDir
-        )
-      }
-    })
+async function updateDist(path) {
+  if (path.match(/\.js$/)) {
+    const isCjs = path.startsWith(distCjsDir)
+    const distDir = isCjs ? distCjsDir : distEsmDir
+    const distTsDir = isCjs ? distCjsTsDir : distEsmTsDir
+
+    await distJsSingleUpdater(
+      isCjs ? "cjs" : "esm",
+      path,
+      distDir,
+      distTsDir
+    )
+  }
 }
 
 export default watchUpdateTask
