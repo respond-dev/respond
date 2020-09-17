@@ -1,7 +1,7 @@
 // ⚠️ Use relative paths in this file!
 //
 import { basename, join } from "path"
-import { directoryLister } from "../../../lib/fs/directoryLister"
+import { directoryLister } from "../../lib/fs/directoryLister"
 
 let srcDirNamesCache: string[]
 

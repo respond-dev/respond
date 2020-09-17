@@ -1,7 +1,7 @@
 // ⚠️ Use relative paths in this file!
 //
 import { dirname, join, relative } from "path"
-import { ReplacementOutputElementType } from "../../../lib/fs/fileCopier"
+import { ReplacementOutputElementType } from "../../lib/fs/fileCopier"
 import srcDirNames from "./srcDirNames"
 
 export async function pathReplacements(

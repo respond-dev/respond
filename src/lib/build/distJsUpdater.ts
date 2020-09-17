@@ -1,8 +1,8 @@
 // ⚠️ Use relative paths in this file!
 //
 import { join, relative } from "path"
-import fileCopier from "../../../lib/fs/fileCopier"
-import { deepDirectoryLister } from "../../../lib/fs/directoryLister"
+import fileCopier from "../../lib/fs/fileCopier"
+import { deepDirectoryLister } from "../../lib/fs/directoryLister"
 import importReplacements from "./importReplacements"
 import pathReplacements from "./pathReplacements"
 import remoteModelReplacements from "./remoteModelReplacements"
