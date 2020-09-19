@@ -1,10 +1,11 @@
 import { join } from "path"
+import { RouteType } from "lib/respond/routeSelector"
 import { ControllerInputType } from "types/controllerTypes"
 import { ControllerOutputType } from "types/controllerTypes"
 
 export const remoteModelRouteRegex = /\/remote\/([a-zA-Z\/]*)(server[a-zA-Z]+).json/
 
-export const remoteModelRoute = {
+export const remoteModelRoute: RouteType = {
   matcher: remoteModelRouteRegex,
   controller: "respond/remoteModel",
 }

@@ -13,7 +13,10 @@ describe("pipeline", () => {
     const output = await pipeline<
       ConstructorInputType,
       SettlerInputType & SettlerOutputType
-    >("respond", paths, {})
+    >("respond", {
+      input: {},
+      paths,
+    })
 
     expect(output).toEqual({
       constructed: true,
@@ -21,6 +24,9 @@ describe("pipeline", () => {
       css: expect.any(Function),
       el: expect.any(Function),
       doc: expect.any(DomDocument),
+      respond: {
+        httpCode: 404,
+      },
     })
   })
 })

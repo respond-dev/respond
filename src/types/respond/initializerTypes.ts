@@ -1,13 +1,13 @@
 import { UrlWithStringQuery } from "url"
 import { ConstructorInputType } from "./constructorTypes"
 import { ConstructorOutputType } from "./constructorTypes"
+import { SettlerOutputType } from "./settlerTypes"
 
 export type InitializerInputType = ConstructorInputType &
   ConstructorOutputType
 
-export interface InitializerOutputType {
+export type InitializerOutputType = SettlerOutputType & {
   headers?: Record<string, string>
   method?: string
-  output?: (Element | string)[] | Element | string
   url?: UrlWithStringQuery
 }

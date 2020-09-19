@@ -6,7 +6,7 @@ import clientScriptView from "views/respond/clientScriptView"
 export async function layoutView(
   input: LayoutInputType
 ): Promise<LayoutOutputType> {
-  const { doc, output } = input
+  const { body, doc } = input
   const paths = await pipelinePaths("respond", true)
 
   return (
@@ -33,7 +33,7 @@ export async function layoutView(
       </head>
       <body>
         <main>
-          {output}
+          {body}
           {clientScriptView({ ...input, paths })}
         </main>
       </body>

@@ -1,12 +1,13 @@
 import { InitializerInputType } from "./initializerTypes"
 import { InitializerOutputType } from "./initializerTypes"
+import { SettlerOutputType } from "./settlerTypes"
 import elementBuilder from "lib/respond/elementBuilder"
 import styleInjector from "lib/respond/styleInjector"
 
 export type MiddlewareInputType = InitializerInputType &
   InitializerOutputType
 
-export interface MiddlewareOutputType {
+export type MiddlewareOutputType = SettlerOutputType & {
   cookies?: Record<string, string>
   css?: typeof styleInjector
   doc?: Document

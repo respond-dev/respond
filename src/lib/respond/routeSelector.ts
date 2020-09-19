@@ -1,4 +1,5 @@
-import { RouterInputType } from "types/routerTypes"
+import { RouterInputType } from "types/respond/routerTypes"
+import { RouterOutputType } from "types/respond/routerTypes"
 
 export interface RouteType {
   matcher: string | RegExp
@@ -7,61 +8,79 @@ export interface RouteType {
   extraInput?: Record<string, any>
 }
 
-export type RoutesType = RouteType[]
-
 export async function routeSelector(
   input: RouterInputType,
-  ...routes: RoutesType
-): Promise<any[]> {
-  const imports = await Promise.all(
-    routes
-      .filter(({ matcher }) => {
-        if (typeof matcher === "string") {
-          return input.url.pathname === matcher
-        } else {
-          return input.url.pathname.match(matcher)
-        }
+  options: {
+    routes: RouteType[]
+    notFound: {
+      controller: string
+      layoutView?: string
+      extraInput?: Record<string, any>
+    }
+  }
+): Promise<RouterOutputType> {
+  const controllersPath = "controllers/"
+  const viewsPath = "views/"
+
+  const routeMatch = options.routes.find(({ matcher }) => {
+    if (typeof matcher === "string") {
+      return input.url.pathname === matcher
+    } else {
+      return input.url.pathname.match(matcher)
+    }
+  })
+
+  let output: any
+
+  if (routeMatch) {
+    const {
+      controller,
+      layoutView,
+      extraInput,
+    } = routeMatch
+
+    const path = `${controllersPath}${controller}Controller`
+
+    let route: [any, any]
+
+    if (!input.client && layoutView) {
+      const layoutPath = `${viewsPath}${layoutView}View`
+
+      route = await Promise.all([
+        import(path + ""),
+        import(layoutPath + ""),
+      ])
+    } else {
+      route = await Promise.all([import(path + ""), null])
+    }
+
+    const [{ default: component }, layoutImport] = route
+
+    output = await component({
+      ...input,
+      ...extraInput,
+    })
+
+    if (layoutImport) {
+      output = layoutImport.default({
+        ...input,
+        body: output,
       })
-      .map(({ controller, layoutView, extraInput }) => {
-        const path = `../../controllers/${controller}Controller`
-        const layoutPath = `views/${layoutView}View`
+    }
 
-        if (!input.client && layoutView) {
-          return Promise.all([
-            import(path + ""),
-            import(layoutPath + ""),
-            extraInput,
-          ])
-        } else {
-          return Promise.all([
-            import(path + ""),
-            null,
-            extraInput,
-          ])
-        }
-      })
-  )
+    return {
+      respond: { output },
+    }
+  }
 
-  return await Promise.all(
-    imports.map(
-      async ([
-        { default: component },
-        layoutImport,
-        extraInput,
-      ]) => {
-        const output = await component({
-          ...input,
-          ...extraInput,
-        })
-
-        if (layoutImport) {
-          return layoutImport.default({ ...input, output })
-        } else {
-          return output
-        }
-      }
-    )
-  )
+  if (output === undefined) {
+    return {
+      respond: {
+        httpCode: 404,
+        output,
+      },
+    }
+  }
 }
 
 export default routeSelector

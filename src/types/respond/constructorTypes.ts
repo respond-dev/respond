@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent } from "aws-lambda"
 import { IncomingMessage } from "http"
+import { SettlerOutputType } from "./settlerTypes"
 
 export interface ConstructorInputType {
   client?: boolean
@@ -7,6 +8,6 @@ export interface ConstructorInputType {
   httpIncomingMessage?: IncomingMessage
 }
 
-export interface ConstructorOutputType {
+export type ConstructorOutputType = SettlerOutputType & {
   constructed?: boolean
 }

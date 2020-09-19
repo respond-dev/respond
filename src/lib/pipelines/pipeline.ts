@@ -16,11 +16,24 @@ export const clientInitializerObjects: Record<
 
 export async function pipeline<InputType, OutputType>(
   id: string,
-  paths: PipelinePathsType,
-  input: InputType,
-  clientMode = typeof history !== "undefined"
+  options: {
+    input: InputType
+    paths: PipelinePathsType
+    outputProperty?: string
+  }
 ): Promise<OutputType> {
+  const clientMode = typeof history !== "undefined"
+  const { paths } = options
+
+  let { input, outputProperty } = options
+
+  outputProperty = outputProperty || id
+
   for (const phase of pipelinePhases) {
+    if (input[outputProperty] && phase !== "settlers") {
+      continue
+    }
+
     if (clientMode && phase === "constructors") {
       if (clientConstructorsCalled[id]) {
         continue
