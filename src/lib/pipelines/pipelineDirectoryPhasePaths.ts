@@ -1,5 +1,6 @@
 import { join, relative } from "path"
 import { deepDirectoryLister } from "lib/fs/directoryLister"
+import cjsToMjsPath from "lib/paths/cjsToMjsPath"
 
 export const clientRegExp = /^((?!(^|\/)(server|example|test)).)*$/
 export const serverRegExp = /^((?!(^|\/)(client|example|test)).)*$/
@@ -20,9 +21,12 @@ export async function pipelineDirectoryPhasePaths(
 
   return filePaths
     .filter((path) => !path.match(/Spec\./))
-    .map(
-      (path) =>
-        "/" + relative(join(__dirname, "src/"), path)
+    .map((path) =>
+      clientMode
+        ? cjsToMjsPath(
+            "/" + relative(join(__dirname, "src/"), path)
+          )
+        : path
     )
 }
 

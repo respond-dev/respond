@@ -18,4 +18,4 @@ export async function respondRouter(
   }
 }
 
-export default router
+export default respondRouter

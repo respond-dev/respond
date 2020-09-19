@@ -8,20 +8,12 @@ import viewReplacements from "./viewReplacements"
 
 const pathMap = {
   constructor: "constructors/respondConstructor.ts",
-  controller: "controllers/respondController.ts",
   initializer: "initializers/respondInitializer.ts",
-  layout: "views/respondLayoutView.tsx",
   middleware: "middleware/respondMiddleware.ts",
-  model: "models/respondModel.ts",
-  router: "routers/respondRouter.ts",
-  route: "routers/router.ts",
   settler: "settlers/respondSettler.ts",
-  style: "styles/respondStyle.scss",
-  task: "tasks/respondTask.ts",
-  view: "views/respondView.tsx",
 }
 
-export async function generateTask(): Promise<void> {
+export async function respondGenerator(): Promise<void> {
   const {
     generators,
     modelType,
@@ -31,28 +23,11 @@ export async function generateTask(): Promise<void> {
     {
       type: "checkbox",
       name: "generators",
-      default: [
-        "controller",
-        "model",
-        "route",
-        "style",
-        "view",
-      ],
       choices: [
-        "controller",
-        "model",
-        "route",
-        "style",
-        "view",
-        new inquirer.Separator(),
         "constructor",
         "initializer",
-        "layout",
         "middleware",
-        "router",
         "settler",
-        "task",
-        new inquirer.Separator(),
       ],
     },
     {
@@ -163,4 +138,4 @@ export async function generateTask(): Promise<void> {
   }
 }
 
-export default generateTask
+export default respondGenerator

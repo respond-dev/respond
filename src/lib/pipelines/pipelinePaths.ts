@@ -1,7 +1,6 @@
 import { join } from "path"
 import appYamlLoader from "lib/appYamlLoader"
 import { EnvYamlType } from "lib/appYamlLoader"
-import cjsToMjsPaths from "lib/paths/cjsToMjsPaths"
 import pipelineDirectoryPaths from "./pipelineDirectoryPaths"
 import { PipelineDirectoryPathsType } from "./pipelineDirectoryPaths"
 
@@ -40,10 +39,6 @@ export async function pipelinePaths(
         paths[phase]
       )
     }
-  }
-
-  if (clientMode) {
-    return cjsToMjsPaths(phasePaths)
   }
 
   return phasePaths

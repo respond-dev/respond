@@ -3,7 +3,7 @@ import { LayoutInputType } from "types/layoutTypes"
 import { LayoutOutputType } from "types/layoutTypes"
 import clientScriptView from "views/respond/clientScriptView"
 
-export async function respondLayoutView(
+export async function layoutView(
   input: LayoutInputType
 ): Promise<LayoutOutputType> {
   const { output } = input
@@ -33,4 +33,4 @@ export async function respondLayoutView(
   )
 }
 
-export default respondLayoutView
+export default layoutView

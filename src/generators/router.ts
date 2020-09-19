@@ -3,7 +3,7 @@ import routeSelector from "lib/respond/routeSelector"
 import { RouterInputType } from "types/routerTypes"
 import { RouterOutputType } from "types/routerTypes"
 
-export async function respondRouter(
+export async function router(
   input: RouterInputType
 ): Promise<RouterOutputType> {
   const output = await routeSelector(
@@ -16,4 +16,4 @@ export async function respondRouter(
   }
 }
 
-export default respondRouter
+export default router

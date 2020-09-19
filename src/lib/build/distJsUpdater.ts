@@ -7,10 +7,10 @@ import importReplacements from "./importReplacements"
 import pathReplacements from "./pathReplacements"
 import remoteModelReplacements from "./remoteModelReplacements"
 
-const distCjsTsPath = join(__dirname, "../../../../cjs-ts")
-const distEsmTsPath = join(__dirname, "../../../../esm-ts")
-const distCjsPath = join(__dirname, "../../../../cjs")
-const distEsmPath = join(__dirname, "../../../../esm")
+const distCjsTsPath = join(__dirname, "../../../cjs-ts")
+const distEsmTsPath = join(__dirname, "../../../esm-ts")
+const distCjsPath = join(__dirname, "../../../cjs")
+const distEsmPath = join(__dirname, "../../../esm")
 
 export async function distJsUpdater(): Promise<void> {
   const [cjsPaths, esmPaths] = await Promise.all([

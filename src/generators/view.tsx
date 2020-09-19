@@ -1,10 +1,8 @@
 import { ViewInputType } from "types/viewTypes"
 import { ViewOutputType } from "types/viewTypes"
 
-export interface RespondViewInputType {}
-
-export function respondView(
-  input: ViewInputType & RespondViewInputType,
+export function view(
+  input: ViewInputType,
   id = "respond"
 ): ViewOutputType {
   return (
@@ -19,4 +17,4 @@ export function respondView(
   )
 }
 
-export default respondView
+export default view

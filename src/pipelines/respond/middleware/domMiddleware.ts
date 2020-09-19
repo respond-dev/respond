@@ -10,7 +10,7 @@ export async function domMiddleware({
 }: MiddlewareInputType): Promise<MiddlewareOutputType> {
   let doc: Document
 
-  if (extMatcher(url.pathname)) {
+  if (extMatcher(url?.pathname)) {
     return
   }
 

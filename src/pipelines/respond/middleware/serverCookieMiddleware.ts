@@ -7,12 +7,12 @@ export function serverCookieMiddleware({
   headers,
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
-  if (extMatcher(url.pathname)) {
+  if (extMatcher(url?.pathname)) {
     return
   }
 
   return {
-    cookies: headers.cookie
+    cookies: headers?.cookie
       ? cookie.parse(headers.cookie)
       : {},
   }

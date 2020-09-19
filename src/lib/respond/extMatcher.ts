@@ -1,5 +1,5 @@
 export function extMatcher(path: string): string {
-  const extMatch = path.match(/\.(\w+)$/)
+  const extMatch = path?.match(/\.(\w+)$/)
 
   if (extMatch) {
     return extMatch[1]

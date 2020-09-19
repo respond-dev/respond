@@ -6,7 +6,7 @@ import querystring from "querystring"
 export function serverQueryMiddleware({
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
-  if (extMatcher(url.href) || !url.href.includes("?")) {
+  if (extMatcher(url?.href) || !url?.href?.includes("?")) {
     return
   }
 

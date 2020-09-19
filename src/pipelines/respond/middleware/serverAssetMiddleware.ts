@@ -30,7 +30,7 @@ export async function serverAssetMiddleware({
 }: MiddlewareInputType): Promise<SettlerOutputType> {
   let urlPath = httpIncomingMessage
     ? httpIncomingMessage.url
-    : apiGatewayProxyEvent.path
+    : apiGatewayProxyEvent?.path
 
   const ext = extMatcher(urlPath)
   const isLambda = !!apiGatewayProxyEvent

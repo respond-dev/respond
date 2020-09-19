@@ -4,7 +4,7 @@ import { MiddlewareOutputType } from "types/respond/middlewareTypes"
 export function hashMiddleware({
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
-  if (!url.href.includes("#")) {
+  if (!url?.href?.includes("#")) {
     return
   }
 
