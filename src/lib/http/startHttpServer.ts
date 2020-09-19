@@ -13,31 +13,24 @@ export async function startHttpServer(
     port,
     devMode,
     async (incoming, response) => {
-      const output = await requester(modules, {
+      const { respond } = await requester(modules, {
         httpIncomingMessage: incoming,
       })
 
-      const {
-        finalHttpCode,
-        finalMimeType,
-        finalOutput,
-        finalStream,
-      } = output
+      const { httpCode, mimeType, output } = respond
 
-      if (finalHttpCode) {
-        response.statusCode = finalHttpCode
+      if (httpCode) {
+        response.statusCode = httpCode
       }
 
-      if (finalMimeType) {
-        response.setHeader("Content-Type", finalMimeType)
+      if (mimeType) {
+        response.setHeader("Content-Type", mimeType)
       }
 
-      if (finalOutput) {
-        response.write(finalOutput)
-      }
-
-      if (finalStream) {
-        finalStream.pipe(response)
+      if (typeof output === "string") {
+        response.write(output)
+      } else if (output?.pipe) {
+        output.pipe(response)
       } else {
         response.end()
       }

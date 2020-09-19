@@ -23,10 +23,12 @@ export function serverFinalOutputSettler({
   }
 
   return {
-    finalMimeType: elementFound
-      ? "text/html"
-      : "application/json",
-    finalOutput: finalOutput.join("\n"),
+    respond: {
+      mimeType: elementFound
+        ? "text/html"
+        : "application/json",
+      output: finalOutput.join("\n"),
+    },
   }
 }
 

@@ -9,20 +9,16 @@ export async function lambdaServer(
 ): Promise<APIGatewayProxyResult> {
   const modules = await pipelinePaths("respond")
 
-  const output = await requester(modules, {
+  const { respond } = await requester(modules, {
     apiGatewayProxyEvent: event,
   })
 
-  const {
-    finalHttpCode,
-    finalMimeType,
-    finalOutput,
-  } = output
+  const { binary, httpCode, mimeType, output } = respond
 
   return {
-    body: finalOutput || "",
-    headers: { "Content-Type": finalMimeType },
-    isBase64Encoded: finalMimeType === "font/ttf",
-    statusCode: finalHttpCode,
+    body: typeof output === "string" ? output : "",
+    headers: { "Content-Type": mimeType },
+    isBase64Encoded: binary,
+    statusCode: httpCode,
   }
 }

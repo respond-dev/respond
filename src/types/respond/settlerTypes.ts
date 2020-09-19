@@ -6,8 +6,10 @@ export type SettlerInputType = MiddlewareInputType &
   MiddlewareOutputType
 
 export interface SettlerOutputType {
-  finalHttpCode?: number
-  finalMimeType?: string
-  finalOutput?: string
-  finalStream?: ReadStream
+  respond?: {
+    binary?: boolean
+    httpCode?: number
+    mimeType?: string
+    output?: string | ReadStream
+  }
 }

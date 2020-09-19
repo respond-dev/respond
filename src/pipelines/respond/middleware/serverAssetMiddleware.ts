@@ -3,26 +3,11 @@ import { createReadStream } from "fs"
 import { ReadStream } from "fs"
 import { pathExists } from "fs-extra"
 import { readFile } from "fs-extra"
+import binaryExtensions from "lib/paths/binaryExtensions"
 import extMatcher from "lib/respond/extMatcher"
 import { MiddlewareInputType } from "types/respond/middlewareTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
 import mime from "mime/lite"
-
-const binaryFileExtensions = [
-  "dds",
-  "eot",
-  "gif",
-  "ico",
-  "jar",
-  "jpeg",
-  "jpg",
-  "pdf",
-  "png",
-  "swf",
-  "tga",
-  "ttf",
-  "zip",
-]
 
 export async function serverAssetMiddleware({
   apiGatewayProxyEvent,
@@ -49,7 +34,7 @@ export async function serverAssetMiddleware({
     let body: string
     let stream: ReadStream
 
-    const isBinary = binaryFileExtensions.includes(ext)
+    const isBinary = binaryExtensions.includes(ext)
     const mimeType = mime.getType(ext)
 
     if (!isLambda && isBinary) {
@@ -61,9 +46,11 @@ export async function serverAssetMiddleware({
     }
 
     return {
-      finalMimeType: mimeType,
-      finalOutput: body,
-      finalStream: stream,
+      respond: {
+        binary: isBinary,
+        mimeType: mimeType,
+        output: body || stream,
+      },
     }
   }
 }
