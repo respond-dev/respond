@@ -1,3 +1,5 @@
+import { ReadStream } from "fs"
+
 export const selfClosingTags = [
   "AREA",
   "BASE",
@@ -16,13 +18,17 @@ export const selfClosingTags = [
 ]
 
 export function elementSerializer(
-  el: Element | Element[]
+  el: Element | Element[] | string | ReadStream
 ): string {
   if (Array.isArray(el)) {
     return el.map(elementSerializer).join("")
   }
 
-  if (el === undefined) {
+  if (
+    el === undefined ||
+    el instanceof ReadStream ||
+    typeof el === "string"
+  ) {
     return ""
   }
 

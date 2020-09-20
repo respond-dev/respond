@@ -32,7 +32,7 @@ export async function layoutView(
       <body>
         <main>
           {body}
-          {await clientScriptView()}
+          {await clientScriptView(input)}
         </main>
       </body>
     </html>

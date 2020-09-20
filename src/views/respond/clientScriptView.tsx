@@ -1,7 +1,9 @@
 import pipelinePaths from "lib/pipelines/pipelinePaths"
+import { LayoutInputType } from "types/layoutTypes"
 import { ViewOutputType } from "types/viewTypes"
 
 export async function clientScriptView(
+  input: LayoutInputType,
   id = "clientScript"
 ): Promise<ViewOutputType> {
   return (
@@ -10,12 +12,12 @@ export async function clientScriptView(
       type="module"
       crossorigin="use-credentials"
     >
-      {await scriptTag(paths)}
+      {await scriptTag()}
     </script>
   )
 }
 
-export async function scriptTag(): string {
+export async function scriptTag(): Promise<string> {
   const paths = await pipelinePaths("respond", true)
   const pathsJson = JSON.stringify(paths)
 
