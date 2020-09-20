@@ -1,4 +1,3 @@
-import pipelinePaths from "lib/pipelines/pipelinePaths"
 import { LayoutInputType } from "types/layoutTypes"
 import { LayoutOutputType } from "types/layoutTypes"
 import clientScriptView from "views/respond/clientScriptView"
@@ -6,8 +5,7 @@ import clientScriptView from "views/respond/clientScriptView"
 export async function layoutView(
   input: LayoutInputType
 ): Promise<LayoutOutputType> {
-  const { output } = input
-  const paths = await pipelinePaths("respond", true)
+  const { body, doc } = input
 
   return (
     <html>
@@ -24,10 +22,18 @@ export async function layoutView(
           ].join(",")}
         />
         <link rel="icon" href="data:," />
+        <link
+          rel="stylesheet"
+          href="/dist/css/styles/respond/layoutStyle.css"
+          type="text/css"
+        />
+        {doc.head.childNodes}
       </head>
       <body>
-        {output}
-        {clientScriptView({ ...input, paths })}
+        <main>
+          {body}
+          {await clientScriptView()}
+        </main>
       </body>
     </html>
   )

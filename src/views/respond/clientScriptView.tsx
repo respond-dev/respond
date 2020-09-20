@@ -1,30 +1,22 @@
-import { PipelinePathsType } from "lib/pipelines/pipelinePaths"
-import { LayoutInputType } from "types/layoutTypes"
+import pipelinePaths from "lib/pipelines/pipelinePaths"
 import { ViewOutputType } from "types/viewTypes"
 
-export interface ClientScriptViewInput {
-  paths: PipelinePathsType
-}
-
-export function clientScriptView(
-  input: ClientScriptViewInput & LayoutInputType,
+export async function clientScriptView(
   id = "clientScript"
 ): Promise<ViewOutputType> {
-  const { paths } = input
   return (
     <script
       id={id}
       type="module"
       crossorigin="use-credentials"
     >
-      {scriptTag(paths)}
+      {await scriptTag(paths)}
     </script>
   )
 }
 
-export function scriptTag(
-  paths: PipelinePathsType
-): string {
+export async function scriptTag(): string {
+  const paths = await pipelinePaths("respond", true)
   const pathsJson = JSON.stringify(paths)
 
   return /* js */ `
