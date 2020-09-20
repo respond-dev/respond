@@ -1,7 +1,7 @@
 import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
 
-export function serverRespondSettler({
+export function serverNotFoundSettler({
   respond,
 }: SettlerInputType): SettlerOutputType {
   if (!respond) {
@@ -9,4 +9,4 @@ export function serverRespondSettler({
   }
 }
 
-export default serverRespondSettler
+export default serverNotFoundSettler

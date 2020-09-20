@@ -8,7 +8,7 @@ import pipeline from "./pipeline"
 import pipelinePaths from "./pipelinePaths"
 
 describe("pipeline", () => {
-  it("empty input", async () => {
+  it("handles empty input", async () => {
     const paths = await pipelinePaths("respond")
 
     const output = await pipeline<
@@ -31,7 +31,7 @@ describe("pipeline", () => {
     })
   })
 
-  it("test controller", async () => {
+  it("executes test pipeline", async () => {
     const paths = await pipelinePaths("respond-test")
 
     const output = await pipeline<
@@ -56,7 +56,7 @@ describe("pipeline", () => {
       doc: expect.any(DomDocument),
       headers: { host: "test.com" },
       method: "GET",
-      respond: { output: expect.any(String) },
+      respond: { output: "<div>/</div>" },
       testRequest: {
         headers: { host: "test.com" },
         httpMethod: "GET",

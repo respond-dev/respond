@@ -4,7 +4,7 @@ import { ControllerOutputType } from "types/controllerTypes"
 export async function testController(
   input: ControllerInputType
 ): Promise<ControllerOutputType> {
-  return JSON.stringify(input.url)
+  return <div>{input.url.path}</div>
 }
 
 export default testController
