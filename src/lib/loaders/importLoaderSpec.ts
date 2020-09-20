@@ -1,18 +1,31 @@
+import URL from "url"
 import { join } from "path"
 import expect from "lib/specs/expect"
 import importLoader from "./importLoader"
 
 describe("importLoader", () => {
-  it("tests acceptance", async () => {
+  it("runs test initializer", async () => {
     const testInitializer = await importLoader(
       [
         join(
           __dirname,
-          "pipelines/respond/initializers/testInitializer"
+          "pipelines/respond/initializers/serverTestInitializer"
         ),
       ],
-      { test: true }
+      {
+        testRequest: {
+          headers: { host: "test.com" },
+          httpMethod: "GET",
+          path: "/",
+        },
+      }
     )
-    expect(testInitializer).toEqual([{ testResult: true }])
+    expect(testInitializer).toEqual([
+      {
+        headers: { host: "test.com" },
+        method: "GET",
+        url: URL.parse("http://test.com/"),
+      },
+    ])
   })
 })

@@ -33,6 +33,7 @@ export async function pipelinePaths(
       pipelinePhases,
       clientMode
     )
+
     for (const phase in paths) {
       phasePaths[phase] = phasePaths[phase] || []
       phasePaths[phase] = phasePaths[phase].concat(

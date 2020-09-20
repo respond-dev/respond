@@ -10,19 +10,12 @@ export interface RouteType {
 
 export async function routeSelector(
   input: RouterInputType,
-  options: {
-    routes: RouteType[]
-    notFound: {
-      controller: string
-      layoutView?: string
-      extraInput?: Record<string, any>
-    }
-  }
+  routes: RouteType[]
 ): Promise<RouterOutputType> {
   const controllersPath = "controllers/"
   const viewsPath = "views/"
 
-  const routeMatch = options.routes.find(({ matcher }) => {
+  const routeMatch = routes.find(({ matcher }) => {
     if (typeof matcher === "string") {
       return input.url.pathname === matcher
     } else {

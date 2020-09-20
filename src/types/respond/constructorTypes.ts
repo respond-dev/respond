@@ -6,6 +6,11 @@ export interface ConstructorInputType {
   client?: boolean
   apiGatewayProxyEvent?: APIGatewayProxyEvent
   httpIncomingMessage?: IncomingMessage
+  testRequest?: {
+    headers: Record<string, string>
+    httpMethod: string
+    path: string
+  }
 }
 
 export type ConstructorOutputType = SettlerOutputType & {

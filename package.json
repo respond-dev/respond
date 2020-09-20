@@ -10,7 +10,7 @@
     "generate": "./bin/task generate",
     "postinstall": "npm run build",
     "start": "./bin/task startDev",
-    "test": "mocha",
+    "test": "NODE_ENV=test mocha",
     "update": "ncu -u"
   },
   "repository": {
