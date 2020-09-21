@@ -7,7 +7,7 @@ export function serverQueryMiddleware({
   url,
 }: MiddlewareInputType): MiddlewareOutputType {
   if (extMatcher(url?.href) || !url?.href?.includes("?")) {
-    return
+    return { query: {} }
   }
 
   const [queryPath] = url.href.split("#")

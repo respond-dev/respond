@@ -59,3 +59,5 @@ export function busboyBuilder(
 
   return [busboyInstance, finished]
 }
+
+export default busboyBuilder

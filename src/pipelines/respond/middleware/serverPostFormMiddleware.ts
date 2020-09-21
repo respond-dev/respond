@@ -1,6 +1,6 @@
 import { MiddlewareInputType } from "types/respond/middlewareTypes"
 import { MiddlewareOutputType } from "types/respond/middlewareTypes"
-import { busboyBuilder } from "lib/respond/busboyBuilder"
+import busboyBuilder from "lib/respond/busboyBuilder"
 
 export async function serverPostFormMiddleware({
   apiGatewayProxyEvent,
@@ -13,7 +13,9 @@ export async function serverPostFormMiddleware({
     (!apiGatewayProxyEvent && !httpIncomingMessage) ||
     headers["content-type"].startsWith("application/json")
   ) {
-    return
+    return {
+      form: { params: {}, files: {} },
+    }
   }
 
   const [busboy, finished] = busboyBuilder(headers)
