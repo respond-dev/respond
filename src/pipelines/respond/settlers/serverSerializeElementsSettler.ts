@@ -1,3 +1,4 @@
+import { ReadStream } from "fs"
 import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
 import elementSerializer from "lib/respond/elementSerializer"
@@ -5,11 +6,17 @@ import elementSerializer from "lib/respond/elementSerializer"
 export function serverSerializeElementsSettler({
   respond,
 }: SettlerInputType): SettlerOutputType {
-  if (respond) {
+  const output = respond?.output
+  const isString = typeof output === "string"
+  const isReadStream = output instanceof ReadStream
+
+  if (output && !isString && !isReadStream) {
     return {
       respond: {
         ...respond,
-        output: elementSerializer(respond.output),
+        output: elementSerializer(
+          (output as unknown) as Element | Element[]
+        ),
       },
     }
   }
