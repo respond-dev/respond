@@ -31,7 +31,8 @@ export async function pipelineDirectoryPhasePaths(
     .map((path) =>
       clientMode
         ? cjsToMjsPath(
-            "/" + relative(join(__dirname, "src/"), path)
+            "/" +
+              relative(join(__dirname, "dist/cjs/"), path)
           )
         : path
     )

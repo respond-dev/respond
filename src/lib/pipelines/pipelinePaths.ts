@@ -29,7 +29,7 @@ export async function pipelinePaths(
 
   for (const pipelineDir of pipelineDirs) {
     const paths = await pipelineDirectoryPaths(
-      join(__dirname, "src/", pipelineDir),
+      join(__dirname, "dist/cjs/", pipelineDir),
       pipelinePhases,
       clientMode
     )

@@ -19,7 +19,7 @@ export const unlinkExtConfig = {
 }
 
 export async function watchUnlinkTask(): Promise<void> {
-  const srcDir = join(__dirname, "root/src/")
+  const srcDir = join(__dirname, "src/")
 
   chokidar
     .watch([srcDir], { ignoreInitial: true })

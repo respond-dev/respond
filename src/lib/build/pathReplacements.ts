@@ -30,7 +30,12 @@ export async function pathReplacements(
         '"' + join(relToSrc, "../../"),
       ],
     ])
-    .concat([[new RegExp('"src[/]', "g"), '"' + relToSrc]])
+    .concat([
+      [
+        new RegExp('"src[/]', "g"),
+        '"' + join(relToSrc, "../../src/"),
+      ],
+    ])
 }
 
 export default pathReplacements
