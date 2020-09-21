@@ -15,6 +15,10 @@ export async function routeSelector(
   const controllersPath = "controllers/"
   const viewsPath = "views/"
 
+  if (!input?.url) {
+    return
+  }
+
   const routeMatch = routes.find(({ matcher }) => {
     if (typeof matcher === "string") {
       return input.url.pathname === matcher
