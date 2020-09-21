@@ -20,6 +20,12 @@ export async function pathReplacements(
     )
     .concat([
       [
+        new RegExp('"dist[/]', "g"),
+        '"' + join(relToSrc, "../../dist/"),
+      ],
+    ])
+    .concat([
+      [
         new RegExp('"root[/]', "g"),
         '"' + join(relToSrc, "../../"),
       ],

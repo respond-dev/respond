@@ -60,7 +60,10 @@ describe("pipeline", () => {
       headers: { host: "test.com" },
       method: "GET",
       query: {},
-      respond: { output: "<div>/</div>" },
+      respond: {
+        mimeType: "text/html",
+        output: "<div>/</div>",
+      },
       testRequest: {
         headers: { host: "test.com" },
         httpMethod: "GET",
@@ -104,6 +107,45 @@ describe("pipeline", () => {
         path: "/?returnJson=1",
       },
       url: URL.parse("http://test.com/?returnJson=1"),
+    })
+  })
+
+  it("retrieves assets", async () => {
+    const paths = await pipelinePaths("respond")
+
+    const output = await pipeline<
+      ConstructorInputType,
+      SettlerInputType & SettlerOutputType
+    >("respond", {
+      input: {
+        testRequest: {
+          headers: { host: "test.com" },
+          httpMethod: "GET",
+          path: "/dist/esm/lib/pipelines/pipeline.mjs",
+        },
+      },
+      paths,
+    })
+
+    expect(output).toEqual({
+      constructed: true,
+      form: { params: {}, files: {} },
+      headers: { host: "test.com" },
+      method: "GET",
+      query: {},
+      respond: {
+        binary: false,
+        mimeType: "application/javascript",
+        output: expect.any(String),
+      },
+      testRequest: {
+        headers: { host: "test.com" },
+        httpMethod: "GET",
+        path: "/dist/esm/lib/pipelines/pipeline.mjs",
+      },
+      url: URL.parse(
+        "http://test.com/dist/esm/lib/pipelines/pipeline.mjs"
+      ),
     })
   })
 })

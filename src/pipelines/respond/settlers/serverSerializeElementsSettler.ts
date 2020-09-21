@@ -14,6 +14,7 @@ export function serverSerializeElementsSettler({
     return {
       respond: {
         ...respond,
+        mimeType: "text/html",
         output: elementSerializer(
           (output as unknown) as Element | Element[]
         ),

@@ -3,10 +3,10 @@ import chokidar from "chokidar"
 import { distJsSingleUpdater } from "lib/build/distJsUpdater"
 
 export const rootDir = join(__dirname, "root/")
-export const distCjsTsDir = join(rootDir, "dist/cjs-ts")
-export const distEsmTsDir = join(rootDir, "dist/esm-ts")
-export const distCjsDir = join(rootDir, "dist/cjs")
-export const distEsmDir = join(rootDir, "dist/esm")
+export const distCjsTsDir = join(__dirname, "dist/cjs-ts")
+export const distEsmTsDir = join(__dirname, "dist/esm-ts")
+export const distCjsDir = join(__dirname, "dist/cjs")
+export const distEsmDir = join(__dirname, "dist/esm")
 
 export async function watchUpdateTask(): Promise<void> {
   chokidar

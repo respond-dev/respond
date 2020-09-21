@@ -2,26 +2,24 @@ import { extname, join, relative } from "path"
 import chokidar from "chokidar"
 import fs from "fs-extra"
 
-export const rootDir = join(__dirname, "root/")
-
 export const unlinkExtConfig = {
   ".scss": {
-    dirs: [join(rootDir, "dist/css")],
+    dirs: [join(__dirname, "dist/css")],
     exts: [".css"],
   },
   ".ts": {
     dirs: [
-      join(rootDir, "dist/cjs-ts"),
-      join(rootDir, "dist/esm-ts"),
-      join(rootDir, "dist/cjs"),
-      join(rootDir, "dist/esm"),
+      join(__dirname, "dist/cjs-ts"),
+      join(__dirname, "dist/esm-ts"),
+      join(__dirname, "dist/cjs"),
+      join(__dirname, "dist/esm"),
     ],
     exts: [".js", ".js.map", ".d.ts"],
   },
 }
 
 export async function watchUnlinkTask(): Promise<void> {
-  const srcDir = join(rootDir, "src")
+  const srcDir = join(__dirname, "root/src/")
 
   chokidar
     .watch([srcDir], { ignoreInitial: true })

@@ -46,19 +46,18 @@ export async function pipeline<InputType, OutputType>(
       clientMode && phase === "initializers"
 
     const routeChanged =
-      isClientInitializer &&
-      clientHref[id] !== window.location.href
+      clientMode && clientHref[id] !== window.location.href
 
     let objects: any[]
 
     if (!isClientInitializer || routeChanged) {
       objects = await importLoader(paths[phase], input)
 
-      if (routeChanged) {
+      if (isClientInitializer && routeChanged) {
         clientHref[id] = window.location.href
         clientInitializerObjects[id] = objects
       }
-    } else if (phase === "initializers") {
+    } else if (isClientInitializer) {
       objects = clientInitializerObjects[id]
     }
 

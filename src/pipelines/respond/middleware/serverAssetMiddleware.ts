@@ -12,10 +12,17 @@ import mime from "mime/lite"
 export async function serverAssetMiddleware({
   apiGatewayProxyEvent,
   httpIncomingMessage,
+  testRequest,
 }: MiddlewareInputType): Promise<SettlerOutputType> {
-  let urlPath = httpIncomingMessage
-    ? httpIncomingMessage.url
-    : apiGatewayProxyEvent?.path
+  let urlPath: string
+
+  if (httpIncomingMessage) {
+    urlPath = httpIncomingMessage.url
+  } else if (apiGatewayProxyEvent) {
+    urlPath = apiGatewayProxyEvent.path
+  } else if (testRequest) {
+    urlPath = testRequest.path
+  }
 
   const ext = extMatcher(urlPath)
   const isLambda = !!apiGatewayProxyEvent
@@ -28,7 +35,7 @@ export async function serverAssetMiddleware({
     urlPath = urlPath.replace(/\.mjs$/, ".js")
   }
 
-  const path = join(__dirname, "src/", urlPath)
+  const path = join(__dirname, "root/", urlPath)
 
   if (await pathExists(path)) {
     let body: string
