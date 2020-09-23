@@ -4,8 +4,8 @@ import { RouterOutputType } from "types/respond/routerTypes"
 export interface RouteType {
   matcher: string | RegExp
   controller: string
-  layoutView?: string
-  extraInput?: Record<string, any>
+  layout?: string
+  input?: Record<string, any>
 }
 
 export async function routeSelector(
@@ -34,18 +34,13 @@ export async function routeSelector(
   let output: any
 
   if (routeMatch) {
-    const {
-      controller,
-      layoutView,
-      extraInput,
-    } = routeMatch
-
+    const { controller, layout, input: extra } = routeMatch
     const path = `${controllersPath}${controller}Controller`
 
     let route: [any, any]
 
-    if (!input.client && layoutView) {
-      const layoutPath = `${viewsPath}${layoutView}View`
+    if (!input.client && layout) {
+      const layoutPath = `${viewsPath}${layout}View`
 
       route = await Promise.all([
         import(path + ""),
@@ -59,7 +54,7 @@ export async function routeSelector(
 
     output = await component({
       ...input,
-      ...extraInput,
+      ...extra,
     })
 
     if (layoutImport) {

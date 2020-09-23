@@ -6,11 +6,7 @@ export async function appRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
   return await routeSelector("app", input, [
-    {
-      controller: "home",
-      layoutView: "layout",
-      matcher: "/",
-    },
+    { matcher: "/", controller: "home", layout: "layout" },
   ])
 }
 
