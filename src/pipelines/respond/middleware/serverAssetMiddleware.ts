@@ -31,7 +31,9 @@ export async function serverAssetMiddleware({
     return
   }
 
-  if (ext === "mjs") {
+  if (ext === "map") {
+    urlPath = urlPath.replace(/\/esm\//, "/esm-ts/")
+  } else if (ext === "mjs") {
     urlPath = urlPath.replace(/\.mjs$/, ".js")
   }
 
