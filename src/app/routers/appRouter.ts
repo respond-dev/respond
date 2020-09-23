@@ -1,12 +1,17 @@
-import { remoteModelRoute } from "controllers/respond/remoteModelController"
 import routeSelector from "lib/respond/routeSelector"
 import { RouterInputType } from "types/respond/routerTypes"
 import { RouterOutputType } from "types/respond/routerTypes"
 
-export async function remoteModelRouter(
+export async function appRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  return await routeSelector(input, [remoteModelRoute])
+  return await routeSelector("app", input, [
+    {
+      controller: "home",
+      layoutView: "layout",
+      matcher: "/",
+    },
+  ])
 }
 
-export default remoteModelRouter
+export default appRouter

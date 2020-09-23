@@ -7,13 +7,13 @@ export async function startHttpServer(
   port: number,
   devMode?: boolean
 ): Promise<http.Server> {
-  const paths = await pipelinePaths("respond")
+  const paths = await pipelinePaths("respond-app")
 
   return httpServer(
     port,
     devMode,
     async (incoming, response) => {
-      const { respond } = await pipeline("respond", {
+      const { respond } = await pipeline("respond-app", {
         input: { httpIncomingMessage: incoming },
         paths,
       })
@@ -30,6 +30,7 @@ export async function startHttpServer(
 
       if (typeof output === "string") {
         response.write(output)
+        response.end()
       } else if (output?.pipe) {
         output.pipe(response)
       } else {

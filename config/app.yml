@@ -9,6 +9,9 @@ envVars: &envVars
 pipelines: &pipelines
   respond:
     - pipelines/respond
+  respond-app:
+    - pipelines/respond
+    - pipelines/respond-app
   respond-test:
     - pipelines/respond
     - pipelines/respond-test

@@ -7,7 +7,7 @@ import requester from "./requester"
 export async function lambdaServer(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
-  const modules = await pipelinePaths("respond")
+  const modules = await pipelinePaths("respond-app")
 
   const { respond } = await requester(modules, {
     apiGatewayProxyEvent: event,

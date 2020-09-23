@@ -1,18 +1,11 @@
 import { join } from "path"
 import appYamlLoader from "lib/appYamlLoader"
 import { EnvYamlType } from "lib/appYamlLoader"
+import { pipelinePhases } from "./pipeline"
 import pipelineDirectoryPaths from "./pipelineDirectoryPaths"
 import { PipelineDirectoryPathsType } from "./pipelineDirectoryPaths"
 
 export type PipelinePathsType = PipelineDirectoryPathsType
-
-export const pipelinePhases = [
-  "constructors",
-  "initializers",
-  "middleware",
-  "routers",
-  "settlers",
-]
 
 export async function pipelinePaths(
   pipelineId: string,

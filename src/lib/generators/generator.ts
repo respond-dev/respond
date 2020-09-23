@@ -4,10 +4,10 @@ import directoryLister from "lib/fs/directoryLister"
 import fileCopier from "lib/fs/fileCopier"
 
 const outputDirectories = {
-  controller: "controllers/",
-  model: "models/",
-  style: "styles/",
-  view: "views/",
+  controller: "src/controllers",
+  model: "src/models",
+  style: "src/styles",
+  view: "src/views",
 }
 
 export async function generator(): Promise<void> {
@@ -52,7 +52,6 @@ export async function generator(): Promise<void> {
       path,
       join(
         __dirname,
-        "src/",
         outputDirectories[cleanChoice],
         basename(path).replace(
           /^[a-z]/,

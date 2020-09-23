@@ -18,12 +18,12 @@ export async function clientScriptView(
 }
 
 export async function scriptTag(): Promise<string> {
-  const paths = await pipelinePaths("respond", true)
+  const paths = await pipelinePaths("respond-app", true)
   const pathsJson = JSON.stringify(paths)
 
   return /* js */ `
     function importMjs(path) {
-      return import("/dist/esm/" + path)
+      return import("/dist/esm" + path)
     }
 
     function importPaths(paths) {
@@ -37,12 +37,12 @@ export async function scriptTag(): Promise<string> {
     const paths = ${pathsJson};
     
     Promise.all([
-      importMjs("/pipelines/lib/pipeline.mjs"),
+      importMjs("/lib/pipelines/pipeline.mjs"),
       importPaths(paths)
     ])
     .then(function ([{ pipeline }]) {
       (window.onpopstate = function() {
-        pipeline("respond", paths, { client: true })
+        pipeline("respond-app", { paths: paths, input: { client: true } })
       })()
     })`.replace(/^[ ]{4}/gm, "")
 }

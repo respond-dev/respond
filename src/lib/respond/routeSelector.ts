@@ -9,11 +9,15 @@ export interface RouteType {
 }
 
 export async function routeSelector(
+  appName: string,
   input: RouterInputType,
   routes: RouteType[]
 ): Promise<RouterOutputType> {
-  const controllersPath = "controllers/"
-  const viewsPath = "views/"
+  const baseDir =
+    typeof history === "undefined" ? "dist/cjs" : "dist/esm"
+
+  const controllersPath = `${baseDir}/${appName}/controllers/`
+  const viewsPath = `${baseDir}/${appName}/views/`
 
   if (!input?.url) {
     return
@@ -59,7 +63,7 @@ export async function routeSelector(
     })
 
     if (layoutImport) {
-      output = layoutImport.default({
+      output = await layoutImport.default({
         ...input,
         body: output,
       })

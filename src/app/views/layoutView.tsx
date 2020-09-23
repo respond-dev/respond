@@ -1,6 +1,6 @@
 import { LayoutInputType } from "types/layoutTypes"
 import { LayoutOutputType } from "types/layoutTypes"
-import clientScriptView from "views/respond/clientScriptView"
+import clientScriptView from "lib/views/clientScriptView"
 
 export async function layoutView(
   input: LayoutInputType
@@ -24,7 +24,7 @@ export async function layoutView(
         <link rel="icon" href="data:," />
         <link
           rel="stylesheet"
-          href="/dist/css/styles/respond/layoutStyle.css"
+          href="/dist/css/lib/styles/layoutStyle.css"
           type="text/css"
         />
         {doc.head.childNodes}

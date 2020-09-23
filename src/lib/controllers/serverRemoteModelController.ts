@@ -1,16 +1,9 @@
 import { join } from "path"
-import { RouteType } from "lib/respond/routeSelector"
 import { ControllerInputType } from "types/controllerTypes"
 import { ControllerOutputType } from "types/controllerTypes"
+import { remoteModelRouteRegex } from "pipelines/respond/routers/serverRemoteModelRouter"
 
-export const remoteModelRouteRegex = /\/remote\/([a-zA-Z\/]*)(server[a-zA-Z]+).json/
-
-export const remoteModelRoute: RouteType = {
-  matcher: remoteModelRouteRegex,
-  controller: "respond/remoteModel",
-}
-
-export async function remoteModelController(
+export async function serverRemoteModelController(
   input: ControllerInputType & { modelsPath: string }
 ): Promise<ControllerOutputType> {
   const [, dirPath, modelName] = input.url.path.match(
@@ -34,4 +27,4 @@ export async function remoteModelController(
   )
 }
 
-export default remoteModelController
+export default serverRemoteModelController

@@ -1,6 +1,13 @@
 import importLoader from "lib/loaders/importLoader"
-import { pipelinePhases } from "./pipelinePaths"
 import { PipelinePathsType } from "./pipelinePaths"
+
+export const pipelinePhases = [
+  "constructors",
+  "initializers",
+  "middleware",
+  "routers",
+  "settlers",
+]
 
 export const clientHref: Record<string, string> = {}
 
@@ -27,7 +34,7 @@ export async function pipeline<InputType, OutputType>(
 
   let { input, outputProperty } = options
 
-  outputProperty = outputProperty || id
+  outputProperty = outputProperty || "respond"
 
   for (const phase of pipelinePhases) {
     if (input[outputProperty] && phase !== "settlers") {

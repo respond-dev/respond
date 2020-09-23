@@ -89,6 +89,15 @@ export function elementBuilder(
       }
     }
   }
+
+  if (node.id && browser) {
+    const el = document.getElementById(node.id)
+
+    if (el?.parentNode) {
+      el.parentNode.replaceChild(node, el)
+    }
+  }
+
   return node
 }
 

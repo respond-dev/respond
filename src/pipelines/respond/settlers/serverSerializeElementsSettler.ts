@@ -3,9 +3,10 @@ import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
 import elementSerializer from "lib/respond/elementSerializer"
 
-export function serverSerializeElementsSettler({
-  respond,
-}: SettlerInputType): SettlerOutputType {
+export function serverSerializeElementsSettler(
+  input: SettlerInputType
+): SettlerOutputType {
+  const { respond } = input
   const output = respond?.output
   const isString = typeof output === "string"
   const isReadStream = output instanceof ReadStream
