@@ -7,7 +7,7 @@ TypeScript web framework optimized for delivery 🚚
 - First class universal routing (SSR & SPA 🧖‍♀️)
 - Client side ES modules (🚫 webpack, ✅ MJS)
 - TypeScript sources and breakpoints in browser 🧘
-- Built-in server environments (Node.js HTTP, AWS Lambda, Cloudflare Worker ☁️)
+- Built-in server environments (Node.js HTTP, AWS Lambda ☁️)
 - JSX 🏭
 
 ## Old wisdom
