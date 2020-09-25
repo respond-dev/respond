@@ -1,65 +1,31 @@
-import { basename, join } from "path"
+import { join } from "path"
 import inquirer from "inquirer"
-import directoryLister from "lib/fs/directoryLister"
-import fileCopier from "lib/fs/fileCopier"
+import { deepDirectoryLister } from "lib/fs/directoryLister"
 
-const outputDirectories = {
-  controller: "src/controllers",
-  model: "src/models",
-  style: "src/styles",
-  view: "src/views",
-}
+const generatorRegex = /([a-zA-Z]+)Generator\.js$/
 
 export async function generator(): Promise<void> {
-  const { filePaths, dirPaths } = await directoryLister(
-    join(__dirname, "src/generators/")
+  const { filePaths } = await deepDirectoryLister(
+    join(__dirname, "dist/cjs/generators/"),
+    generatorRegex
   )
 
   const files = filePaths.reduce((memo, path) => {
-    memo["⚙️  " + path.match(/\/([^\/\.]+)\./)[1]] = path
+    const name = path.match(generatorRegex)[1]
+    memo[name] = path
     return memo
   }, {})
 
-  const dirs = dirPaths.reduce((memo, path) => {
-    memo["📁 " + basename(path)] = path
-    return memo
-  }, {})
-
-  const { generators, name } = await inquirer.prompt([
+  const { generator } = await inquirer.prompt([
     {
-      type: "checkbox",
-      name: "generators",
-      choices: [
-        new inquirer.Separator(),
-        ...Object.keys(files).sort(),
-        new inquirer.Separator(),
-        ...Object.keys(dirs).sort(),
-      ],
-      default: Object.keys(files),
-    },
-    {
-      type: "input",
-      name: "name",
-      message: "name (camelCase)",
-      default: "home",
+      type: "list",
+      name: "generator",
+      message: "pick a generator",
+      choices: Object.keys(files).sort(),
     },
   ])
 
-  for (const choice of generators) {
-    const path = files[choice]
-    const cleanChoice = choice.replace(/[\s\W]/g, "")
-    await fileCopier(
-      path,
-      join(
-        __dirname,
-        outputDirectories[cleanChoice],
-        basename(path).replace(
-          /^[a-z]/,
-          (m) => name + m.toUpperCase()
-        )
-      )
-    )
-  }
+  await (await import(files[generator])).default()
 }
 
 export default generator

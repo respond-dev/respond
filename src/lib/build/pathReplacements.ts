@@ -2,7 +2,7 @@
 //
 import { dirname, join, relative } from "path"
 import { ReplacementOutputElementType } from "../../lib/fs/fileCopier"
-import srcDirNames from "./srcDirNames"
+import srcDirNames from "../../lib/paths/srcDirNames"
 
 export async function pathReplacements(
   jsPath: string,
