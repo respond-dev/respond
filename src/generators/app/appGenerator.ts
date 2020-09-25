@@ -45,6 +45,12 @@ export async function appGenerator(): Promise<void> {
   for (const generatorBase of generators) {
     const generatorName = generatorBase.match(/[^.]+/)[0]
     const destDir = generatorName + "s"
+
+    const newGeneratorName = generatorName.replace(
+      /^./,
+      (c: string) => name + c.toUpperCase()
+    )
+
     const newGeneratorBase = generatorBase.replace(
       /^./,
       (c: string) => name + c.toUpperCase()
@@ -63,7 +69,7 @@ export async function appGenerator(): Promise<void> {
         destDir,
         newGeneratorBase
       ),
-      [[` ${generatorName}`, newGeneratorBase]]
+      [[" " + generatorName, " " + newGeneratorName]]
     )
   }
 }
