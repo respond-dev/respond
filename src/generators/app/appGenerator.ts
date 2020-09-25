@@ -12,7 +12,11 @@ export const defaultChoices = [
 
 export async function appGenerator(): Promise<void> {
   const unknownSrcDirs = await unknownSrcDirNames()
-  const { app, generators, name } = await inquirer.prompt([
+  const {
+    app,
+    generators,
+    genName,
+  } = await inquirer.prompt([
     {
       type: "checkbox",
       name: "generators",
@@ -37,39 +41,51 @@ export async function appGenerator(): Promise<void> {
     },
     {
       type: "input",
-      name: "name",
+      name: "genName",
       message: "name (camelCase)",
     },
   ])
 
-  for (const generatorBase of generators) {
-    const generatorName = generatorBase.match(/[^.]+/)[0]
-    const destDir = generatorName + "s"
+  const replacements = []
 
-    const newGeneratorName = generatorName.replace(
-      /^./,
-      (c: string) => name + c.toUpperCase()
-    )
+  const names = generators.map((base: string) => {
+    const name = base.match(/[^.]+/)[0]
+    const pluralName = name + "s"
 
-    const newGeneratorBase = generatorBase.replace(
-      /^./,
-      (c: string) => name + c.toUpperCase()
-    )
+    const replacer = (c: string) =>
+      genName + c.toUpperCase()
 
+    const newName = name.replace(/^./, replacer)
+    const newBase = base.replace(/^./, replacer)
+
+    replacements.push([
+      new RegExp(" " + name, "g"),
+      " " + newName,
+    ])
+
+    replacements.push([
+      new RegExp("/" + name + '"', "g"),
+      "./" + pluralName + "/" + newName + '"',
+    ])
+
+    return { base, name, newName, newBase, pluralName }
+  })
+
+  for (const name of names) {
     await fileCopier(
       join(
         __dirname,
         "src/generators/app/assets",
-        generatorBase
+        name.base
       ),
       join(
         __dirname,
         "src/",
         app || unknownSrcDirs[0],
-        destDir,
-        newGeneratorBase
+        name.pluralName,
+        name.newBase
       ),
-      [[" " + generatorName, " " + newGeneratorName]]
+      replacements
     )
   }
 }
