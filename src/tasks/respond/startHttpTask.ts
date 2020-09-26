@@ -1,5 +1,5 @@
 import http from "http"
-import startHttpServer from "lib/http/startHttpServer"
+import startHttpServer from "libs/http/startHttpServer"
 
 export async function startHttpTask(): Promise<
   http.Server

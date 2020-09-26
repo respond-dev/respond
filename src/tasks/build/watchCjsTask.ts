@@ -1,5 +1,5 @@
 import { join } from "path"
-import ptySpawner from "lib/pty/ptySpawner"
+import ptySpawner from "libs/pty/ptySpawner"
 
 export async function watchCjsTask(): Promise<void> {
   await ptySpawner("npx", {

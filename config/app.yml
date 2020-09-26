@@ -1,5 +1,5 @@
 # Application name
-name: respond-app
+name: app
 
 # Environment variables
 envVars: &envVars
@@ -9,18 +9,18 @@ envVars: &envVars
 pipelines: &pipelines
   respond:
     - pipelines/respond
-  respond-app:
-    - pipelines/respond
-    - pipelines/respond-app
   respond-test:
     - pipelines/respond
     - pipelines/respond-test
+  web-app:
+    - pipelines/respond
+    - pipelines/web-app
 
 # S3 bucket name
-s3Bucket: &s3Bucket respond-app-${opt:stage, self:provider.stage}-bucket
+s3Bucket: &s3Bucket app-${opt:stage, self:provider.stage}-bucket
 
 # SSM key prefix
-ssmKey: &ssmKey respond-app-${opt:stage, self:provider.stage}
+ssmKey: &ssmKey app-${opt:stage, self:provider.stage}
 
 # Environment-specific configuration
 dev:

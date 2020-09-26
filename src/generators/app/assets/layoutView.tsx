@@ -1,6 +1,6 @@
 import { LayoutInputType } from "types/layoutTypes"
 import { LayoutOutputType } from "types/layoutTypes"
-import clientScriptView from "lib/views/clientScriptView"
+import clientScriptView from "libs/views/clientScriptView"
 
 export async function layoutView(
   input: LayoutInputType

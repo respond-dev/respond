@@ -1,6 +1,6 @@
 import { MiddlewareInputType } from "types/respond/middlewareTypes"
 import { MiddlewareOutputType } from "types/respond/middlewareTypes"
-import extMatcher from "lib/respond/extMatcher"
+import extMatcher from "libs/respond/extMatcher"
 import querystring from "querystring"
 
 export function serverQueryMiddleware({

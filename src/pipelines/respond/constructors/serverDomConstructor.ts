@@ -1,4 +1,4 @@
-import domBuilder from "lib/respond/domBuilder"
+import domBuilder from "libs/respond/domBuilder"
 
 export async function serverDomConstructor(): Promise<
   void

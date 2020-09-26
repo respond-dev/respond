@@ -27,7 +27,7 @@ provider:
         - "arn:aws:s3:::${file(./config/app.yml):${opt:stage, self:provider.stage}.s3Bucket}"
 functions:
   postmaster:
-    handler: dist/cjs/lib/respond/lambdaServer.lambdaServer
+    handler: dist/cjs/libs/respond/lambdaServer.lambdaServer
     events:
       - http:
           path: /

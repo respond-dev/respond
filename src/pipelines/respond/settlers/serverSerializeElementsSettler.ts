@@ -1,7 +1,7 @@
 import { ReadStream } from "fs"
 import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
-import elementSerializer from "lib/respond/elementSerializer"
+import elementSerializer from "libs/respond/elementSerializer"
 
 export function serverSerializeElementsSettler(
   input: SettlerInputType

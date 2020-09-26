@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
 require("source-map-support/register")
-require("../dist/cjs/lib/tasks/taskRunner").default(
+require("../dist/cjs/libs/tasks/taskRunner").default(
   process.argv.slice(2)
 )

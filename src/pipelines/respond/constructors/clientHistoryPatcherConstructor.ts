@@ -1,3 +1,3 @@
-import historyPatcher from "lib/respond/historyPatcher"
+import historyPatcher from "libs/respond/historyPatcher"
 
 historyPatcher()

@@ -1,10 +1,10 @@
 import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
 
-export async function respondSettler(
+export async function settler(
   input: SettlerInputType
 ): Promise<SettlerOutputType> {
   return {}
 }
 
-export default respondSettler
+export default settler

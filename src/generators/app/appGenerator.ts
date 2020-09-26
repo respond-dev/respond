@@ -1,14 +1,14 @@
 import { join } from "path"
 import inquirer from "inquirer"
-import fileCopier from "lib/fs/fileCopier"
-import { generatorAssetReplacements } from "lib/fs/fileCopierReplacements"
-import { uncommentReplacement } from "lib/fs/fileCopierReplacements"
-import { removeViewReplacement } from "lib/fs/fileCopierReplacements"
-import { removeCommentsReplacement } from "lib/fs/fileCopierReplacements"
-import { unknownSrcDirNames } from "lib/paths/srcDirNames"
+import fileCopier from "libs/fs/fileCopier"
+import { generatorAssetReplacements } from "libs/fs/fileCopierReplacements"
+import { uncommentReplacement } from "libs/fs/fileCopierReplacements"
+import { removeViewReplacement } from "libs/fs/fileCopierReplacements"
+import { removeCommentsReplacement } from "libs/fs/fileCopierReplacements"
+import appDirNames from "libs/paths/appDirNames"
 
 export async function appGenerator(): Promise<void> {
-  const unknownSrcDirs = await unknownSrcDirNames()
+  const apps = await appDirNames()
   const answers = await inquirer.prompt([
     {
       type: "checkbox",
@@ -34,8 +34,8 @@ export async function appGenerator(): Promise<void> {
       type: "list",
       name: "app",
       message: "select app directory",
-      choices: unknownSrcDirs,
-      when: unknownSrcDirs.length > 1,
+      choices: apps,
+      when: apps.length > 1,
     },
     {
       type: "input",
@@ -136,8 +136,8 @@ export async function appGenerator(): Promise<void> {
       ),
       join(
         __dirname,
-        "src/",
-        app || unknownSrcDirs[0],
+        "src/apps",
+        app || apps[0],
         name.pluralName,
         name.newBase
       ),

@@ -1,11 +1,11 @@
-import routeSelector from "lib/respond/routeSelector"
+import routeSelector from "libs/respond/routeSelector"
 import { RouterInputType } from "types/respond/routerTypes"
 import { RouterOutputType } from "types/respond/routerTypes"
 
 export async function testRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  return await routeSelector("lib", input, [
+  return await routeSelector("libs", input, [
     { matcher: "/", controller: "test" },
   ])
 }

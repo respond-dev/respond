@@ -1,4 +1,4 @@
-import expect from "lib/specs/expect"
+import expect from "libs/specs/expect"
 
 describe("exampleSpec", () => {
   it("expects", async () => {

@@ -1,7 +1,7 @@
 import URL from "url"
 import { InitializerInputType } from "types/respond/initializerTypes"
 import { InitializerOutputType } from "types/respond/initializerTypes"
-import { headerCleaner } from "lib/respond/headerCleaner"
+import { headerCleaner } from "libs/respond/headerCleaner"
 
 export async function serverHttpInitializer({
   httpIncomingMessage: req,
