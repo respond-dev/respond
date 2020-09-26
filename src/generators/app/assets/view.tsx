@@ -1,8 +1,9 @@
 import { ViewInputType } from "types/viewTypes"
 import { ViewOutputType } from "types/viewTypes"
+// import { ModelOutput } from "./model"
 
 export function view(
-  input: ViewInputType,
+  input: ViewInputType, // & { modelOutput: ModelOutput },
   id = "respond"
 ): ViewOutputType {
   return (

@@ -1,22 +1,15 @@
 import { join } from "path"
 import inquirer from "inquirer"
 import fileCopier from "lib/fs/fileCopier"
+import { generatorAssetReplacements } from "lib/fs/fileCopierReplacements"
+import { uncommentReplacement } from "lib/fs/fileCopierReplacements"
+import { removeViewReplacement } from "lib/fs/fileCopierReplacements"
+import { removeCommentsReplacement } from "lib/fs/fileCopierReplacements"
 import { unknownSrcDirNames } from "lib/paths/srcDirNames"
-
-export const defaultChoices = [
-  "controller.ts",
-  "model.ts",
-  "style.scss",
-  "view.tsx",
-]
 
 export async function appGenerator(): Promise<void> {
   const unknownSrcDirs = await unknownSrcDirNames()
-  const {
-    app,
-    generators,
-    genName,
-  } = await inquirer.prompt([
+  const answers = await inquirer.prompt([
     {
       type: "checkbox",
       name: "generators",
@@ -27,10 +20,15 @@ export async function appGenerator(): Promise<void> {
         { name: "style", value: "style.scss" },
         { name: "view", value: "view.tsx" },
         new inquirer.Separator(),
-        { name: "layout", value: "layoutView.tsx" },
+        { name: "layoutView", value: "layoutView.tsx" },
         { name: "router", value: "router.ts" },
       ],
-      default: defaultChoices,
+      default: [
+        "controller.ts",
+        "model.ts",
+        "style.scss",
+        "view.tsx",
+      ],
     },
     {
       type: "list",
@@ -41,37 +39,95 @@ export async function appGenerator(): Promise<void> {
     },
     {
       type: "input",
-      name: "genName",
-      message: "name (camelCase)",
+      name: "controller",
+      message: "camelCase controller name",
+      when: (a) => !!a.generators.includes("controller.ts"),
+    },
+    {
+      type: "input",
+      name: "model",
+      message: "camelCase model name",
+      default: (a) => a.controller,
+      when: (a) => !!a.generators.includes("model.ts"),
+    },
+    {
+      type: "input",
+      name: "style",
+      message: "camelCase style name",
+      default: (a) => a.controller,
+      when: (a) => !!a.generators.includes("style.scss"),
+    },
+    {
+      type: "input",
+      name: "view",
+      message: "camelCase view name",
+      default: (a) => a.controller,
+      when: (a) => !!a.generators.includes("view.tsx"),
+    },
+    {
+      type: "input",
+      name: "layoutView",
+      message: "camelCase layout view name",
+      default: (a) => a.view,
+      when: (a) =>
+        !!a.generators.includes("layoutView.tsx"),
+    },
+    {
+      type: "input",
+      name: "router",
+      message: "camelCase router name",
+      default: (a) => a.controller,
+      when: (a) => !!a.generators.includes("router.ts"),
     },
   ])
 
-  const replacements = []
+  const { app, generators } = answers
+  let replacements = []
 
   const names = generators.map((base: string) => {
     const name = base.match(/[^.]+/)[0]
-    const pluralName = name + "s"
+    const pluralName =
+      (name === "layoutView" ? "view" : name) + "s"
 
     const replacer = (c: string) =>
-      genName + c.toUpperCase()
+      answers[name] + c.toUpperCase()
 
     const newName = name.replace(/^./, replacer)
     const newBase = base.replace(/^./, replacer)
 
-    replacements.push([
-      new RegExp(" " + name, "g"),
-      " " + newName,
-    ])
-
-    replacements.push([
-      new RegExp("/" + name + '"', "g"),
-      "./" + pluralName + "/" + newName + '"',
-    ])
+    replacements = replacements.concat(
+      generatorAssetReplacements(name, newName, pluralName)
+    )
 
     return { base, name, newName, newBase, pluralName }
   })
 
   for (const name of names) {
+    let replace = replacements
+
+    if (name.name === "controller") {
+      const viewName = names.find(
+        ({ name }) => name === "view"
+      )
+
+      replace = replace.concat(
+        generators.includes("model.ts")
+          ? [
+              uncommentReplacement,
+              removeViewReplacement(viewName.newName),
+            ]
+          : [removeCommentsReplacement]
+      )
+    }
+
+    if (name.name === "view") {
+      replace = replace.concat([
+        generators.includes("model.ts")
+          ? uncommentReplacement
+          : removeCommentsReplacement,
+      ])
+    }
+
     await fileCopier(
       join(
         __dirname,
@@ -85,7 +141,7 @@ export async function appGenerator(): Promise<void> {
         name.pluralName,
         name.newBase
       ),
-      replacements
+      replace
     )
   }
 }

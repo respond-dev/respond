@@ -5,7 +5,9 @@ import { RouterOutputType } from "types/respond/routerTypes"
 export async function router(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  return await routeSelector("app", input, [])
+  return await routeSelector("app", input, [
+    // { matcher: "/", controller: "controller", layout: "layoutView" },
+  ])
 }
 
 export default router
