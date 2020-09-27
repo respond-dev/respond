@@ -7,7 +7,7 @@ export const remoteModelRouteRegex = /\/remote\/([a-zA-Z\/]*)(server[a-zA-Z]+).j
 export async function serverRemoteModelRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  return await routeSelector("libs", input, [
+  return await routeSelector("libs/respond", input, [
     {
       matcher: remoteModelRouteRegex,
       controller: "respond/remoteModel",

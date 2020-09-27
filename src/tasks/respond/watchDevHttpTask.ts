@@ -1,7 +1,7 @@
 import { extname, join } from "path"
 import http from "http"
 import chokidar from "chokidar"
-import functionDebouncer from "libs/promises/functionDebouncer"
+import functionDebouncer from "libs/functionDebouncer/functionDebouncer"
 
 let server: http.Server
 
@@ -10,11 +10,11 @@ export async function watchDevHttpTask(): Promise<void> {
     ? parseInt(process.env.PORT)
     : 3000
 
-  const { startHttpServer } = await import(
-    "libs/http/startHttpServer"
+  const { httpServerStarter } = await import(
+    "libs/httpServerStarter/httpServerStarter"
   )
 
-  server = await startHttpServer(port, true)
+  server = await httpServerStarter(port, true)
 
   const restart = functionDebouncer(() =>
     restartHttpServer(port)
@@ -49,11 +49,11 @@ export async function restartHttpServer(
 
   return new Promise((resolve) =>
     server.close(async () => {
-      const { startHttpServer } = await import(
-        "libs/http/startHttpServer"
+      const { httpServerStarter } = await import(
+        "libs/httpServerStarter/httpServerStarter"
       )
 
-      server = await startHttpServer(port, true)
+      server = await httpServerStarter(port, true)
 
       // eslint-disable-next-line no-console
       console.log("🐸 Ready!")

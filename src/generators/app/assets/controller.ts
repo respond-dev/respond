@@ -1,6 +1,6 @@
 import { ControllerInputType } from "types/controllerTypes"
 import { ControllerOutputType } from "types/controllerTypes"
-// import promiseAll from "libs/promises/promiseAll"
+// import promiseAll from "libs/promiseAll/promiseAll"
 // import model from "./model"
 import view from "./view"
 

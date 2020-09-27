@@ -1,2 +1,2 @@
-import generator from "libs/generators/generator"
+import generator from "libs/generator/generator"
 export default generator

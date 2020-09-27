@@ -1,6 +1,0 @@
-#!/usr/bin/env node
-
-require("source-map-support/register")
-require("../dist/cjs-ts/libs/build/distJsUpdater").default(
-  process.argv.slice(2)
-)

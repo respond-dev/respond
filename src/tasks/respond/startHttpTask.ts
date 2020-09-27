@@ -1,5 +1,5 @@
 import http from "http"
-import startHttpServer from "libs/http/startHttpServer"
+import httpServerStarter from "libs/httpServerStarter/httpServerStarter"
 
 export async function startHttpTask(): Promise<
   http.Server
@@ -8,7 +8,7 @@ export async function startHttpTask(): Promise<
     ? parseInt(process.env.PORT)
     : 3000
 
-  return startHttpServer(port)
+  return httpServerStarter(port)
 }
 
 export default startHttpTask

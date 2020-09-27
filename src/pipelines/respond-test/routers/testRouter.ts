@@ -5,7 +5,7 @@ import { RouterOutputType } from "types/respond/routerTypes"
 export async function testRouter(
   input: RouterInputType
 ): Promise<RouterOutputType> {
-  return await routeSelector("libs", input, [
+  return await routeSelector("libs/respond", input, [
     { matcher: "/", controller: "test" },
   ])
 }

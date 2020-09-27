@@ -1,9 +1,9 @@
 import { ConstructorInputType } from "types/respond/constructorTypes"
 import { SettlerInputType } from "types/respond/settlerTypes"
 import { SettlerOutputType } from "types/respond/settlerTypes"
-import { PipelineDirectoryPathsType } from "libs/pipelines/pipelineDirectoryPaths"
+import importLoader from "libs/importLoader/importLoader"
+import { PipelineDirectoryPathsType } from "libs/pipelinePaths/pipelineDirectoryPaths"
 import elementReplacer from "./elementReplacer"
-import importLoader from "libs/loaders/importLoader"
 
 export const requesterPhases = [
   "constructors",

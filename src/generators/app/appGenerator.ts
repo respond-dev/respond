@@ -1,14 +1,15 @@
 import { join } from "path"
 import inquirer from "inquirer"
-import fileCopier from "libs/fs/fileCopier"
-import { generatorAssetReplacements } from "libs/fs/fileCopierReplacements"
-import { uncommentReplacement } from "libs/fs/fileCopierReplacements"
-import { removeViewReplacement } from "libs/fs/fileCopierReplacements"
-import { removeCommentsReplacement } from "libs/fs/fileCopierReplacements"
-import appDirNames from "libs/paths/appDirNames"
+import appNames from "libs/appNames/appNames"
+import fileCopier from "libs/fileCopier/fileCopier"
+
+import generatorAssetReplacements from "libs/appGenerator/generatorAssetReplacements"
+import uncommentReplacement from "libs/appGenerator/uncommentReplacement"
+import removeViewReplacement from "libs/appGenerator/removeViewReplacement"
+import removeCommentsReplacement from "libs/appGenerator/removeCommentsReplacement"
 
 export async function appGenerator(): Promise<void> {
-  const apps = await appDirNames()
+  const apps = await appNames()
   const answers = await inquirer.prompt([
     {
       type: "checkbox",

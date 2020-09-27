@@ -1,6 +1,6 @@
 import { join } from "path"
 import chokidar from "chokidar"
-import { distJsSingleUpdater } from "libs/build/distJsUpdater"
+import distJsSingleReplacer from "libs/distJsReplacer/distJsSingleReplacer"
 
 export const rootDir = join(__dirname, "root/")
 export const distCjsTsDir = join(__dirname, "dist/cjs-ts")
@@ -23,7 +23,7 @@ async function updateDist(path) {
     const distDir = isCjs ? distCjsDir : distEsmDir
     const distTsDir = isCjs ? distCjsTsDir : distEsmTsDir
 
-    await distJsSingleUpdater(
+    await distJsSingleReplacer(
       isCjs ? "cjs" : "esm",
       path,
       distDir,
