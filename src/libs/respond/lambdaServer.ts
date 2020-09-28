@@ -2,16 +2,21 @@ import "source-map-support/register"
 import { APIGatewayProxyEvent } from "aws-lambda"
 import { APIGatewayProxyResult } from "aws-lambda"
 import pipelinePaths from "libs/pipelinePaths/pipelinePaths"
-import requester from "./requester"
+import pipeline from "libs/pipeline/pipeline"
+import { SettlerOutputType } from "types/respond/settlerTypes"
 
 export async function lambdaServer(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
   const modules = await pipelinePaths("web-app")
 
-  const { respond } = await requester(modules, {
-    apiGatewayProxyEvent: event,
-  })
+  const { respond }: SettlerOutputType = await pipeline(
+    "web-app",
+    {
+      input: { apiGatewayProxyEvent: event },
+      paths: modules,
+    }
+  )
 
   const { binary, httpCode, mimeType, output } = respond
 

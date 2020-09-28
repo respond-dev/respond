@@ -2,6 +2,7 @@ import http from "http"
 import httpServer from "libs/respond/httpServer"
 import pipelinePaths from "libs/pipelinePaths/pipelinePaths"
 import pipeline from "libs/pipeline/pipeline"
+import { SettlerOutputType } from "types/respond/settlerTypes"
 
 export async function httpServerStarter(
   port: number,
@@ -13,10 +14,13 @@ export async function httpServerStarter(
     port,
     devMode,
     async (incoming, response) => {
-      const { respond } = await pipeline("web-app", {
-        input: { httpIncomingMessage: incoming },
-        paths,
-      })
+      const { respond }: SettlerOutputType = await pipeline(
+        "web-app",
+        {
+          input: { httpIncomingMessage: incoming },
+          paths,
+        }
+      )
 
       const { httpCode, mimeType, output } = respond
 
