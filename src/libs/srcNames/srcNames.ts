@@ -7,7 +7,9 @@ export async function srcNames(): Promise<string[]> {
   const dirs = await directoryLister(
     join(__dirname, "../../")
   )
-  return dirs.dirPaths.map((srcDir) => basename(srcDir))
+  return dirs.dirPaths
+    .map((srcDir) => basename(srcDir))
+    .sort()
 }
 
 export default srcNames

@@ -5,7 +5,9 @@ export async function appNames(): Promise<string[]> {
   const dirs = await directoryLister(
     join(__dirname, "apps/")
   )
-  return dirs.dirPaths.map((appDir) => basename(appDir))
+  return dirs.dirPaths
+    .map((appDir) => basename(appDir))
+    .sort()
 }
 
 export default appNames
