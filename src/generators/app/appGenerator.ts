@@ -42,6 +42,7 @@ export async function appGenerator(): Promise<void> {
       type: "input",
       name: "controller",
       message: "camelCase controller name",
+      default: "home",
       when: (a) => !!a.generators.includes("controller.ts"),
     },
     {

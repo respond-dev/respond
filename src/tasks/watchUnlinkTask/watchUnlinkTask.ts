@@ -2,20 +2,23 @@ import { extname, join, relative } from "path"
 import chokidar from "chokidar"
 import fs from "fs-extra"
 
+export const unlinkTsConfig = {
+  dirs: [
+    join(__dirname, "dist/cjs-ts"),
+    join(__dirname, "dist/esm-ts"),
+    join(__dirname, "dist/cjs"),
+    join(__dirname, "dist/esm"),
+  ],
+  exts: [".js", ".js.map", ".d.ts"],
+}
+
 export const unlinkExtConfig = {
   ".scss": {
     dirs: [join(__dirname, "dist/css")],
     exts: [".css"],
   },
-  ".ts": {
-    dirs: [
-      join(__dirname, "dist/cjs-ts"),
-      join(__dirname, "dist/esm-ts"),
-      join(__dirname, "dist/cjs"),
-      join(__dirname, "dist/esm"),
-    ],
-    exts: [".js", ".js.map", ".d.ts"],
-  },
+  ".ts": unlinkTsConfig,
+  ".tsx": unlinkTsConfig,
 }
 
 export async function watchUnlinkTask(): Promise<void> {
