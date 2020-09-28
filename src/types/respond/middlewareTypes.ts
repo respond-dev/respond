@@ -1,8 +1,8 @@
+import elementBuilder from "libs/respond/elementBuilder"
+import styleInjector from "libs/respond/styleInjector"
 import { InitializerInputType } from "./initializerTypes"
 import { InitializerOutputType } from "./initializerTypes"
 import { SettlerOutputType } from "./settlerTypes"
-import elementBuilder from "libs/respond/elementBuilder"
-import styleInjector from "libs/respond/styleInjector"
 
 export type MiddlewareInputType = InitializerInputType &
   InitializerOutputType
