@@ -1,4 +1,4 @@
-import { RouterInputType } from "./respond/routerTypes"
+import { RouterInputType } from "types/respond/routerTypes"
 
 export type LayoutInputType = RouterInputType & {
   body: (Element | string)[] | Element | string

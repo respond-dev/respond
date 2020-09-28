@@ -1,5 +1,5 @@
-import { LayoutInputType } from "types/layoutTypes"
-import { LayoutOutputType } from "types/layoutTypes"
+import { LayoutInputType } from "types/web-app/layoutTypes"
+import { LayoutOutputType } from "types/web-app/layoutTypes"
 import clientScriptView from "libs/respond/views/clientScriptView"
 
 export async function layoutView(

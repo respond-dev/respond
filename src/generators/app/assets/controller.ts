@@ -1,5 +1,5 @@
-import { ControllerInputType } from "types/controllerTypes"
-import { ControllerOutputType } from "types/controllerTypes"
+import { ControllerInputType } from "types/web-app/controllerTypes"
+import { ControllerOutputType } from "types/web-app/controllerTypes"
 // import promiseAll from "libs/promiseAll/promiseAll"
 // import model from "./model"
 import view from "./view"

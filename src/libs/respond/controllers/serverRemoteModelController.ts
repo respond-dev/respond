@@ -1,6 +1,6 @@
 import { join } from "path"
-import { ControllerInputType } from "types/controllerTypes"
-import { ControllerOutputType } from "types/controllerTypes"
+import { ControllerInputType } from "types/web-app/controllerTypes"
+import { ControllerOutputType } from "types/web-app/controllerTypes"
 import { remoteModelRouteRegex } from "pipelines/respond/routers/serverRemoteModelRouter"
 
 export async function serverRemoteModelController(

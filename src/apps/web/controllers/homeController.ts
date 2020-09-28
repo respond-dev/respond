@@ -1,5 +1,5 @@
-import { ControllerInputType } from "types/controllerTypes"
-import { ControllerOutputType } from "types/controllerTypes"
+import { ControllerInputType } from "types/web-app/controllerTypes"
+import { ControllerOutputType } from "types/web-app/controllerTypes"
 import homeView from "../views/homeView"
 
 export async function controller(

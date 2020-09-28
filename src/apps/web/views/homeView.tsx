@@ -1,5 +1,5 @@
-import { ViewInputType } from "types/viewTypes"
-import { ViewOutputType } from "types/viewTypes"
+import { ViewInputType } from "types/web-app/viewTypes"
+import { ViewOutputType } from "types/web-app/viewTypes"
 
 export function view(
   input: ViewInputType,

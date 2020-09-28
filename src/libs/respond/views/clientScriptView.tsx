@@ -1,6 +1,6 @@
 import pipelinePaths from "libs/pipelinePaths/pipelinePaths"
-import { LayoutInputType } from "types/layoutTypes"
-import { ViewOutputType } from "types/viewTypes"
+import { LayoutInputType } from "types/web-app/layoutTypes"
+import { ViewOutputType } from "types/web-app/viewTypes"
 
 export async function clientScriptView(
   input: LayoutInputType,
