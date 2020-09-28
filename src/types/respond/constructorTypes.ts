@@ -6,6 +6,7 @@ export interface ConstructorInputType {
   client?: boolean
   apiGatewayProxyEvent?: APIGatewayProxyEvent
   httpIncomingMessage?: IncomingMessage
+  remoteModelDirPath?: string
   testRequest?: {
     headers: Record<string, string>
     httpMethod: string

@@ -1,3 +1,4 @@
+import { join } from "path"
 import http from "http"
 import httpServer from "libs/respond/httpServer"
 import pipelinePaths from "libs/pipelinePaths/pipelinePaths"
@@ -17,7 +18,13 @@ export async function httpServerStarter(
       const { respond }: SettlerOutputType = await pipeline(
         "web-app",
         {
-          input: { httpIncomingMessage: incoming },
+          input: {
+            httpIncomingMessage: incoming,
+            remoteModelDirPath: join(
+              __dirname,
+              "apps/web/models"
+            ),
+          },
           paths,
         }
       )

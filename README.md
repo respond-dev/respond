@@ -42,13 +42,13 @@ npm run generate
 
 Press `<enter>` at each prompt to accept the defaults. You'll notice some updated files:
 
-| Location                                  | Filename            | Purpose                                       |
-| :---------------------------------------- | :------------------ | :-------------------------------------------- |
-| [📁 **controllers**](src/app/controllers) | `homeController.ts` | Return elements or JSON from models and views |
-| [📁 **models**](src/app/models)           | `homeModel.ts`      | Data store                                    |
-| [📁 **routers**](src/app/routers)         | `router.ts`         | Return elements or JSON from controllers      |
-| [📁 **styles**](src/app/styles)           | `homeStyle.scss`    | Sass style sheet                              |
-| [📁 **views**](src/app/views)             | `homeView.ts`       | Return elements from JSX                      |
+| Location                                       | Filename            | Purpose                                       |
+| :--------------------------------------------- | :------------------ | :-------------------------------------------- |
+| [📁 **controllers**](src/apps/web/controllers) | `homeController.ts` | Return elements or JSON from models and views |
+| [📁 **models**](src/apps/web/models)           | `homeModel.ts`      | Data store                                    |
+| [📁 **routers**](src/apps/web/routers)         | `router.ts`         | Return elements or JSON from controllers      |
+| [📁 **styles**](src/apps/web/styles)           | `homeStyle.scss`    | Sass style sheet                              |
+| [📁 **views**](src/apps/web/views)             | `homeView.ts`       | Return elements from JSX                      |
 
 Visit <http://localhost:3000> to view your new page.
 

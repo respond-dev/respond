@@ -4,19 +4,22 @@ import { ControllerOutputType } from "types/web-app/controllerTypes"
 import { remoteModelRouteRegex } from "pipelines/respond/routers/serverRemoteModelRouter"
 
 export async function serverRemoteModelController(
-  input: ControllerInputType & { modelsPath: string }
+  input: ControllerInputType & {
+    remoteModelDirPath: string
+  }
 ): Promise<ControllerOutputType> {
+  const { remoteModelDirPath } = input
   const [, dirPath, modelName] = input.url.path.match(
     remoteModelRouteRegex
   )
 
-  if (!modelName) {
+  if (!modelName || !remoteModelDirPath) {
     return JSON.stringify(null)
   }
 
   const instance = (
     await import(
-      join(__dirname, "models/", dirPath, modelName)
+      join(remoteModelDirPath, dirPath, modelName)
     )
   ).default
 

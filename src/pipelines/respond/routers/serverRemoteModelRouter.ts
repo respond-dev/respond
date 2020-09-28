@@ -10,7 +10,7 @@ export async function serverRemoteModelRouter(
   return await routeSelector("libs/respond", input, [
     {
       matcher: remoteModelRouteRegex,
-      controller: "respond/remoteModel",
+      controller: "serverRemoteModel",
     },
   ])
 }

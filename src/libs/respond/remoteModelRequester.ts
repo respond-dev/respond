@@ -1,4 +1,3 @@
-export const browser = typeof history !== "undefined"
 export const caches = {}
 export const pending = {}
 
@@ -22,7 +21,7 @@ export async function remoteModelRequester<
 ): Promise<PromiseResult<ReturnType<T>>> {
   const id = path.match(/[^/]+$/)[0]
 
-  if (!browser) {
+  if (typeof history === "undefined") {
     return
   }
   const url = `/remote/${id}.json`
@@ -52,10 +51,6 @@ export async function remoteModelRequester<
   caches[cacheKey] = response
 
   return response as PromiseResult<ReturnType<T>>
-}
-
-if (typeof history !== "undefined") {
-  window["remoteModelRequester"] = remoteModelRequester
 }
 
 export default remoteModelRequester

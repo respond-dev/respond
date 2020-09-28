@@ -7,6 +7,7 @@ export async function appRouter(
 ): Promise<RouterOutputType> {
   return await routeSelector("apps/web", input, [
     { matcher: "/", controller: "home", layout: "layout" },
+    { matcher: "/hi", controller: "hi", layout: "layout" },
   ])
 }
 
