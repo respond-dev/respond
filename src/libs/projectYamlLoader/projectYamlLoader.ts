@@ -8,19 +8,19 @@ export interface EnvYamlType {
   ssmKey: string
 }
 
-export type AppYamlType = EnvYamlType & {
+export type ProjectYamlType = EnvYamlType & {
   name: string
   dev: EnvYamlType
   stage: EnvYamlType
   prod: EnvYamlType
 }
 
-export async function appYamlLoader(): Promise<
-  AppYamlType
+export async function projectYamlLoader(): Promise<
+  ProjectYamlType
 > {
   return await yamlLoader(
-    join(__dirname, "root/config/app.yml")
+    join(__dirname, "root/config/project.yml")
   )
 }
 
-export default appYamlLoader
+export default projectYamlLoader

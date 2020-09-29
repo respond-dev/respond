@@ -1,9 +1,9 @@
-service: ${file(./config/app.yml):name}
+service: ${file(./config/project.yml):name}
 
 provider:
   name: aws
   runtime: nodejs12.x
-  environment: ${file(./config/app.yml):${opt:stage, self:provider.stage}.envVars}
+  environment: ${file(./config/project.yml):${opt:stage, self:provider.stage}.envVars}
   apiGateway:
     binaryMediaTypes:
       - "*/*"
@@ -18,13 +18,13 @@ provider:
           - - 'arn:aws:ssm'
             - Ref: 'AWS::Region'
             - Ref: 'AWS::AccountId'
-            - 'parameter/${file(./config/app.yml):${opt:stage, self:provider.stage}.ssmKey}/*'
+            - 'parameter/${file(./config/project.yml):${opt:stage, self:provider.stage}.ssmKey}/*'
     - Effect: Allow
       Action:
         - s3:*
       Resource:
-        - "arn:aws:s3:::${file(./config/app.yml):${opt:stage, self:provider.stage}.s3Bucket}/*"
-        - "arn:aws:s3:::${file(./config/app.yml):${opt:stage, self:provider.stage}.s3Bucket}"
+        - "arn:aws:s3:::${file(./config/project.yml):${opt:stage, self:provider.stage}.s3Bucket}/*"
+        - "arn:aws:s3:::${file(./config/project.yml):${opt:stage, self:provider.stage}.s3Bucket}"
 functions:
   postmaster:
     handler: dist/cjs/libs/respond/lambdaServer.lambdaServer

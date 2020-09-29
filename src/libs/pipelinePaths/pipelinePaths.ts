@@ -1,6 +1,6 @@
 import { join } from "path"
-import appYamlLoader from "libs/appYamlLoader/appYamlLoader"
-import { EnvYamlType } from "libs/appYamlLoader/appYamlLoader"
+import projectYamlLoader from "libs/projectYamlLoader/projectYamlLoader"
+import { EnvYamlType } from "libs/projectYamlLoader/projectYamlLoader"
 import { pipelinePhases } from "libs/pipeline/pipeline"
 import pipelineDirectoryPaths from "./pipelineDirectoryPaths"
 import { PipelineDirectoryPathsType } from "./pipelineDirectoryPaths"
@@ -11,7 +11,7 @@ export async function pipelinePaths(
   pipelineId: string,
   clientMode = false
 ): Promise<PipelinePathsType> {
-  const app = await appYamlLoader()
+  const app = await projectYamlLoader()
 
   const { pipelines } = app[
     process.env.STAGE || "dev"
