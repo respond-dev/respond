@@ -2,10 +2,10 @@ export interface ModelInput {}
 
 export interface ModelOutput {}
 
-export async function model(
+export async function homeModel(
   input: ModelInput
 ): Promise<ModelOutput> {
   return {}
 }
 
-export default model
+export default homeModel

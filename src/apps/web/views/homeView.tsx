@@ -1,8 +1,9 @@
 import { ViewInputType } from "types/web-app/viewTypes"
 import { ViewOutputType } from "types/web-app/viewTypes"
+import { ModelOutput } from "../models/homeModel"
 
-export function view(
-  input: ViewInputType,
+export function homeView(
+  input: ViewInputType & { homeModelOutput: ModelOutput },
   id = "respond"
 ): ViewOutputType {
   return (
@@ -17,4 +18,4 @@ export function view(
   )
 }
 
-export default view
+export default homeView
